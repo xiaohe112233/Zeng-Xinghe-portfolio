@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>曾杏荷 — 产品运营 · 市场营销</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F5F4F0;
+      --bg2:       #EEECEA;
+      --white:     #FFFFFF;
+      --dark:      #1A1A1A;
+      --dark2:     #2C2C2C;
+      --muted:     #7A7A7A;
+      --muted2:    #AEAEAE;
+      --gold:      #C9A96E;
+      --gold2:     #B8935A;
+      --gold-lt:   #F0E4CC;
+      --border:    rgba(0,0,0,0.08);
+      --border2:   rgba(0,0,0,0.12);
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.09);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+      --r: 20px;
+      --r-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--gold-lt); color: var(--dark); }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: var(--muted2); border-radius: 2px; }
+
+    /* ─── TYPOGRAPHY ─── */
+    .serif { font-family: 'Playfair Display', Georgia, serif; }
+    h1,h2,h3 { font-family: 'Playfair Display', Georgia, serif; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 52px;
+      transition: background .4s, box-shadow .4s;
+    }
+    nav.scrolled {
+      background: rgba(245,244,240,0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--dark); letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 13px; font-weight: 400; letter-spacing: 0.02em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-cta {
+      padding: 8px 20px; border-radius: 100px;
+      background: var(--dark); color: #fff;
+      font-size: 13px; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--dark2); transform: translateY(-1px); }
+
+    /* ─── LANG TOGGLE ─── */
+    #langBtn {
+      margin-left: 16px;
+      padding: 6px 14px; border-radius: 100px;
+      border: 1px solid var(--border2);
+      background: transparent; color: var(--dark);
+      font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
+      font-family: 'Inter', sans-serif;
+    }
+    #langBtn:hover { background: var(--gold-lt); border-color: var(--gold); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      width: 100%; height: 100vh; min-height: 640px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #1c1812 0%, #2a2016 35%, #1a1c20 100%);
+    }
+    /* Subtle warm texture overlay */
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(201,169,110,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        100deg,
+        rgba(0,0,0,0.62) 0%,
+        rgba(0,0,0,0.22) 55%,
+        transparent 100%
+      );
+    }
+
+    /* Slide system */
+    .hero-slide {
+      position: absolute; inset: 0; opacity: 0;
+      transition: opacity 1s cubic-bezier(.4,0,.2,1);
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.05);
+      transition: transform 10s ease;
+    }
+    .hero-slide.active .hero-slide-bg { transform: scale(1); }
+
+    /* Slide content */
+    .hero-content {
+      position: absolute; bottom: 0; left: 0; right: 0; top: 0;
+      display: flex; align-items: center;
+      padding: 0 52px;
+    }
+    .hero-left {
+      max-width: 560px;
+      transform: translateY(16px); opacity: 0;
+      transition: transform .8s .2s ease, opacity .8s .2s ease;
+    }
+    .hero-slide.active .hero-left { transform: none; opacity: 1; }
+
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+      font-weight: 800; line-height: 1.06;
+      letter-spacing: -0.02em; color: #fff;
+      margin-bottom: 22px;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--gold);
+    }
+    .hero-body {
+      font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.65);
+      line-height: 1.75; margin-bottom: 32px; max-width: 420px;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
+    }
+    .hero-tag {
+      padding: 5px 14px; border-radius: 100px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.8);
+      backdrop-filter: blur(8px);
+    }
+    .hero-btns { display: flex; align-items: center; gap: 16px; }
+    .btn-primary {
+      padding: 13px 26px; border-radius: 100px;
+      background: var(--gold); color: var(--dark);
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover {
+      background: var(--gold2); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,169,110,0.35);
+    }
+    .btn-ghost-light {
+      padding: 13px 26px; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.85); font-size: 14px;
+      text-decoration: none; font-weight: 400;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost-light:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+
+    /* Hero floating cards (right side) */
+    .hero-cards {
+      position: absolute; right: 60px; top: 50%;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 14px;
+      opacity: 0; transform: translateY(-40%);
+      transition: opacity 1s .5s, transform 1s .5s;
+    }
+    .hero-slide.active .hero-cards {
+      opacity: 1; transform: translateY(-50%);
+    }
+    .h-card {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(20px);
+      border-radius: 18px;
+      padding: 20px 24px;
+      width: 220px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .h-card-label {
+      font-size: 11px; font-weight: 500; color: var(--muted);
+      letter-spacing: 0.06em; margin-bottom: 6px;
+    }
+    .h-card-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--dark);
+      line-height: 1;
+    }
+    .h-card-sub {
+      font-size: 11px; color: #22a05a; font-weight: 500;
+      margin-top: 4px;
+    }
+    .h-card-bar {
+      height: 3px; border-radius: 2px;
+      background: var(--bg2); margin-top: 10px;
+    }
+    .h-card-bar-fill {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      width: 0%; transition: width 1.2s 1.2s ease;
+    }
+    .hero-slide.active .h-card-bar-fill { width: var(--w); }
+    .h-card-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--gold-lt); display: flex; align-items: center;
+      justify-content: center; font-size: 13px; margin-bottom: 8px;
+    }
+
+    /* Slider controls */
+    .hero-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 10; width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 16px; display: flex;
+      align-items: center; justify-content: center;
+      cursor: pointer; backdrop-filter: blur(8px);
+      transition: background .2s, transform .2s;
+    }
+    .hero-arrow:hover { background: rgba(255,255,255,0.22); transform: translateY(-50%) scale(1.05); }
+    .hero-arrow.prev { left: 20px; }
+    .hero-arrow.next { right: 20px; }
+    .hero-dots {
+      position: absolute; bottom: 28px; left: 52px;
+      display: flex; gap: 8px; z-index: 10;
+    }
+    .hero-dot {
+      width: 20px; height: 3px; border-radius: 2px;
+      background: rgba(255,255,255,0.3); cursor: pointer;
+      transition: background .3s, width .3s;
+    }
+    .hero-dot.active { background: var(--gold); width: 36px; }
+    .hero-fade {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+      background: linear-gradient(to top, var(--bg), transparent);
+      pointer-events: none; z-index: 5;
+    }
+
+    /* ─── SHARED LAYOUT ─── */
+    section { padding: 100px 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 52px; }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 1; transform: none;
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    /* Animation only when JS successfully marks body */
+    body.js-anim .reveal {
+      opacity: 0; transform: translateY(20px);
+    }
+    body.js-anim .reveal.in { opacity: 1; transform: none; }
+
+    /* ─── SECTION HEADER ─── */
+    .sec-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .sec-title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.02em; color: var(--dark);
+      line-height: 1.15;
+    }
+    .sec-body {
+      font-size: 15px; color: var(--muted); line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 1px; background: var(--border);
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--white); padding: 90px 0; }
+    .about-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px; align-items: center;
+    }
+    .about-heading {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.12; color: var(--dark); margin-bottom: 22px;
+    }
+    .about-heading em { font-style: italic; color: var(--gold); }
+    .about-text {
+      font-size: 15px; color: var(--muted); line-height: 1.82;
+      margin-bottom: 32px;
+    }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      padding: 6px 15px; border-radius: 100px;
+      background: var(--bg); border: 1px solid var(--border);
+      font-size: 12px; font-weight: 400; color: var(--dark2);
+      transition: background .2s, border-color .2s, transform .2s;
+      cursor: default;
+    }
+    .tag:hover {
+      background: var(--gold-lt); border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    /* Stats right side */
+    .stats-stack { display: flex; flex-direction: column; gap: 16px; }
+    .stat-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 24px 28px;
+      display: flex; align-items: center; gap: 20px;
+      transition: box-shadow .3s, transform .3s, border-color .3s;
+    }
+    .stat-card:hover {
+      box-shadow: var(--shadow-md); transform: translateX(4px);
+      border-color: var(--gold);
+    }
+    .stat-icon-wrap {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: var(--gold-lt); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .stat-big {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem; font-weight: 700; color: var(--dark);
+      line-height: 1;
+    }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+    /* ─── WORK / PROJECTS ─── */
+    #projects { background: var(--bg); }
+    .projects-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 52px;
+    }
+    .proj-list { display: flex; flex-direction: column; gap: 20px; }
+
+    .proj-card {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-radius: var(--r); overflow: hidden;
+      background: var(--white); border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .35s, transform .35s;
+      cursor: default;
+    }
+    .proj-card:hover {
+      box-shadow: var(--shadow-lg); transform: translateY(-4px);
+    }
+    .proj-card:nth-child(even) .proj-visual { order: 2; }
+    .proj-card:nth-child(even) .proj-info   { order: 1; }
+
+    /* Visual area — abstract gradient art */
+    .proj-visual {
+      position: relative; overflow: hidden; min-height: 300px;
+    }
+    .proj-visual-bg {
+      position: absolute; inset: 0;
+      transition: transform .6s ease;
+    }
+    .proj-card:hover .proj-visual-bg { transform: scale(1.03); }
+    .pv1 { background: linear-gradient(145deg,#1c1812 0%,#2d2214 40%,#1a1c20 100%); }
+    .pv2 { background: linear-gradient(145deg,#0d1a14 0%,#16281e 40%,#0e1820 100%); }
+    .pv3 { background: linear-gradient(145deg,#1a0e12 0%,#280f18 40%,#1a141e 100%); }
+    .pv4 { background: linear-gradient(145deg,#0d1520 0%,#0f2030 40%,#0a1018 100%); }
+    .pv5 { background: linear-gradient(145deg,#18120a 0%,#241a0d 40%,#1a1410 100%); }
+
+    .proj-visual-inner {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 36px; gap: 10px;
+    }
+    .pvi-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem; font-weight: 800; color: #fff;
+      letter-spacing: -0.04em; line-height: 1;
+    }
+    .pvi-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+    }
+    .pvi-metrics {
+      display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap; justify-content: center;
+    }
+    .pvi-m { text-align: center; }
+    .pvi-m .v { display: block; font-size: 1.1rem; font-weight: 700; color: #fff; }
+    .pvi-m .k { font-size: 9px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+    .pvi-glow {
+      position: absolute; border-radius: 50%;
+      filter: blur(55px); pointer-events: none;
+    }
+
+    .proj-info {
+      padding: 44px 44px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .proj-cats {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px;
+    }
+    .proj-cat {
+      padding: 3px 10px; border-radius: 100px;
+      background: var(--bg); border: 1px solid var(--border);
+      font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .proj-title {
+      font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--dark); margin-bottom: 14px; line-height: 1.3;
+    }
+    .proj-desc {
+      font-size: 13.5px; color: var(--muted); line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .proj-metrics-row {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      padding-top: 20px; border-top: 1px solid var(--border);
+    }
+    .pm { display: flex; flex-direction: column; gap: 2px; }
+    .pm .v {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700; color: var(--dark);
+    }
+    .pm .l { font-size: 11px; color: var(--muted2); letter-spacing: 0.04em; }
+
+    /* ─── FRAGMENT FLIP CARDS ─── */
+    .fc-wrap { perspective: 400px; cursor: pointer; }
+    .fc-inner {
+      position: relative; width: 100%; aspect-ratio: 1/1;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
+    }
+    .fc-wrap:hover .fc-inner { transform: rotateY(180deg); }
+    .fc-front, .fc-back {
+      position: absolute; inset: 0; border-radius: 8px;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden;
+    }
+    .fc-front { background: #111; }
+    .fc-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .fc-name {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      color: #fff; font-size: 9px; font-weight: 600;
+      text-align: center; padding: 12px 4px 5px; letter-spacing: 0.3px; line-height: 1.2;
+    }
+    .fc-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(160deg, #1a1a2e, #0f0e17);
+      border: 1px solid rgba(201,169,110,0.25);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 4px; padding: 8px 6px; text-align: center;
+    }
+    .fc-bi { width: 34px; height: 34px; border-radius: 50%; overflow: hidden; border: 1.5px solid rgba(201,169,110,0.4); flex-shrink: 0; }
+    .fc-bi img { width: 100%; height: 100%; object-fit: cover; }
+    .fc-bt { font-size: 9px; font-weight: 700; color: #fff; line-height: 1.2; }
+    .fc-bd { font-size: 8px; color: rgba(255,255,255,0.4); line-height: 1.4; }
+    .fc-rr { font-size: 8px; font-weight: 600; letter-spacing: 1px; padding: 2px 7px; border-radius: 100px; margin-top: 2px; }
+    .r-event     { background: rgba(255,140,80,0.18);  color: #ffaa66; }  /* 事件 - 橙 */
+    .r-date      { background: rgba(180,120,255,0.18); color: #c89aff; }  /* 特殊日期 - 紫 */
+    .r-unlock    { background: rgba(100,200,140,0.18); color: #6dcf98; }  /* 解锁 - 绿 */
+    .r-milestone { background: rgba(201,169,110,0.2);  color: #C9A96E; }  /* 里程碑 - 金 */
+
+    /* === FDD tab === */
+    #fdd_t1:checked ~ .proj-card #fdd_p0 { opacity: 0; pointer-events: none; }
+    #fdd_t1:checked ~ .proj-card #fdd_p1 { opacity: 1; pointer-events: auto; }
+    #fdd_t1:checked ~ .proj-card #fdd_tab0 { color: rgba(255,255,255,0.4); border-bottom-color: transparent; }
+    #fdd_t1:checked ~ .proj-card #fdd_tab1 { color: rgba(255,255,255,0.9); border-bottom-color: #C9A96E; }
+
+    /* === DFS radio === */
+    /* Default: first image visible */
+    #dfs_i0 { opacity: 1; z-index: 1; }
+    #dfs_i1, #dfs_i2 { opacity: 0; z-index: 0; }
+    #dfs_d0 { background: #C9A96E !important; }
+    /* Checked states */
+    #dfs_r1:checked ~ .proj-card #dfs_i0 { opacity: 0; z-index: 0; }
+    #dfs_r1:checked ~ .proj-card #dfs_i1 { opacity: 1; z-index: 1; }
+    #dfs_r1:checked ~ .proj-card #dfs_d0 { background: rgba(255,255,255,0.3) !important; }
+    #dfs_r1:checked ~ .proj-card #dfs_d1 { background: #C9A96E !important; }
+    #dfs_r2:checked ~ .proj-card #dfs_i0 { opacity: 0; z-index: 0; }
+    #dfs_r2:checked ~ .proj-card #dfs_i2 { opacity: 1; z-index: 1; }
+    #dfs_r2:checked ~ .proj-card #dfs_d0 { background: rgba(255,255,255,0.3) !important; }
+    #dfs_r2:checked ~ .proj-card #dfs_d2 { background: #C9A96E !important; }
+
+    /* ─── RUN GALLERY (CSS-only radio) ─── */
+    /* Override proj-visual constraints for the gallery card */
+    .rg-wrap { min-height: unset !important; padding: 0 !important; }
+    /* Hide radios */
+    .rg-wrap input[type=radio] { display:none; }
+    /* Wrapper layout */
+    .rg-wrap { display:flex; flex-direction:column; background:#0d1208; overflow:hidden; }
+    /* Stage */
+    .rg-stage { position:relative; width:100%; aspect-ratio:3/4; background:#0d1208; overflow:hidden; }
+    .rg-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .5s ease; }
+    /* Thumbs strip */
+    .rg-thumbs { display:flex; gap:4px; padding:8px; background:#0a0f06; flex-shrink:0; }
+    .rg-thumb { display:block; width:calc(12.5% - 4px); flex-shrink:0; cursor:pointer; border-radius:4px; overflow:hidden; border:2px solid transparent; opacity:0.5; transition:opacity .2s,border-color .2s; }
+    .rg-thumb img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+    /* Active: radio ~ .rg-stage img and radio ~ .rg-thumbs label */
+    #rg0:checked ~ .rg-stage .rgi0 { opacity:1; }
+    #rg1:checked ~ .rg-stage .rgi1 { opacity:1; }
+    #rg2:checked ~ .rg-stage .rgi2 { opacity:1; }
+    #rg3:checked ~ .rg-stage .rgi3 { opacity:1; }
+    #rg4:checked ~ .rg-stage .rgi4 { opacity:1; }
+    #rg5:checked ~ .rg-stage .rgi5 { opacity:1; }
+    #rg6:checked ~ .rg-stage .rgi6 { opacity:1; }
+    #rg7:checked ~ .rg-stage .rgi7 { opacity:1; }
+    #rg0:checked ~ .rg-thumbs .t0 { border-color:#C9A96E; opacity:1; }
+    #rg1:checked ~ .rg-thumbs .t1 { border-color:#C9A96E; opacity:1; }
+    #rg2:checked ~ .rg-thumbs .t2 { border-color:#C9A96E; opacity:1; }
+    #rg3:checked ~ .rg-thumbs .t3 { border-color:#C9A96E; opacity:1; }
+    #rg4:checked ~ .rg-thumbs .t4 { border-color:#C9A96E; opacity:1; }
+    #rg5:checked ~ .rg-thumbs .t5 { border-color:#C9A96E; opacity:1; }
+    #rg6:checked ~ .rg-thumbs .t6 { border-color:#C9A96E; opacity:1; }
+    #rg7:checked ~ .rg-thumbs .t7 { border-color:#C9A96E; opacity:1; }
+
+    /* WY Lightbox */
+    #wylb0:checked ~ #wylb0-ov,
+    #wylb1:checked ~ #wylb1-ov,
+    #wylb2:checked ~ #wylb2-ov,
+    #wylb3:checked ~ #wylb3-ov,
+    #wylb4:checked ~ #wylb4-ov,
+    #wylb5:checked ~ #wylb5-ov,
+    #wylb6:checked ~ #wylb6-ov { display:flex !important; }
+
+    /* ─── WY 扇形卡片 ─── */
+    .fan-card, .wfc0,.wfc1,.wfc2,.wfc3,.wfc4,.wfc5,.wfc6 {
+      position:absolute; width:140px; height:200px;
+      border-radius:12px; overflow:hidden;
+      transition: all .5s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+    /* pos -2 最左 */
+    #fw0:checked ~ .proj-card .wfc0,#fw1:checked ~ .proj-card .wfc6,#fw2:checked ~ .proj-card .wfc5,
+    #fw3:checked ~ .proj-card .wfc4,#fw4:checked ~ .proj-card .wfc3,#fw5:checked ~ .proj-card .wfc2,
+    #fw6:checked ~ .proj-card .wfc1 { transform:translateX(-220px) translateY(18px) rotate(-18deg) scale(.7); z-index:1; opacity:.65; }
+    /* pos -1 左 */
+    #fw0:checked ~ .proj-card .wfc1,#fw1:checked ~ .proj-card .wfc0,#fw2:checked ~ .proj-card .wfc6,
+    #fw3:checked ~ .proj-card .wfc5,#fw4:checked ~ .proj-card .wfc4,#fw5:checked ~ .proj-card .wfc3,
+    #fw6:checked ~ .proj-card .wfc2 { transform:translateX(-120px) translateY(6px) rotate(-10deg) scale(.84); z-index:2; opacity:.85; }
+    /* pos 0 中间激活 */
+    #fw0:checked ~ .proj-card .wfc2,#fw1:checked ~ .proj-card .wfc1,#fw2:checked ~ .proj-card .wfc0,
+    #fw3:checked ~ .proj-card .wfc6,#fw4:checked ~ .proj-card .wfc5,#fw5:checked ~ .proj-card .wfc4,
+    #fw6:checked ~ .proj-card .wfc3 { transform:translateX(0) translateY(0) rotate(0) scale(1); z-index:5; opacity:1; box-shadow:0 20px 50px rgba(0,0,0,0.5); }
+    /* pos +1 右 */
+    #fw0:checked ~ .proj-card .wfc3,#fw1:checked ~ .proj-card .wfc2,#fw2:checked ~ .proj-card .wfc1,
+    #fw3:checked ~ .proj-card .wfc0,#fw4:checked ~ .proj-card .wfc6,#fw5:checked ~ .proj-card .wfc5,
+    #fw6:checked ~ .proj-card .wfc4 { transform:translateX(120px) translateY(6px) rotate(10deg) scale(.84); z-index:2; opacity:.85; }
+    /* pos +2 最右 */
+    #fw0:checked ~ .proj-card .wfc4,#fw1:checked ~ .proj-card .wfc3,#fw2:checked ~ .proj-card .wfc2,
+    #fw3:checked ~ .proj-card .wfc1,#fw4:checked ~ .proj-card .wfc0,#fw5:checked ~ .proj-card .wfc6,
+    #fw6:checked ~ .proj-card .wfc5 { transform:translateX(220px) translateY(18px) rotate(18deg) scale(.7); z-index:1; opacity:.65; }
+    /* 隐藏 +3/-3 */
+    #fw0:checked ~ .proj-card .wfc5,#fw1:checked ~ .proj-card .wfc4,#fw2:checked ~ .proj-card .wfc3,
+    #fw3:checked ~ .proj-card .wfc2,#fw4:checked ~ .proj-card .wfc1,#fw5:checked ~ .proj-card .wfc0,
+    #fw6:checked ~ .proj-card .wfc6 { transform:translateX(-300px) translateY(30px) rotate(-24deg) scale(.55); z-index:0; opacity:0; }
+    #fw0:checked ~ .proj-card .wfc6,#fw1:checked ~ .proj-card .wfc5,#fw2:checked ~ .proj-card .wfc4,
+    #fw3:checked ~ .proj-card .wfc3,#fw4:checked ~ .proj-card .wfc2,#fw5:checked ~ .proj-card .wfc1,
+    #fw6:checked ~ .proj-card .wfc0 { transform:translateX(300px) translateY(30px) rotate(24deg) scale(.55); z-index:0; opacity:0; }
+    /* Dot active */
+    #fw0:checked ~ .proj-card .wd0,#fw1:checked ~ .proj-card .wd1,#fw2:checked ~ .proj-card .wd2,
+    #fw3:checked ~ .proj-card .wd3,#fw4:checked ~ .proj-card .wd4,#fw5:checked ~ .proj-card .wd5,
+    #fw6:checked ~ .proj-card .wd6 { background:#C9A96E !important; width:20px !important; }
+    #fw1:checked ~ .proj-card .wd0,#fw2:checked ~ .proj-card .wd0,#fw3:checked ~ .proj-card .wd0,
+    #fw4:checked ~ .proj-card .wd0,#fw5:checked ~ .proj-card .wd0,#fw6:checked ~ .proj-card .wd0 { background:rgba(255,255,255,0.35) !important; width:10px !important; }
+
+    /* ─── WY GALLERY (7张直播海报) ─── */
+    #wy_r0:checked ~ .proj-card .wy-i1,
+    #wy_r0:checked ~ .proj-card .wy-i2,
+    #wy_r0:checked ~ .proj-card .wy-i3,
+    #wy_r0:checked ~ .proj-card .wy-i4,
+    #wy_r0:checked ~ .proj-card .wy-i5,
+    #wy_r0:checked ~ .proj-card .wy-i6 { opacity:0 !important; }
+    #wy_r1:checked ~ .proj-card .wy-i0,
+    #wy_r1:checked ~ .proj-card .wy-i2,
+    #wy_r1:checked ~ .proj-card .wy-i3,
+    #wy_r1:checked ~ .proj-card .wy-i4,
+    #wy_r1:checked ~ .proj-card .wy-i5,
+    #wy_r1:checked ~ .proj-card .wy-i6 { opacity:0 !important; }
+    #wy_r1:checked ~ .proj-card .wy-i1 { opacity:1 !important; }
+    #wy_r2:checked ~ .proj-card .wy-i0,
+    #wy_r2:checked ~ .proj-card .wy-i1,
+    #wy_r2:checked ~ .proj-card .wy-i3,
+    #wy_r2:checked ~ .proj-card .wy-i4,
+    #wy_r2:checked ~ .proj-card .wy-i5,
+    #wy_r2:checked ~ .proj-card .wy-i6 { opacity:0 !important; }
+    #wy_r2:checked ~ .proj-card .wy-i2 { opacity:1 !important; }
+    #wy_r3:checked ~ .proj-card .wy-i0,
+    #wy_r3:checked ~ .proj-card .wy-i1,
+    #wy_r3:checked ~ .proj-card .wy-i2,
+    #wy_r3:checked ~ .proj-card .wy-i4,
+    #wy_r3:checked ~ .proj-card .wy-i5,
+    #wy_r3:checked ~ .proj-card .wy-i6 { opacity:0 !important; }
+    #wy_r3:checked ~ .proj-card .wy-i3 { opacity:1 !important; }
+    #wy_r4:checked ~ .proj-card .wy-i0,
+    #wy_r4:checked ~ .proj-card .wy-i1,
+    #wy_r4:checked ~ .proj-card .wy-i2,
+    #wy_r4:checked ~ .proj-card .wy-i3,
+    #wy_r4:checked ~ .proj-card .wy-i5,
+    #wy_r4:checked ~ .proj-card .wy-i6 { opacity:0 !important; }
+    #wy_r4:checked ~ .proj-card .wy-i4 { opacity:1 !important; }
+    #wy_r5:checked ~ .proj-card .wy-i0,
+    #wy_r5:checked ~ .proj-card .wy-i1,
+    #wy_r5:checked ~ .proj-card .wy-i2,
+    #wy_r5:checked ~ .proj-card .wy-i3,
+    #wy_r5:checked ~ .proj-card .wy-i4,
+    #wy_r5:checked ~ .proj-card .wy-i6 { opacity:0 !important; }
+    #wy_r5:checked ~ .proj-card .wy-i5 { opacity:1 !important; }
+    #wy_r6:checked ~ .proj-card .wy-i0,
+    #wy_r6:checked ~ .proj-card .wy-i1,
+    #wy_r6:checked ~ .proj-card .wy-i2,
+    #wy_r6:checked ~ .proj-card .wy-i3,
+    #wy_r6:checked ~ .proj-card .wy-i4,
+    #wy_r6:checked ~ .proj-card .wy-i5 { opacity:0 !important; }
+    #wy_r6:checked ~ .proj-card .wy-i6 { opacity:1 !important; }
+    /* Dot highlights */
+    #wy_r0:checked ~ .proj-card .wy-d0,
+    #wy_r1:checked ~ .proj-card .wy-d1,
+    #wy_r2:checked ~ .proj-card .wy-d2,
+    #wy_r3:checked ~ .proj-card .wy-d3,
+    #wy_r4:checked ~ .proj-card .wy-d4,
+    #wy_r5:checked ~ .proj-card .wy-d5,
+    #wy_r6:checked ~ .proj-card .wy-d6 { background:#C9A96E !important; width:28px !important; }
+    /* Non-active dots when other radio checked */
+    #wy_r1:checked ~ .proj-card .wy-d0,
+    #wy_r2:checked ~ .proj-card .wy-d0,
+    #wy_r3:checked ~ .proj-card .wy-d0,
+    #wy_r4:checked ~ .proj-card .wy-d0,
+    #wy_r5:checked ~ .proj-card .wy-d0,
+    #wy_r6:checked ~ .proj-card .wy-d0 { background:rgba(255,255,255,0.5) !important; width:14px !important; }
+
+    /* ─── KOL SECTION ─── */
+    .kol-section {
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 36px 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      margin-bottom: 0;
+    }
+    .kol-label {
+      font-size: 11px; letter-spacing: 3px; color: #C9A96E;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .kol-title {
+      font-size: 22px; font-weight: 700; color: #1a1a1a;
+    }
+    .kol-badge {
+      background: #1a1a1a; color: #C9A96E;
+      font-size: 12px; font-weight: 600;
+      padding: 6px 18px; border-radius: 100px;
+      letter-spacing: 0.5px; white-space: nowrap;
+    }
+    .kol-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .ktab {
+      padding: 7px 16px; border-radius: 100px;
+      font-size: 12px; cursor: pointer;
+      border: 1.5px solid #e0ddd8;
+      background: transparent; color: #666;
+      transition: all .2s; font-family: inherit;
+    }
+    .ktab:hover { border-color: #C9A96E; color: #C9A96E; }
+    .ktab.active { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+    .kol-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .kcard {
+      border-radius: 10px; overflow: hidden;
+      cursor: pointer; position: relative;
+      background: #f0ede8;
+      transition: transform .25s, box-shadow .25s;
+      display: block;
+      text-decoration: none !important;
+      outline: none;
+    }
+    .kcard:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); }
+    .kcard:hover .kcard-ov { opacity: 1; }
+    .kcard:hover .kcard-img { transform: scale(1.04); }
+    .kcard-img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover; display: block;
+      background: #f0ede8;
+      transition: transform .35s ease;
+    }
+    /* hover 时展示的叠层 */
+    .kcard-ov {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+      opacity: 0; transition: opacity .25s; pointer-events: none;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 12px 12px 10px;
+    }
+    .kcard-tag {
+      display: inline-block; background: #C9A96E; color: #fff;
+      font-size: 9px; letter-spacing: 0.8px; font-weight: 600;
+      padding: 3px 9px; border-radius: 100px; white-space: nowrap;
+      margin-bottom: 5px; width: fit-content;
+    }
+    .kcard-stats { font-size: 11px; color: rgba(255,255,255,0.9); }
+    .kcard.khidden { display: none; }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { background: var(--white); }
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid; grid-template-columns: 240px 1fr;
+      border-bottom: 1px solid var(--border);
+      transition: background .25s;
+    }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-item:hover { background: var(--bg); }
+    .exp-l {
+      padding: 32px 24px 32px 0;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .exp-company { font-size: 14px; font-weight: 600; color: var(--dark); }
+    .exp-role { font-size: 13px; color: var(--gold); font-weight: 500; }
+    .exp-period { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+    .exp-r { padding: 32px 0 32px 36px; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .exp-bullets li {
+      font-size: 13.5px; color: var(--muted); line-height: 1.72;
+      padding-left: 16px; position: relative;
+    }
+    .exp-bullets li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--gold); font-size: 11px; top: 3px;
+    }
+    .exp-bullets li strong { color: var(--dark); font-weight: 600; }
+
+    /* ─── BENTO: THE ARCHITECTURE SECTION ─── */
+    #bento { background: var(--bg); }
+    .bento-intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: end; margin-bottom: 56px;
+    }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+    .bento-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .bento-card:hover {
+      box-shadow: var(--shadow-md); transform: translateY(-3px);
+    }
+    .bento-card.tall { grid-row: span 2; }
+    .bento-inner { padding: 28px 28px 0; }
+    .bento-tag {
+      display: inline-block; padding: 4px 12px;
+      border: 1px solid var(--border); border-radius: 100px;
+      font-size: 11px; color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .bento-heading {
+      font-size: 1.25rem; font-weight: 700; color: var(--dark);
+      margin-bottom: 10px; line-height: 1.3;
+    }
+    .bento-text {
+      font-size: 13px; color: var(--muted); line-height: 1.72;
+      margin-bottom: 20px;
+    }
+    /* SVG chart area */
+    .bento-chart { padding: 0 0 0 0; }
+    /* Small cards */
+    .bento-sm { padding: 28px; }
+    .bento-sm-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; margin-bottom: 14px;
+    }
+    .bento-sm-title { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .bento-sm-body { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+
+    /* ─── EDUCATION ─── */
+    #education { background: var(--white); }
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .edu-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 36px 32px;
+      position: relative; overflow: hidden;
+      transition: box-shadow .3s, transform .3s, border-color .3s;
+    }
+    .edu-card:hover {
+      box-shadow: var(--shadow-md); transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+    .edu-accent {
+      position: absolute; right: -40px; top: -40px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: var(--gold-lt); opacity: 0.55;
+      pointer-events: none;
+    }
+    .edu-type {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .edu-school {
+      font-size: 1.4rem; font-weight: 700; color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .edu-major { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+    .edu-period { font-size: 12px; color: var(--muted2); margin-bottom: 18px; }
+    .edu-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .edu-badge {
+      padding: 4px 12px; border-radius: 100px;
+      background: var(--white); border: 1px solid var(--border);
+      font-size: 11px; color: var(--dark2);
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--bg); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .skill-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--r-sm); padding: 20px 20px;
+      display: flex; align-items: center; gap: 14px;
+      transition: box-shadow .25s, transform .25s, border-color .25s;
+    }
+    .skill-card:hover {
+      box-shadow: var(--shadow-md); transform: translateY(-3px);
+      border-color: var(--gold);
+    }
+    .skill-icon-wrap {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--gold-lt); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .skill-name { font-size: 13.5px; font-weight: 600; color: var(--dark); }
+    .skill-sub { font-size: 11.5px; color: var(--muted2); margin-top: 2px; }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--dark); padding: 100px 0; }
+    .contact-wrap { text-align: center; }
+    .contact-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
+    }
+    .contact-heading {
+      font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 800;
+      color: #fff; letter-spacing: -0.02em; margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .contact-heading em { font-style: italic; color: var(--gold); }
+    .contact-sub {
+      font-size: 15px; color: rgba(255,255,255,0.45);
+      margin-bottom: 40px;
+    }
+    .contact-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .cbtn-primary {
+      padding: 13px 28px; border-radius: 100px;
+      background: var(--gold); color: var(--dark);
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .cbtn-primary:hover {
+      background: var(--gold2); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,169,110,0.3);
+    }
+    .cbtn-ghost {
+      padding: 13px 28px; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.75); font-size: 14px;
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+    .cbtn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center; padding: 24px;
+      font-size: 12px; color: rgba(255,255,255,0.2);
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .proj-card { grid-template-columns: 1fr; }
+      .proj-card:nth-child(even) .proj-visual,
+      .proj-card:nth-child(even) .proj-info { order: unset; }
+      .proj-visual { min-height: 220px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-card.tall { grid-row: span 1; }
+      .bento-intro { grid-template-columns: 1fr; gap: 24px; }
+      .hero-cards { display: none; }
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-l { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+      .exp-r { padding: 16px 0 24px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .container { padding: 0 20px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="mainNav">
+  <div class="nav-logo serif">曾杏荷</div>
+  <ul class="nav-links">
+    <li><a href="#intro" id="nav-about">About</a></li>
+    <li><a href="#projects" id="nav-work">Work</a></li>
+    <li><a href="#experience" id="nav-exp">Experience</a></li>
+    <li><a href="#education" id="nav-edu">Education</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0;">
+    <button id="langBtn" onclick="toggleLang()">EN</button>
+    <a href="#contact" class="nav-cta" style="margin-left:12px;" data-zh="联系我" data-en="Contact">联系我</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO SLIDER ═══ -->
+
+<!-- ═══ INTRO ═══ -->
+<section id="intro" style="padding:0;background:var(--white);">
+  <div style="
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:100vh;
+  ">
+    <!-- Left: Photo -->
+    <div style="
+      position:relative;
+      overflow:hidden;
+      background:#F0EDE8;
+    ">
+      <img src="./avatar.png" alt="曾杏荷"
+        style="
+          width:100%; height:100%;
+          object-fit:cover; object-position:center top;
+          display:block;
+          transition: transform .8s ease;
+        "
+        onmouseover="this.style.transform='scale(1.03)'"
+        onmouseout="this.style.transform='scale(1)'"
+      />
+      <!-- Gold top bar -->
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--gold);"></div>
+    </div>
+
+    <!-- Right: Intro content -->
+    <div style="
+      display:flex; flex-direction:column; justify-content:center;
+      padding: 80px 72px;
+      background: var(--white);
+      position:relative; overflow:hidden;
+    ">
+      <!-- Decorative circle -->
+      <div style="
+        position:absolute; right:-80px; bottom:-80px;
+        width:320px; height:320px; border-radius:50%;
+        background:var(--gold-lt); opacity:.6;
+        pointer-events:none;
+      "></div>
+
+      <div style="position:relative;">
+        <!-- Eyebrow -->
+        <div style="
+          font-size:11px; font-weight:500; letter-spacing:.2em;
+          text-transform:uppercase; color:var(--gold); margin-bottom:20px;
+        " id="intro-eyebrow">Self Introduction</div>
+
+        <!-- Name -->
+        <h1 style="
+          font-family:'Playfair Display',Georgia,serif;
+          font-size:clamp(2.8rem,5vw,4rem); font-weight:800;
+          letter-spacing:-.03em; color:var(--dark); line-height:1.1;
+          margin-bottom:7px;
+        " id="intro-name">曾杏荷</h1>
+
+        <!-- EN Name -->
+        <div style="
+          font-size:14px; color:var(--muted); letter-spacing:.15em;
+          text-transform:uppercase; margin-bottom:32px;
+        " id="intro-enname">Zeng Xinghe</div>
+
+        <!-- Gold rule -->
+        <div style="width:56px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:36px;"></div>
+
+        <!-- Identity tags -->
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;">
+          <span style="padding:6px 18px;border-radius:100px;background:var(--dark);color:#fff;font-size:12px;font-weight:500;" id="intro-tag1">产品运营</span>
+          <span style="padding:6px 18px;border-radius:100px;background:var(--dark);color:#fff;font-size:12px;font-weight:500;" id="intro-tag2">市场营销</span>
+          <span style="padding:6px 18px;border-radius:100px;border:1px solid var(--border);color:var(--dark2);font-size:12px;" id="intro-tag3">HKBU 硕士在读</span>
+          <span style="padding:6px 18px;border-radius:100px;border:1px solid var(--border);color:var(--dark2);font-size:12px;" id="intro-tag4">雅思 6.0</span>
+        </div>
+
+        <!-- Bio paragraph -->
+        <p id="intro-bio" style="
+          font-size:15px; color:var(--muted); line-height:1.85;
+          margin-bottom:40px; max-width:480px;
+        ">
+          毕业于中国民航大学统计学专业，现就读于香港浸会大学<strong style="color:var(--dark);">人工智能与数码媒体</strong>硕士项目（GPA 3.42）。积累了涵盖互联网、电商、医疗、法律科技等多个垂直赛道的<strong style="color:var(--dark);">五段头部平台实习经历</strong>，擅长将数据洞察转化为切实有效的运营与营销策略。
+        </p>
+
+        <!-- Key facts grid -->
+        <div style="
+          display:grid; grid-template-columns:1fr 1fr;
+          gap:16px; margin-bottom:40px;
+        ">
+          <div style="padding:18px 20px;background:var(--bg);border-radius:14px;border:1px solid var(--border);">
+            <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f1-lbl">当前学历</div>
+            <div id="intro-f1-val" style="font-size:14px;font-weight:600;color:var(--dark);">香港浸会大学 · 硕士</div>
+          </div>
+          <div style="padding:18px 20px;background:var(--bg);border-radius:14px;border:1px solid var(--border);">
+            <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f2-lbl">专业背景</div>
+            <div id="intro-f2-val" style="font-size:14px;font-weight:600;color:var(--dark);">统计学 × AI & 数码媒体</div>
+          </div>
+          <div style="padding:18px 20px;background:var(--bg);border-radius:14px;border:1px solid var(--border);">
+            <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f3-lbl">实习经历</div>
+            <div id="intro-f3-val" style="font-size:14px;font-weight:600;color:var(--dark);">5 段 · 头部平台</div>
+          </div>
+          <div style="padding:18px 20px;background:var(--bg);border-radius:14px;border:1px solid var(--border);">
+            <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f4-lbl">求职方向</div>
+            <div id="intro-f4-val" style="font-size:14px;font-weight:600;color:var(--dark);">产品运营 / 市场营销</div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="#projects" style="
+            padding:13px 28px;border-radius:100px;
+            background:var(--gold);color:var(--dark);
+            font-size:14px;font-weight:600;text-decoration:none;
+            transition:background .2s,transform .2s;
+          "
+          onmouseover="this.style.background='#B8935A';this.style.transform='translateY(-2px)'"
+          onmouseout="this.style.background='#C9A96E';this.style.transform='none'"
+           id="intro-cta1">查看项目经历</a>
+          <a href="#contact" style="
+            padding:13px 28px;border-radius:100px;
+            border:1px solid var(--border2);
+            color:var(--dark);font-size:14px;text-decoration:none;
+            transition:border-color .2s;
+          "
+          onmouseover="this.style.borderColor='#C9A96E'"
+          onmouseout="this.style.borderColor='rgba(0,0,0,0.12)'"
+           id="intro-cta2">联系我</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="sec-eyebrow" id="about-eyebrow">About Me</div>
+        <h2 class="about-heading" id="about-heading">以数据为骨，<br><em>以创意破局</em></h2>
+        <p class="about-text" id="about-text">
+          互联网大厂 × 电商 × 医疗 × 法律科技全行业实战经验，擅长全域营销策划、用户增长运营、私域转化漏斗优化与数据驱动的产品策略。正于香港浸会大学攻读 AI & 数码媒体硕士，让技术与商业思维同频共振。
+        </p>
+        <div class="tag-cloud">
+          <span class="tag" id="tag1">📊 数据分析</span>
+          <span class="tag" id="tag2">🎯 用户增长</span>
+          <span class="tag" id="tag3">✍️ 内容策划</span>
+          <span class="tag" id="tag4">📣 KOL 运营</span>
+          <span class="tag" id="tag5">🛒 电商运营</span>
+          <span class="tag" id="tag6">🤝 社群运营</span>
+          <span class="tag" id="tag7">🎬 直播策划</span>
+          <span class="tag" id="tag8">🌐 竞品调研</span>
+          <span class="tag" id="tag9">🤖 AI 应用</span>
+          <span class="tag" id="tag10">🗣️ 雅思 6.0</span>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.12s;">
+        <div class="stats-stack">
+          <div class="stat-card">
+            <div class="stat-icon-wrap">📣</div>
+            <div>
+              <div class="stat-big">1500W+</div>
+              <div class="stat-label" id="stat1-lbl">全域曝光 · 小红书校园跑量赛</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-wrap">💰</div>
+            <div>
+              <div class="stat-big">3000W+</div>
+              <div class="stat-label" id="stat2-lbl">单日 GMV · 东方甄选月促会员日</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-wrap">📈</div>
+            <div>
+              <div class="stat-big">2.3×</div>
+              <div class="stat-label" id="stat3-lbl">抖音投放 ROI · 日峰值 9.2</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-wrap">🦷</div>
+            <div>
+              <div class="stat-big">800W+</div>
+              <div class="stat-label" id="stat4-lbl">医疗 IP 累计 GMV · 3 个医生 IP</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects">
+  <div class="container">
+    <div class="projects-header reveal">
+      <div>
+        <div class="sec-eyebrow" id="proj-eyebrow">Selected Work</div>
+        <h2 class="sec-title" id="proj-title">项目经历</h2>
+      </div>
+      <p class="sec-body" style="max-width:320px;text-align:right;">横跨互联网、电商、医疗、法律科技，以数据驱动每一个运营决策</p>
+    </div>
+
+    <div class="proj-list">
+
+      <!-- P1 小红书 -->
+      <!-- P1a 小红书 · 校园跑量赛 -->
+      <div class="proj-card reveal" id="proj-run">
+        <!-- Left: CSS-only radio gallery -->
+        <!-- Structure: radios MUST be direct siblings of .rg-stage and .rg-thumbs for ~ selector to work -->
+        <div class="proj-visual rg-wrap">
+          <input type="radio" name="rg" id="rg0" checked>
+          <input type="radio" name="rg" id="rg1">
+          <input type="radio" name="rg" id="rg2">
+          <input type="radio" name="rg" id="rg3">
+          <input type="radio" name="rg" id="rg4">
+          <input type="radio" name="rg" id="rg5">
+          <input type="radio" name="rg" id="rg6">
+          <input type="radio" name="rg" id="rg7">
+          <!-- Main stage: images are direct children -->
+          <div class="rg-stage">
+            <img src="./run1.jpg" class="rg-img rgi0">
+            <img src="./run2.jpg" class="rg-img rgi1">
+            <img src="./run3.jpg" class="rg-img rgi2">
+            <img src="./run4.jpg" class="rg-img rgi3">
+            <img src="./run5.jpg" class="rg-img rgi4">
+            <img src="./run6.jpg" class="rg-img rgi5">
+            <img src="./run7.jpg" class="rg-img rgi6">
+            <img src="./run8.jpg" class="rg-img rgi7">
+          </div>
+          <!-- Thumbnails -->
+          <div class="rg-thumbs">
+            <label for="rg0" class="rg-thumb t0"><img src="./run1.jpg"></label>
+            <label for="rg1" class="rg-thumb t1"><img src="./run2.jpg"></label>
+            <label for="rg2" class="rg-thumb t2"><img src="./run3.jpg"></label>
+            <label for="rg3" class="rg-thumb t3"><img src="./run4.jpg"></label>
+            <label for="rg4" class="rg-thumb t4"><img src="./run5.jpg"></label>
+            <label for="rg5" class="rg-thumb t5"><img src="./run6.jpg"></label>
+            <label for="rg6" class="rg-thumb t6"><img src="./run7.jpg"></label>
+            <label for="rg7" class="rg-thumb t7"><img src="./run8.jpg"></label>
+          </div>
+        </div>
+        <!-- Right: info -->
+        <div class="proj-info">
+          <div class="proj-cats">
+            <span class="proj-cat" id="p1-cat1" style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;margin-right:4px;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="14" rx="3" fill="#FF2442"/><text x="7" y="10.5" text-anchor="middle" fill="white" font-size="7" font-weight="900" font-family="sans-serif">书</text></svg>小红书</span>
+            <span class="proj-cat" id="p1-cat2">产品运营</span>
+            <span class="proj-cat" id="p1-cat3">全域营销</span>
+          </div>
+          <div class="proj-title" id="p1-ttl">校园跑量赛<br>全域营销策划</div>
+          <div class="proj-desc" id="p1-dsc">
+            深度参与「校园跑量赛」全域营销策划落地，构建「公域宣发 × 达人矩阵 × 私域裂变」三位一体传播路径——联动 <strong>200 位 KOL/KOC</strong> 精准触达目标圈层，引导素人原创笔记 <strong>1000+ 条</strong>形成大规模 UGC 声量，全域曝光量达 <strong>1500W+</strong>；公域宣发引爆声量后联动私域社群二次裂变，形成传播闭环，助力 APP 新增转化用户 <strong>10W+</strong>。活动覆盖全国 <strong>584 所院校</strong>，期间累计跑量 <strong>393,396 公里</strong>。
+          </div>
+          <div class="proj-metrics-row">
+            <div class="pm"><span class="v">1500W+</span><span class="l" id="p1-l1">全域曝光</span></div>
+            <div class="pm"><span class="v">200+</span><span class="l">KOL/KOC</span></div>
+            <div class="pm"><span class="v">10W+</span><span class="l" id="p1-l2">新增用户</span></div>
+            <div class="pm"><span class="v">584</span><span class="l">参赛院校</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KOL/KOC 合作案例 -->
+      <div class="kol-section reveal" style="grid-column:1/-1;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+          <div>
+            <div class="kol-label" id="kol-label">KOL / KOC 合作案例</div>
+            <div class="kol-title" id="kol-title">达人矩阵 · 内容策略</div>
+          </div>
+          <div class="kol-badge" id="kol-badge">200+ 达人矩阵</div>
+        </div>
+        <!-- Tabs -->
+        <div class="kol-tabs" style="margin-bottom:20px;">
+          <button class="ktab active" onclick="kolFilter('all',this)" id="ktab-all">全部</button>
+          <button class="ktab" onclick="kolFilter('run',this)" id="ktab-run">跑量赛召集型</button>
+          <button class="ktab" onclick="kolFilter('emotion',this)" id="ktab-emotion">情感共鸣型</button>
+          <button class="ktab" onclick="kolFilter('product',this)" id="ktab-product">产品种草型</button>
+          <button class="ktab" onclick="kolFilter('lifestyle',this)" id="ktab-lifestyle">生活方式型</button>
+          <button class="ktab" onclick="kolFilter('value',this)" id="ktab-value">价值观叙事型</button>
+          <button class="ktab" onclick="kolFilter('real',this)" id="ktab-real">真实经历型</button>
+        </div>
+                <!-- Grid: 6列×2行 -->
+        <!-- 第一排: 情感共鸣2 + 价值观叙事2 + 跑量赛召集2 -->
+        <!-- 第二排: 产品种草2 + 真实经历2 + 生活方式2 -->
+        <div class="kol-grid" id="kolGrid">
+          <a class="kcard" data-ktype="emotion" href="./kol_n3.png" target="_blank" rel="noopener">
+            <img src="./kol_n3.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">情感共鸣</span><span class="kcard-stats">❤️ 1152 &ensp;⭐ 213</span></div>
+          </a>
+          <a class="kcard" data-ktype="emotion" href="./kol_n4.png" target="_blank" rel="noopener">
+            <img src="./kol_n4.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">情感共鸣</span><span class="kcard-stats">❤️ 7303 &ensp;⭐ 1209</span></div>
+          </a>
+          <a class="kcard" data-ktype="value" href="./kol_n1.png" target="_blank" rel="noopener">
+            <img src="./kol_n1.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">价值观叙事</span><span class="kcard-stats">❤️ 688 &ensp;⭐ 257</span></div>
+          </a>
+          <a class="kcard" data-ktype="value" href="./kol_n2.png" target="_blank" rel="noopener">
+            <img src="./kol_n2.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">价值观叙事</span><span class="kcard-stats">❤️ 1.2K &ensp;⭐ 320</span></div>
+          </a>
+          <a class="kcard" data-ktype="run" href="./kol_n7.png" target="_blank" rel="noopener">
+            <img src="./kol_n7.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">跑量赛召集</span><span class="kcard-stats">❤️ 510 &ensp;⭐ 87</span></div>
+          </a>
+          <a class="kcard" data-ktype="run" href="./kol_n8.png" target="_blank" rel="noopener">
+            <img src="./kol_n8.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">跑量赛召集</span><span class="kcard-stats">❤️ 763 &ensp;⭐ 116</span></div>
+          </a>
+          <a class="kcard" data-ktype="product" href="./kol_n11.png" target="_blank" rel="noopener">
+            <img src="./kol_n11.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">产品种草</span><span class="kcard-stats">❤️ 1300 &ensp;⭐ 329</span></div>
+          </a>
+          <a class="kcard" data-ktype="product" href="./kol_n12.png" target="_blank" rel="noopener">
+            <img src="./kol_n12.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">产品种草</span><span class="kcard-stats">❤️ 3286 &ensp;⭐ 740</span></div>
+          </a>
+          <a class="kcard" data-ktype="real" href="./kol_n5.png" target="_blank" rel="noopener">
+            <img src="./kol_n5.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">真实经历</span><span class="kcard-stats">❤️ 3206 &ensp;⭐ 147</span></div>
+          </a>
+          <a class="kcard" data-ktype="real" href="./kol_n6.png" target="_blank" rel="noopener">
+            <img src="./kol_n6.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">真实经历</span><span class="kcard-stats">❤️ 665 &ensp;⭐ 60</span></div>
+          </a>
+          <a class="kcard" data-ktype="lifestyle" href="./kol_n9.png" target="_blank" rel="noopener">
+            <img src="./kol_n9.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">生活方式</span><span class="kcard-stats">❤️ 148 &ensp;⭐ 20</span></div>
+          </a>
+          <a class="kcard" data-ktype="lifestyle" href="./kol_n10.png" target="_blank" rel="noopener">
+            <img src="./kol_n10.png" class="kcard-img" loading="lazy">
+            <div class="kcard-ov"><span class="kcard-tag">生活方式</span><span class="kcard-stats">❤️ 337 &ensp;⭐ 53</span></div>
+          </a>
+        </div>
+      </div>
+      <!-- KOL Lightbox -->
+      <div id="kolLbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9999;align-items:center;justify-content:center;" onclick="document.getElementById('kolLbox').style.display='none'">
+        <img id="kolLboxImg" src="" style="max-width:80vw;max-height:88vh;border-radius:10px;object-fit:contain;">
+        <span style="position:fixed;top:20px;right:28px;color:rgba(255,255,255,0.7);font-size:28px;cursor:pointer;">✕</span>
+      </div>
+
+      <!-- P1b 小红书 · 碎片分享功能 -->
+      <div class="proj-card reveal" style="transition-delay:.06s;">
+        <!-- 碎片收藏柜：3D翻转卡牌 -->
+        <div class="proj-visual frag-cabinet" style="background:#0c0c0e;padding:24px 16px 16px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="text-align:center;margin-bottom:14px;">
+            <div style="font-size:9px;letter-spacing:3px;color:#C9A96E;text-transform:uppercase;margin-bottom:4px;">Sigma · 碎片活动</div>
+            <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.8);">碎片收藏柜</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;perspective:600px;">
+
+            <div class="fc-wrap"><div class="fc-inner">
+              <div class="fc-front"><img src="./frag1.png" class="fc-img"><div class="fc-name">记忆迁徙</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag1.png"></div><div class="fc-bt">记忆迁徙</div><div class="fc-bd">带着旧日故事，继续向前奔跑</div><div class="fc-rr r-event">事件</div></div>
+            </div></div>
+
+            <div class="fc-wrap"><div class="fc-inner">
+              <div class="fc-front"><img src="./frag2.png" class="fc-img"><div class="fc-name">Forever Young</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag2.png"></div><div class="fc-bt">Forever Young</div><div class="fc-bd">把生日当起跑线，岁月也追不上你</div><div class="fc-rr r-date">特殊日期</div></div>
+            </div></div>
+
+            <div class="fc-wrap"><div class="fc-inner">
+              <div class="fc-front"><img src="./frag3.png" class="fc-img"><div class="fc-name">扎托佩克体验卡</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag3.png"></div><div class="fc-bt">扎托佩克体验卡</div><div class="fc-bd">他写下传奇的这天，你也没缺席</div><div class="fc-rr r-date">特殊日期</div></div>
+            </div></div>
+
+            <div class="fc-wrap"><div class="fc-inner">
+              <div class="fc-front"><img src="./frag4.png" class="fc-img"><div class="fc-name">客场作战代表</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag4.png"></div><div class="fc-bt">客场作战代表</div><div class="fc-bd">每一座新城市都值得用脚步认识</div><div class="fc-rr r-unlock">解锁</div></div>
+            </div></div>
+
+            <div class="fc-wrap"><div class="fc-inner">
+              <div class="fc-front"><img src="./frag5.png" class="fc-img"><div class="fc-name">破茧</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag5.png"></div><div class="fc-bt">破茧</div><div class="fc-bd">坚持跨过一周，习惯就有了形状</div><div class="fc-rr r-milestone">里程碑</div></div>
+            </div></div>
+
+            <div class="fc-wrap"><div class="fc-inner">
+              <div class="fc-front"><img src="./frag6.png" class="fc-img"><div class="fc-name">碳水对冲大师</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag6.png"></div><div class="fc-bt">碳水对冲大师</div><div class="fc-bd">干饭可以尽兴，你有足够预留额度</div><div class="fc-rr r-unlock">解锁</div></div>
+            </div></div>
+
+            <div class="fc-wrap"><div class="fc-inner">
+              <div class="fc-front"><img src="./frag7.png" class="fc-img"><div class="fc-name">日落收藏家</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag7.png"></div><div class="fc-bt">日落收藏家</div><div class="fc-bd">你跑进了黄昏最温柔的时候</div><div class="fc-rr r-unlock">解锁</div></div>
+            </div></div>
+
+            <div class="fc-wrap"><div class="fc-inner">
+              <div class="fc-front"><img src="./frag8.png" class="fc-img"><div class="fc-name">赛博夜游神</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag8.png"></div><div class="fc-bt">赛博夜游神</div><div class="fc-bd">月亮在值班，你在深夜巡航</div><div class="fc-rr r-unlock">解锁</div></div>
+            </div></div>
+
+            <div class="fc-wrap"><div class="fc-inner">
+              <div class="fc-front"><img src="./frag9.png" class="fc-img"><div class="fc-name">偷时间的人</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag9.png"></div><div class="fc-bt">偷时间的人</div><div class="fc-bd">晨光未到，你先到了</div><div class="fc-rr r-unlock">解锁</div></div>
+            </div></div>
+
+          </div>
+          <div style="text-align:center;margin-top:10px;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:2px;">HOVER TO FLIP</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-cats">
+            <span class="proj-cat" style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;margin-right:4px;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="14" rx="3" fill="#FF2442"/><text x="7" y="10.5" text-anchor="middle" fill="white" font-size="7" font-weight="900" font-family="sans-serif">书</text></svg>小红书</span>
+            <span class="proj-cat">产品运营</span>
+            <span class="proj-cat">功能上线</span>
+          </div>
+          <div class="proj-title">跑后碎片分享<br>——功能上线与活动运营</div>
+          <div class="proj-desc">
+            深度参与「跑后碎片分享」功能从 <strong>0 到 1</strong> 全流程落地——协同产品功能设计、负责分享页文案策划与上线运营策略制定，以<strong>碎片稀缺性设计 + 社交裂变机制</strong>激发用户主动分享意愿。上线后分享转化率达 <strong>9.6%</strong>（五一峰值 <strong>12%</strong>），覆盖用户 <strong>9W+</strong>，单月碎片发放 <strong>14W+</strong>。
+            同期深度运营 20 个核心运动用户社群（精准用户 <strong>5000+</strong>），持续收集真实反馈，定向反哺产品功能迭代。
+          </div>
+          <div class="proj-metrics-row">
+            <div class="pm"><span class="v">9.6%</span><span class="l" id="p1-l3">分享转化</span></div>
+            <div class="pm"><span class="v">12%</span><span class="l">五一峰值</span></div>
+            <div class="pm"><span class="v">9W+</span><span class="l" id="p1-l4">覆盖用户</span></div>
+            <div class="pm"><span class="v">14W+</span><span class="l">月发碎片</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2 东方甄选 -->
+      <!-- DFS radio controls (must be siblings of .proj-visual for CSS ~ selector) -->
+      <input type="radio" name="dfs" id="dfs_r0" checked style="display:none;">
+      <input type="radio" name="dfs" id="dfs_r1" style="display:none;">
+      <input type="radio" name="dfs" id="dfs_r2" style="display:none;">
+      <div class="proj-card reveal" style="transition-delay:.08s;">
+        <div class="proj-visual rg-wrap" style="padding:0;background:linear-gradient(160deg,#1a1410 0%,#0d0a07 100%);display:flex;flex-direction:column;overflow:hidden;">
+          <!-- 图片轮播区 -->
+          <div style="position:relative;width:100%;flex:1;min-height:260px;overflow:hidden;">
+            <label for="dfs_r0" id="dfs_i0" style="position:absolute;inset:0;display:block;cursor:pointer;opacity:1;transition:opacity .5s;z-index:1;">
+              <img src="./dfs2.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </label>
+            <label for="dfs_r1" id="dfs_i1" style="position:absolute;inset:0;display:block;cursor:pointer;opacity:0;transition:opacity .5s;z-index:0;">
+              <img src="./dfs3.jpg" style="width:100%;height:100%;object-fit:cover;">
+            </label>
+            <label for="dfs_r2" id="dfs_i2" style="position:absolute;inset:0;display:block;cursor:pointer;opacity:0;transition:opacity .5s;z-index:0;background:#111;">
+              <img src="./dfs1.png" style="width:100%;height:100%;object-fit:contain;">
+            </label>
+
+          </div>
+          <!-- 圆点切换栏 -->
+          <div style="background:#0d0b08;padding:8px 0;display:flex;justify-content:center;gap:8px;flex-shrink:0;">
+            <label for="dfs_r0" id="dfs_d0" style="display:block;width:36px;height:5px;border-radius:3px;cursor:pointer;background:#C9A96E;transition:background .3s;"></label>
+            <label for="dfs_r1" id="dfs_d1" style="display:block;width:36px;height:5px;border-radius:3px;cursor:pointer;background:rgba(255,255,255,0.2);transition:background .3s;"></label>
+            <label for="dfs_r2" id="dfs_d2" style="display:block;width:36px;height:5px;border-radius:3px;cursor:pointer;background:rgba(255,255,255,0.2);transition:background .3s;"></label>
+          </div>
+          <!-- 账号矩阵 -->
+          <div style="background:#0a0806;padding:10px 12px;flex-shrink:0;">
+            <div style="font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:7px;">抖音账号矩阵</div>
+            <div style="background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.3);border-radius:7px;padding:7px 10px;display:flex;align-items:center;gap:8px;margin-bottom:7px;">
+              <div style="width:24px;height:24px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1.5px solid #C9A96E;">
+                <img src="./dfs-logo.jpg" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:10px;color:rgba(255,255,255,0.9);font-weight:600;">东方甄选主账号</div>
+              </div>
+              <div style="font-size:12px;font-weight:700;color:#C9A96E;">2832万</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;">
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">美丽生活</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">563万</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">自营产品</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">462万</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">亲子成长</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">370万</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">官方旗舰</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">366万</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">生鲜</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">227万</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">诗酒人生</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">75万</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">果蔬旗舰</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">74万</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">零食速食</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">32万</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-cats">
+            <span class="proj-cat">东方甄选</span>
+            <span class="proj-cat">电商运营</span>
+            <span class="proj-cat">活动策划</span>
+          </div>
+          <div class="proj-title" id="p2-ttl">每周甄鲜节<br>电商活动策划落地</div>
+          <div class="proj-desc" id="p2-dsc">
+            参与「每周甄鲜节」「品牌日」「万里行溯源」等系列电商活动的策划与落地执行，负责活动页文案撰写与资源位调整。调整核心资源位后单日 GMV 达 <strong>3000W+</strong>，月 GMV 峰值 <strong>800W+</strong>。<br><br>
+            同期持续跟进 <strong>33 篇</strong>竞品调研报告，覆盖抖音、快手、淘宝等 10+ 平台，输出竞品分析结论，为活动策略优化提供数据支撑。
+          </div>
+          <div class="proj-metrics-row">
+            <div class="pm"><span class="v">3000W+</span><span class="l" id="p2-l1">单日GMV</span></div>
+            <div class="pm"><span class="v">800W+</span><span class="l" id="p2-l2">月GMV峰值</span></div>
+            <div class="pm"><span class="v">33篇</span><span class="l" id="p2-l3">竞品报告</span></div>
+            <div class="pm"><span class="v">10+</span><span class="l" id="p2-l4">覆盖平台</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3 网易 -->
+      <!-- WY 扇形卡片 -->
+      <input type="radio" name="fw" id="fw0" checked style="display:none;">
+      <input type="radio" name="fw" id="fw1" style="display:none;">
+      <input type="radio" name="fw" id="fw2" style="display:none;">
+      <input type="radio" name="fw" id="fw3" style="display:none;">
+      <input type="radio" name="fw" id="fw4" style="display:none;">
+      <input type="radio" name="fw" id="fw5" style="display:none;">
+      <input type="radio" name="fw" id="fw6" style="display:none;">
+      <input type="checkbox" id="wylb0" style="display:none;">
+      <input type="checkbox" id="wylb1" style="display:none;">
+      <input type="checkbox" id="wylb2" style="display:none;">
+      <input type="checkbox" id="wylb3" style="display:none;">
+      <input type="checkbox" id="wylb4" style="display:none;">
+      <input type="checkbox" id="wylb5" style="display:none;">
+      <input type="checkbox" id="wylb6" style="display:none;">
+      <label for="wylb0" id="wylb0-ov" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;"><img src="./wy0.jpg" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;pointer-events:none;"></label>
+      <label for="wylb1" id="wylb1-ov" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;"><img src="./wy1.jpg" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;pointer-events:none;"></label>
+      <label for="wylb2" id="wylb2-ov" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;"><img src="./wy2.jpg" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;pointer-events:none;"></label>
+      <label for="wylb3" id="wylb3-ov" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;"><img src="./wy3.jpg" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;pointer-events:none;"></label>
+      <label for="wylb4" id="wylb4-ov" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;"><img src="./wy4.jpg" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;pointer-events:none;"></label>
+      <label for="wylb5" id="wylb5-ov" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;"><img src="./wy5.jpg" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;pointer-events:none;"></label>
+      <label for="wylb6" id="wylb6-ov" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;"><img src="./wy6.jpg" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;pointer-events:none;"></label>
+      <div class="proj-card reveal" style="transition-delay:.16s;">
+        <div class="proj-visual rg-wrap" style="padding:32px 16px 24px;background:linear-gradient(160deg,#0a1220 0%,#0d1a2e 60%,#0a1018 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;">
+          <!-- Fan stage -->
+          <div class="wy-fan-stage" style="position:relative;width:100%;height:300px;display:flex;align-items:center;justify-content:center;">
+            <div class="fan-card wfc0"><img src="./wy0.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;pointer-events:none;"><label for="wylb0" style="position:absolute;inset:0;cursor:pointer;z-index:10;"></label></div>
+            <div class="fan-card wfc1"><img src="./wy1.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;pointer-events:none;"><label for="wylb1" style="position:absolute;inset:0;cursor:pointer;z-index:10;"></label></div>
+            <div class="fan-card wfc2"><img src="./wy2.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;pointer-events:none;"><label for="wylb2" style="position:absolute;inset:0;cursor:pointer;z-index:10;"></label></div>
+            <div class="fan-card wfc3"><img src="./wy3.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;pointer-events:none;"><label for="wylb3" style="position:absolute;inset:0;cursor:pointer;z-index:10;"></label></div>
+            <div class="fan-card wfc4"><img src="./wy4.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;pointer-events:none;"><label for="wylb4" style="position:absolute;inset:0;cursor:pointer;z-index:10;"></label></div>
+            <div class="fan-card wfc5"><img src="./wy5.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;pointer-events:none;"><label for="wylb5" style="position:absolute;inset:0;cursor:pointer;z-index:10;"></label></div>
+            <div class="fan-card wfc6"><img src="./wy6.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;pointer-events:none;"><label for="wylb6" style="position:absolute;inset:0;cursor:pointer;z-index:10;"></label></div>
+          </div>
+          <!-- Dots -->
+          <div style="display:flex;gap:8px;margin-top:20px;align-items:center;">
+            <label for="fw0" class="wdot wd0" style="width:20px;height:5px;border-radius:3px;background:#C9A96E;cursor:pointer;display:block;transition:background .3s,width .3s;"></label>
+            <label for="fw1" class="wdot wd1" style="width:10px;height:5px;border-radius:3px;background:rgba(255,255,255,0.35);cursor:pointer;display:block;transition:background .3s,width .3s;"></label>
+            <label for="fw2" class="wdot wd2" style="width:10px;height:5px;border-radius:3px;background:rgba(255,255,255,0.35);cursor:pointer;display:block;transition:background .3s,width .3s;"></label>
+            <label for="fw3" class="wdot wd3" style="width:10px;height:5px;border-radius:3px;background:rgba(255,255,255,0.35);cursor:pointer;display:block;transition:background .3s,width .3s;"></label>
+            <label for="fw4" class="wdot wd4" style="width:10px;height:5px;border-radius:3px;background:rgba(255,255,255,0.35);cursor:pointer;display:block;transition:background .3s,width .3s;"></label>
+            <label for="fw5" class="wdot wd5" style="width:10px;height:5px;border-radius:3px;background:rgba(255,255,255,0.35);cursor:pointer;display:block;transition:background .3s,width .3s;"></label>
+            <label for="fw6" class="wdot wd6" style="width:10px;height:5px;border-radius:3px;background:rgba(255,255,255,0.35);cursor:pointer;display:block;transition:background .3s,width .3s;"></label>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-cats">
+            <span class="proj-cat" id="p4-cat1">网易</span>
+            <span class="proj-cat" id="p4-cat2">直播运营</span>
+            <span class="proj-cat" id="p4-cat3">内容营销</span>
+          </div>
+          <div class="proj-title" id="p4-ttl">专家直播运营<br>& 小红书矩阵账号运营</div>
+          <div class="proj-desc" id="p4-dsc">
+            策划执行 <strong>20 场</strong>专家营销直播，单场最高在线 <strong>1000+</strong>，单场私域引流 <strong>200+</strong>；通过分层奖励策略，4 个月内直播引流转化率达 <strong>15%</strong>。<br><br>
+            结合关税政策、广交会热点设计干货内容，打造 <strong>10W+</strong> 浏览爆款笔记，单篇转化有效线索 <strong>45 条</strong>，账号矩阵累计有效线索 <strong>160 条</strong>。
+          </div>
+          <div class="proj-metrics-row">
+            <div class="pm"><span class="v">10W+</span><span class="l" id="p4-l1">笔记浏览</span></div>
+            <div class="pm"><span class="v">20场</span><span class="l" id="p4-l2">专家直播</span></div>
+            <div class="pm"><span class="v">15%</span><span class="l" id="p4-l3">转化率</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P4 法大大 -->
+      <div class="proj-card reveal" style="transition-delay:.12s;">
+        <div class="proj-visual rg-wrap" style="padding:0;background:linear-gradient(160deg,#0c0e18 0%,#0a0c14 100%);display:flex;flex-direction:column;overflow:hidden;">
+
+          <!-- 8个律师全部显示，4×2 -->
+          <div style="flex:1;padding:10px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;overflow:hidden;">
+            <!-- 东南亚&香港 4人 -->
+            <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+              <div style="height:160px;overflow:hidden;"><img src="./lawyer_lau.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+              <div style="padding:20px 8px 10px 8px;">
+                <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">刘德凯 Victor Lau</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">副主任 · Drew &amp; Napier</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+              <div style="height:160px;overflow:hidden;"><img src="./lawyer_chong.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+              <div style="padding:20px 8px 10px 8px;">
+                <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">张丰杰 Chong H.K.</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">Malaysian Lawyer · Y Kong</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+              <div style="height:160px;overflow:hidden;"><img src="./lawyer_wilson.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+              <div style="padding:20px 8px 10px 8px;">
+                <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">Wilson Foo Yu Kang</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">Joint MD · Folich LLC</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+              <div style="height:160px;overflow:hidden;"><img src="./lawyer_nina.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+              <div style="padding:20px 8px 10px 8px;">
+                <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">Nina</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">律师 Partner · EVERWIN LAW</div>
+              </div>
+            </div>
+            <!-- 一带一路 4人 -->
+            <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+              <div style="height:160px;overflow:hidden;"><img src="./lawyer_joshua.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+              <div style="padding:20px 8px 10px 8px;">
+                <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">Joshua Abe</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">Legal Practitioner · Abe &amp; Asotie</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+              <div style="height:160px;overflow:hidden;"><img src="./lawyer_yanwei.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+              <div style="padding:20px 8px 10px 8px;">
+                <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">闫威</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">高级合伙人 · 兰迪律师事务所</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+              <div style="height:160px;overflow:hidden;"><img src="./lawyer_dongcan.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+              <div style="padding:20px 8px 10px 8px;">
+                <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">董灿</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">PRC &amp; AUS Lawyer · AKE Legal</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+              <div style="height:160px;overflow:hidden;"><img src="./lawyer_jayel.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+              <div style="padding:20px 8px 10px 8px;">
+                <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">金廷兰 Jayel Kim</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">律所合伙人 · 泰一律师事务所</div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="proj-info">
+          <div class="proj-cats">
+            <span class="proj-cat" id="p3-cat1">法大大</span>
+            <span class="proj-cat" id="p3-cat2">资源拓展</span>
+            <span class="proj-cat" id="p3-cat3">市场活动</span>
+          </div>
+          <div class="proj-title" id="p3-ttl">律师资源拓展</div>
+          <div class="proj-desc" id="p3-dsc">
+            统筹「法律科技 × 跨境服务」主题沙龙 <strong>4 场</strong>，覆盖美/英/新/港等 <strong>10+ 法域</strong>，累计建联海外本土及华人律师 <strong>500+</strong> 位，推动 <strong>50+</strong> 律师与产品达成「AI 工具 + 案例库」合作。
+          </div>
+          <div class="proj-metrics-row">
+            <div class="pm"><span class="v">4</span><span class="l" id="p3-l1">主题沙龙</span></div>
+            <div class="pm"><span class="v">10+</span><span class="l" id="p3-l2">覆盖法域</span></div>
+            <div class="pm"><span class="v">500+</span><span class="l" id="p3-l3">建联律师</span></div>
+            <div class="pm"><span class="v">50+</span><span class="l" id="p3-l4">AI合作律师</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P5 医信天下 -->
+      <div class="proj-card reveal" style="transition-delay:.2s;">
+        <!-- 医生名片卡展示区 -->
+        <div class="proj-visual" style="background:linear-gradient(145deg,#f8f5f0 0%,#f0ebe3 100%);padding:28px 20px;display:flex;flex-direction:column;justify-content:center;gap:0;">
+          <div style="text-align:center;margin-bottom:18px;">
+            <span style="font-size:11px;letter-spacing:2px;color:#9a8870;text-transform:uppercase;">Doctor IP Matrix</span>
+          </div>
+          <!-- 3张名片卡横排 -->
+          <div style="display:flex;gap:12px;justify-content:center;align-items:stretch;">
+            <!-- 王月 -->
+            <div style="flex:1;background:#fff;border-radius:16px;padding:16px 12px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(201,169,110,0.2);">
+              <div style="width:110px;height:110px;border-radius:50%;overflow:hidden;margin:0 auto 14px;border:3px solid #C9A96E;background:#c8dcf5;">
+                <img src="./doc1.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;transform:scale(1.35);transform-origin:center 30%;">
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:2px;">王月</div>
+              <div style="font-size:11px;color:#C9A96E;font-weight:600;margin-bottom:8px;">舌侧美学正畸</div>
+              <div style="font-size:10px;color:#666;line-height:1.7;">同济口腔学硕士<br>世界舌侧正畸协会成员<br>专注颅颌面全脸美学</div>
+            </div>
+            <!-- 罗娟 -->
+            <div style="flex:1;background:#fff;border-radius:16px;padding:16px 12px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(201,169,110,0.2);">
+              <div style="width:110px;height:110px;border-radius:50%;overflow:hidden;margin:0 auto 14px;border:3px solid #C9A96E;background:#c8dcf5;">
+                <img src="./doc2.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;transform:scale(1.35);transform-origin:center 30%;">
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:2px;">罗娟</div>
+              <div style="font-size:11px;color:#C9A96E;font-weight:600;margin-bottom:8px;">主任医师</div>
+              <div style="font-size:10px;color:#666;line-height:1.7;">从业20年+<br>北大深圳正畸特诊专家<br>擅长嘴凸后缩等错颌畸形</div>
+            </div>
+            <!-- 郭涛 -->
+            <div style="flex:1;background:#fff;border-radius:16px;padding:16px 12px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(201,169,110,0.2);">
+              <div style="width:110px;height:110px;border-radius:50%;overflow:hidden;margin:0 auto 14px;border:3px solid #C9A96E;background:#c8dcf5;">
+                <img src="./doc3.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;transform:scale(1.35);transform-origin:center 30%;">
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:2px;">郭涛</div>
+              <div style="font-size:11px;color:#C9A96E;font-weight:600;margin-bottom:8px;">四医大正畸学博士</div>
+              <div style="font-size:10px;color:#666;line-height:1.7;">从业24年<br>世界顶尖正畸团队成员<br>擅长骨性嘴凸地包天等复杂疑难案例</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="proj-info">
+          <div class="proj-cats">
+            <span class="proj-cat" id="p5-cat1">医信天下</span>
+            <span class="proj-cat" id="p5-cat2">IP 打造</span>
+            <span class="proj-cat" id="p5-cat3">直播营销</span>
+          </div>
+          <div class="proj-title" id="p5-ttl">口腔医生 IP 矩阵<br>& 直播营销转化</div>
+          <div class="proj-desc" id="p5-dsc">
+            围绕用户看牙痛点设计问题解决型内容，打造 3 个医生 IP，累计浏览量 20W+，粉丝 5000+，GMV 超 800W。<br><br>
+            策划双十一直播，单场 GMV 达 100W，新患者预约量增长 200%；分析 2000 条咨询数据，咨询量增长 110%，转化率提升 28%。
+          </div>
+          <div class="proj-metrics-row">
+            <div class="pm"><span class="v">800W+</span><span class="l" id="p5-l1">累计 GMV</span></div>
+            <div class="pm"><span class="v">100W</span><span class="l" id="p5-l2">单场直播</span></div>
+            <div class="pm"><span class="v">+28%</span><span class="l" id="p5-l3">转化率</span></div>
+            <div class="pm"><span class="v">+200%</span><span class="l" id="p5-l4">新患预约</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ BENTO SECTION ═══ -->
+
+<div class="divider"></div>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="experience">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:48px;">
+      <div class="sec-eyebrow" id="exp-eyebrow">Work Experience</div>
+      <h2 class="sec-title" id="exp-title">实习 & 工作经历</h2>
+    </div>
+    <div class="exp-list reveal" style="transition-delay:.1s;">
+
+      <div class="exp-item">
+        <div class="exp-l">
+          <div class="exp-company">小红书</div>
+          <div class="exp-role" id="exp-r1">产品运营</div>
+          <div class="exp-period">2026.04 — 2026.06</div>
+        </div>
+        <div class="exp-r">
+          <ul class="exp-bullets">
+            <li id="e1b1">「校园跑量赛」全域营销，联动 <strong>200 位 KOL/KOC</strong>，全域曝光 <strong>1500W+</strong>，新增用户 <strong>1W+</strong></li>
+            <li id="e1b2">「跑后碎片分享」功能主导，分享转化率 <strong>9.6%</strong>（峰值 12%），覆盖用户 <strong>9W+</strong></li>
+            <li id="e1b3">20 个核心运动用户社群运营，精准用户 <strong>5000+</strong>，持续调研反哺产品迭代</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-l">
+          <div class="exp-company">东方甄选</div>
+          <div class="exp-role" id="exp-r2">电商运营</div>
+          <div class="exp-period">2026.01 — 2026.03</div>
+        </div>
+        <div class="exp-r">
+          <ul class="exp-bullets">
+            <li id="e2b1">策划多系列主题活动，月促会员日单日 <strong>GMV 3000W+</strong></li>
+            <li id="e2b2">实时联动直播间动态调整资源位，周促日单日 <strong>GMV 800W+</strong></li>
+            <li id="e2b3">调研四大平台，输出竞品深度报告 <strong>33 篇</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-l">
+          <div class="exp-company">法大大</div>
+          <div class="exp-role" id="exp-r3">市场营销</div>
+          <div class="exp-period">2025.09 — 2025.12</div>
+        </div>
+        <div class="exp-r">
+          <ul class="exp-bullets">
+            <li>抖音 ROI 从 <strong>1.1 → 2.3</strong>（日峰值 9.2），CPM 从 ¥280 → <strong>¥73</strong></li>
+            <li>策划 4 场法律科技沙龙，覆盖 <strong>10+ 法域</strong>，建联海外律师 <strong>500+</strong></li>
+            <li id="e3b3">共计精准获客超 <strong>2000 人</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-l">
+          <div class="exp-company">网易</div>
+          <div class="exp-role" id="exp-r4">市场营销</div>
+          <div class="exp-period">2025.02 — 2025.06</div>
+        </div>
+        <div class="exp-r">
+          <ul class="exp-bullets">
+            <li>落地 <strong>20 场</strong>专家营销直播，单场最高在线 <strong>1000+</strong>，直播引流转化率 <strong>15%</strong></li>
+            <li>小红书内容矩阵打造 <strong>10W+ 爆款笔记</strong>，矩阵累计获客有效线索 <strong>160 条</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-l">
+          <div class="exp-company">医信天下</div>
+          <div class="exp-role" id="exp-r5">市场营销</div>
+          <div class="exp-period">2024.02 — 2025.02</div>
+        </div>
+        <div class="exp-r">
+          <ul class="exp-bullets">
+            <li>打造 3 个口腔医生 IP，GMV 超 <strong>800W</strong>，双十一单场直播 GMV <strong>100W</strong></li>
+            <li id="e5b2">分析 2000 条咨询数据，咨询量增长 <strong>110%</strong>，转化率提升 <strong>28%</strong></li>
+            <li id="e5b3">新患者预约量增长 <strong>200%</strong></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<div class="divider"></div>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:48px;">
+      <div class="sec-eyebrow" id="sk-eyebrow">Skills & Certifications</div>
+      <h2 class="sec-title" id="sk-title">技能 & 证书</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal" style="transition-delay:.04s;">
+        <div class="skill-icon-wrap">🗣️</div>
+        <div><div class="skill-name" id="sk1-name">雅思 IELTS 6.0</div><div class="skill-sub" id="sk1-sub">口语流利，独立业务沟通</div></div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.08s;">
+        <div class="skill-icon-wrap">📜</div>
+        <div><div class="skill-name" id="sk2-name">大学英语六级 CET-6</div><div class="skill-sub" id="sk2-sub">英语读写能力</div></div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.12s;">
+        <div class="skill-icon-wrap">🗄️</div>
+        <div><div class="skill-name" id="sk3-name">SQL</div><div class="skill-sub" id="sk3-sub">业务数据查询与分析</div></div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.16s;">
+        <div class="skill-icon-wrap">🎞️</div>
+        <div><div class="skill-name" id="sk4-name">剪映</div><div class="skill-sub" id="sk4-sub">短视频制作 & 内容剪辑</div></div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.2s;">
+        <div class="skill-icon-wrap">🎨</div>
+        <div><div class="skill-name" id="sk5-name">Canva</div><div class="skill-sub" id="sk5-sub">营销物料 & 品牌视觉设计</div></div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.24s;">
+        <div class="skill-icon-wrap">📊</div>
+        <div><div class="skill-name" id="sk6-name">Office 全套</div><div class="skill-sub" id="sk6-sub">Excel / PPT / Word 精通</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <div class="contact-eyebrow" id="ct-eyebrow">Get in Touch</div>
+      <h2 class="contact-heading" id="ct-heading">Ready to build something <em>amazing?</em></h2>
+      <p class="contact-sub" id="ct-sub">正在寻找产品运营 / 市场营销全职机会，欢迎随时联系 ✦</p>
+      <div class="contact-btns">
+        <a href="tel:17320077353" class="cbtn-primary">📱 17320077353</a>
+        <a href="mailto:3457353073@qq.com" class="cbtn-ghost">✉️ 3457353073@qq.com</a>
+        <a href="#" class="cbtn-ghost">💬 微信同号</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><span id="footer-txt">© 2026 曾杏荷 · 产品运营 & 市场营销</span></footer>
+
+<!-- ═══ JS ═══ -->
+<script>
+/* ── Slider ── */
+let cur = 0, total = 3, timer;
+function goSlide(n) {
+  document.getElementById('s'+cur).classList.remove('active');
+  document.querySelectorAll('.hero-dot')[cur].classList.remove('active');
+  cur = (n + total) % total;
+  document.getElementById('s'+cur).classList.add('active');
+  document.querySelectorAll('.hero-dot')[cur].classList.add('active');
+  clearInterval(timer); timer = setInterval(()=>goSlide(cur+1), 7000);
+}
+function changeSlide(d){ goSlide(cur+d); }
+timer = setInterval(()=>goSlide(cur+1), 7000);
+
+/* ── Nav ── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', ()=> nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+/* ── Reveal ── */
+document.body.classList.add('js-anim');
+function checkReveal() {
+  const vh = window.innerHeight;
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < vh * 0.92) el.classList.add('in');
+  });
+}
+// Use IntersectionObserver if available, fallback to scroll
+if ('IntersectionObserver' in window) {
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }});
+  },{threshold:0.06, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+// Always also bind scroll as fallback
+window.addEventListener('scroll', checkReveal, {passive:true});
+window.addEventListener('resize', checkReveal, {passive:true});
+// Run immediately and after short delays to catch elements in initial viewport
+checkReveal();
+setTimeout(checkReveal, 100);
+setTimeout(checkReveal, 400);
+setTimeout(checkReveal, 1000);
+
+/* ── Keyboard ── */
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowLeft') changeSlide(-1);
+  if(e.key==='ArrowRight') changeSlide(1);
+});
+
+/* ── KOL Filter + Lightbox ── */
+function kolFilter(type, btn) {
+  document.querySelectorAll('.ktab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.kcard').forEach(c => {
+    if (type === 'all' || c.dataset.ktype === type) {
+      c.classList.remove('khidden');
+    } else {
+      c.classList.add('khidden');
+    }
+  });
+}
+function kolLb(filename) {
+  const lb = document.getElementById('kolLbox');
+  document.getElementById('kolLboxImg').src = './' + filename;
+  lb.style.display = 'flex';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const lb = document.getElementById('kolLbox');
+    if (lb) lb.style.display = 'none';
+  }
+});
+
+/* ── Run Gallery ── */
+(function initRunGallery() {
+  var idx = 0;
+  var total = 8;
+  var timer;
+
+  function go(n) {
+    var imgs = document.querySelectorAll('.run-img');
+    var thumbs = document.querySelectorAll('.rthumb');
+    if (!imgs.length) return;
+    imgs[idx].style.opacity = '0';
+    if (thumbs[idx]) { thumbs[idx].style.borderColor = 'transparent'; thumbs[idx].style.opacity = '0.55'; }
+    idx = ((n % total) + total) % total;
+    imgs[idx].style.opacity = '1';
+    if (thumbs[idx]) { thumbs[idx].style.borderColor = '#C9A96E'; thumbs[idx].style.opacity = '1'; }
+    clearInterval(timer);
+    timer = setInterval(function(){ go(idx + 1); }, 4000);
+  }
+
+  function bindAll() {
+    // Prev/Next arrow buttons
+    document.querySelectorAll('[data-run="prev"]').forEach(function(el) {
+      el.addEventListener('click', function(e) { e.stopPropagation(); go(idx - 1); });
+    });
+    document.querySelectorAll('[data-run="next"]').forEach(function(el) {
+      el.addEventListener('click', function(e) { e.stopPropagation(); go(idx + 1); });
+    });
+    // Thumbnail click
+    document.querySelectorAll('.rthumb').forEach(function(el) {
+      el.addEventListener('click', function(e) { e.stopPropagation(); go(parseInt(el.getAttribute('data-run'))); });
+    });
+    // Side zones (left/right black area)
+    document.querySelectorAll('[data-run="prev-zone"]').forEach(function(el) {
+      el.addEventListener('click', function() { go(idx - 1); });
+    });
+    document.querySelectorAll('[data-run="next-zone"]').forEach(function(el) {
+      el.addEventListener('click', function() { go(idx + 1); });
+    });
+    // Auto-play
+    timer = setInterval(function(){ go(idx + 1); }, 4000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindAll);
+  } else {
+    bindAll();
+  }
+})();
+
+/* ══════════════════════════════════════
+   LANGUAGE SWITCH
+══════════════════════════════════════ */
+let lang = 'zh';
+
+const TRANSLATIONS = {
+  // ── NAV ──
+  'nav-about':       { zh:'About',      en:'About' },
+  'nav-work':        { zh:'Work',       en:'Work' },
+  'nav-exp':         { zh:'Experience', en:'Experience' },
+  'nav-edu':         { zh:'Education',  en:'Education' },
+
+  // ── HERO SLIDE 0 ──
+  'h0-eyebrow':  { zh:'Education · 2025 — 2026', en:'Education · 2025 — 2026' },
+  'h0-title':    { zh:'香港浸会大学<br><em>硕士研究生</em><br>AI & 数码媒体', en:'Hong Kong Baptist<br><em>Master's Degree</em><br>AI & Digital Media' },
+  'h0-body':     { zh:'GPA 3.42 / 4.0 · 以数据思维驱动传播策略，融合 AI 技术与商业营销实战', en:'GPA 3.42 / 4.0 · Data-driven communication strategy, blending AI with real-world marketing.' },
+  'h0-btn1':     { zh:'查看项目经历', en:'View Projects' },
+  'h0-btn2':     { zh:'工作经历',     en:'Experience' },
+  'h0-card1-lbl':{ zh:'当前 GPA',      en:'Current GPA' },
+  'h0-card1-sub':{ zh:'↑ 全系前 20%',  en:'↑ Top 20% of cohort' },
+  'h0-card2-lbl':{ zh:'雅思成绩',      en:'IELTS Score' },
+  'h0-card2-sub':{ zh:'英语商务流利',   en:'Business fluent' },
+
+  // ── HERO SLIDE 1 ──
+  'h1-eyebrow':  { zh:'Internship · 2026.04 — 2026.06', en:'Internship · Apr — Jun 2026' },
+  'h1-title':    { zh:'小红书<br>产品运营<br><em>创新运动项目部</em>', en:'Xiaohongshu<br>Product Operations<br><em>Sports Innovation Dept.</em>' },
+  'h1-body':     { zh:'主导全域营销策划与 KOL 矩阵联动，碎片分享功能全流程推进', en:'Led omni-channel marketing strategy with KOL matrix, drove full lifecycle of the Fragment Share feature.' },
+  'h1-t1':       { zh:'全域营销',     en:'Omni-channel' },
+  'h1-t2':       { zh:'KOL 矩阵 200+', en:'200+ KOL Matrix' },
+  'h1-t3':       { zh:'1500W+ 曝光',  en:'15M+ Impressions' },
+  'h1-btn1':     { zh:'查看详情',      en:'View Details' },
+  'h1-card1-lbl':{ zh:'全域曝光量',    en:'Total Impressions' },
+  'h1-card1-sub':{ zh:'↑ 校园跑量赛营销', en:'↑ Campus Running Campaign' },
+  'h1-card2-lbl':{ zh:'碎片分享转化率', en:'Share Conversion Rate' },
+  'h1-card2-sub':{ zh:'↑ 五一峰值 12%', en:'↑ Peak 12% on May Day' },
+
+  // ── HERO SLIDE 2 ──
+  'h2-eyebrow':  { zh:'Enterprise Experience', en:'Enterprise Experience' },
+  'h2-title':    { zh:'5 段<br>头部平台<br><em>实习经历</em>', en:'5 Internships<br>at Top-Tier<br><em>Platforms</em>' },
+  'h2-body':     { zh:'横跨互联网、电商、医疗、法律科技，积累全行业全链路运营实战经验', en:'Spanning internet, e-commerce, healthcare and legal tech — full-funnel operations expertise.' },
+  'h2-btn1':     { zh:'查看全部经历', en:'View All Experience' },
+  'h2-card1-lbl':{ zh:'月促单日 GMV',  en:'Daily GMV (Monthly Promo)' },
+  'h2-card1-sub':{ zh:'↑ 东方甄选会员日', en:'↑ DFJX Members Day' },
+  'h2-card2-lbl':{ zh:'抖音投放 ROI',  en:'Douyin Ad ROI' },
+  'h2-card2-sub':{ zh:'↑ 日峰值达 9.2', en:'↑ Daily peak 9.2×' },
+
+  // ── INTRO SECTION ──
+  'intro-eyebrow': { zh:'Self Introduction', en:'Self Introduction' },
+  'intro-name':    { zh:'曾杏荷', en:'Zeng Xinghe' },
+  'intro-enname':  { zh:'Zeng Xinghe', en:'Zeng Xinghe' },
+  'intro-tag1':    { zh:'产品运营',    en:'Product Ops' },
+  'intro-tag2':    { zh:'市场营销',    en:'Marketing' },
+  'intro-tag3':    { zh:'HKBU 硕士在读', en:'HKBU Master\'s' },
+  'intro-tag4':    { zh:'雅思 6.0',    en:'IELTS 6.0' },
+  'intro-bio':     { zh:'毕业于中国民航大学统计学专业，现就读于香港浸会大学<strong style="color:var(--dark);">人工智能与数码媒体</strong>硕士项目（GPA 3.42）。积累了涵盖互联网、电商、医疗、法律科技等多个垂直赛道的<strong style="color:var(--dark);">五段头部平台实习经历</strong>，擅长将数据洞察转化为切实有效的运营与营销策略。',
+                    en:'Statistics graduate from Civil Aviation University of China. Currently pursuing a Master\'s in <strong style="color:var(--dark);">AI & Digital Media</strong> at HKBU (GPA 3.42). Accumulated <strong style="color:var(--dark);">five top-tier internships</strong> across internet, e-commerce, healthcare and legal tech, specialising in translating data insights into effective growth strategies.' },
+  'intro-f1-lbl':  { zh:'当前学历', en:'Education' },
+  'intro-f1-val':  { zh:'香港浸会大学 · 硕士', en:'HKBU · Master\'s Degree' },
+  'intro-f2-lbl':  { zh:'专业背景', en:'Background' },
+  'intro-f2-val':  { zh:'统计学 × AI & 数码媒体', en:'Statistics × AI & Digital Media' },
+  'intro-f3-lbl':  { zh:'实习经历', en:'Internships' },
+  'intro-f3-val':  { zh:'5 段 · 头部平台', en:'5 roles · Top platforms' },
+  'intro-f4-lbl':  { zh:'求职方向', en:'Target Role' },
+  'intro-f4-val':  { zh:'产品运营 / 市场营销', en:'Product Ops / Marketing' },
+  'intro-cta1':    { zh:'查看项目经历', en:'View Projects' },
+  'intro-cta2':    { zh:'联系我', en:'Contact Me' },
+
+  // ── ABOUT ──
+  'about-eyebrow': { zh:'About Me', en:'About Me' },
+  'about-heading': { zh:'以数据为骨，<br><em>以创意破局</em>', en:'Data-rooted,<br><em>creativity-driven</em>' },
+  'about-text':    { zh:'互联网大厂 × 电商 × 医疗 × 法律科技全行业实战经验，擅长全域营销策划、用户增长运营、私域转化漏斗优化与数据驱动的产品策略。正于香港浸会大学攻读 AI & 数码媒体硕士，让技术与商业思维同频共振。',
+                    en:'Hands-on experience across internet, e-commerce, healthcare and legal tech. Skilled in omni-channel marketing, user growth, private-domain funnel optimisation and data-driven product strategy. Pursuing an AI & Digital Media Master\'s at HKBU — bridging technology with business.' },
+  'tag1': { zh:'📊 数据分析', en:'📊 Data Analytics' },
+  'tag2': { zh:'🎯 用户增长', en:'🎯 User Growth' },
+  'tag3': { zh:'✍️ 内容策划', en:'✍️ Content Strategy' },
+  'tag4': { zh:'📣 KOL 运营', en:'📣 KOL Management' },
+  'tag5': { zh:'🛒 电商运营', en:'🛒 E-commerce Ops' },
+  'tag6': { zh:'🤝 社群运营', en:'🤝 Community Ops' },
+  'tag7': { zh:'🎬 直播策划', en:'🎬 Livestream Planning' },
+  'tag8': { zh:'🌐 竞品调研', en:'🌐 Competitive Research' },
+  'tag9': { zh:'🤖 AI 应用', en:'🤖 AI Applications' },
+  'tag10':{ zh:'🗣️ 雅思 6.0', en:'🗣️ IELTS 6.0' },
+  'stat1-lbl': { zh:'全域曝光 · 小红书校园跑量赛', en:'Total Reach · XHS Campus Running Campaign' },
+  'stat2-lbl': { zh:'单日 GMV · 东方甄选月促会员日', en:'Daily GMV · DFJX Members Day' },
+  'stat3-lbl': { zh:'抖音投放 ROI · 日峰值 9.2',    en:'Douyin Ad ROI · Daily peak 9.2×' },
+  'stat4-lbl': { zh:'医疗 IP 累计 GMV · 3 个医生 IP', en:'Medical IP Total GMV · 3 Doctor IPs' },
+
+  // ── PROJECTS ──
+  'proj-eyebrow': { zh:'Selected Work', en:'Selected Work' },
+  'proj-title':   { zh:'项目经历', en:'Projects' },
+  'proj-sub':     { zh:'横跨互联网、电商、医疗、法律科技，以数据驱动每一个运营决策', en:'Spanning internet, e-commerce, healthcare and legal tech — every decision backed by data.' },
+  // P1
+  'p1-cat1':{ zh:'小红书',  en:'Xiaohongshu' }, 'p1-cat2':{ zh:'产品运营', en:'Product Ops' }, 'p1-cat3':{ zh:'全域营销', en:'Omni Marketing' },
+  'p1-ttl': { zh:'校园跑量赛全域营销<br>&「碎片分享」功能上线', en:'Campus Running Campaign<br>& Fragment Share Feature Launch' },
+  'p1-dsc': { zh:'负责「校园跑量赛」全域营销策划落地，联动 200 位 KOL/KOC 达人矩阵全域宣发，引导素人原创笔记 1000+ 条，全域曝光量达 1500W+，助力 APP 新增转化用户 1W+。<br><br>主导「跑后碎片分享」功能全流程，上线后分享转化率 9.6%（五一峰值 12%），覆盖用户 9W+，单月碎片发放 14W+。',
+              en:'Deeply involved in the Campus Running Campaign with a three-layer strategy (public domain × KOL matrix × private community)—coordinating <strong>200+ KOL/KOC</strong> influencers, driving <strong>1,000+ UGC posts</strong> for large-scale organic reach, achieving <strong>15M+ total impressions</strong>; public domain buzz then fueled private community viral growth, converting <strong>100K+ new app users</strong>. The campaign spanned <strong>584 campuses</strong> nationwide with <strong>393,396 km</strong> total distance run.' },
+  'p1-l1':{ zh:'全域曝光', en:'Total Reach' }, 'p1-l2':{ zh:'新增用户', en:'New Users' }, 'p1-l3':{ zh:'分享转化', en:'Share CVR' }, 'p1-l4':{ zh:'覆盖用户', en:'Users Reached' },
+  // P2
+  'p2-cat1':{ zh:'东方甄选', en:'DFJX' }, 'p2-cat2':{ zh:'电商运营', en:'E-commerce Ops' }, 'p2-cat3':{ zh:'数据驱动', en:'Data-Driven' },
+  'p2-ttl': { zh:'每周甄鲜节活动策划<br>& 流量运营', en:'Weekly Fresh Festival Planning<br>& Traffic Operations' },
+  'p2-dsc': { zh:'基于商品同比/环比数据及消费趋势，策划并落地「每周甄鲜节」「品牌日」「万里行溯源」等系列活动，月促会员日单日 GMV 3000W+。<br><br>实时联动抖音直播爆款节奏，动态调整 APP 核心资源位，周促日单日 GMV 达 800W+。完成四大平台竞品深度调研报告 33 篇。',
+              en:'Designed and executed themed campaigns including the Weekly Fresh Festival and Brand Day, leveraging YoY/MoM product data, achieving ¥30M+ GMV on the monthly members day.<br><br>Synced real-time with Douyin livestream trends to dynamically manage core app placements, reaching ¥8M+ on weekly promo days. Produced 33 in-depth competitive research reports across four platforms.' },
+  'p2-l1':{ zh:'月促单日 GMV', en:'Monthly Promo GMV' }, 'p2-l2':{ zh:'周促单日 GMV', en:'Weekly Promo GMV' }, 'p2-l3':{ zh:'竞品调研', en:'Competitive Reports' },
+  // P3
+  'p3-cat1':{ zh:'法大大', en:'Fadada' }, 'p3-cat2':{ zh:'资源拓展', en:'Resource Expansion' }, 'p3-cat3':{ zh:'市场活动', en:'Marketing Events' },
+  'p3-ttl': { zh:'律师资源拓展', en:'Overseas Lawyer Network Expansion' },
+  'p3-dsc': { zh:'统筹「法律科技 × 跨境服务」主题沙龙 <strong>4 场</strong>，覆盖美/英/新/港等 <strong>10+ 法域</strong>，累计建联海外本土及华人律师 <strong>500+</strong> 位，推动 <strong>50+</strong> 律师与产品达成「AI 工具 + 案例库」合作。',
+              en:'Rebuilt Douyin ad hooks and copy, lifting ROI from 1.1× to 2.3× (daily peak 9.2×) and cutting CPM from ¥280 to ¥73. XHS KOL+KOC strategy reduced cost-per-registration to ¥10, acquiring 2,000+ leads in total.<br><br>Organised 4 cross-border legal-tech salons covering 10+ jurisdictions, connecting with 500+ overseas lawyers and closing AI tool partnerships with 50+ of them.' },
+  'p3-l1':{ zh:'投放 ROI', en:'Ad ROI' }, 'p3-l2':{ zh:'CPM', en:'CPM' }, 'p3-l3':{ zh:'海外律师', en:'Overseas Lawyers' },
+  // P4
+  'p4-cat1':{ zh:'网易', en:'NetEase' }, 'p4-cat2':{ zh:'内容营销', en:'Content Marketing' }, 'p4-cat3':{ zh:'直播运营', en:'Livestream Ops' },
+  'p4-ttl': { zh:'小红书爆款内容<br>& 专家直播运营矩阵', en:'XHS Viral Content<br>& Expert Livestream Matrix' },
+  'p4-dsc': { zh:'结合关税政策、广交会热点设计干货内容，打造 10W+ 浏览爆款笔记，转化有效线索 45 条，矩阵累计 160 条。<br><br>落地 20 场专家营销直播，单场最高在线 1000+，单场私域引流 200+；分层奖励策略使 4 个月内直播引流转化率高达 15%。',
+              en:'Created high-value content around tariff policies and Canton Fair trends, producing a 100K+ view viral post and converting 45 qualified leads; matrix total reached 160 leads.<br><br>Delivered 20 expert marketing livestreams with peak concurrency of 1,000+, driving 200+ private-domain users per session; a tiered reward strategy pushed livestream conversion to 15% over four months.' },
+  'p4-l1':{ zh:'笔记浏览', en:'Post Views' }, 'p4-l2':{ zh:'专家直播', en:'Expert Livestreams' }, 'p4-l3':{ zh:'转化率', en:'Conversion Rate' },
+  // P5
+  'p5-cat1':{ zh:'医信天下', en:'Yixintianxia' }, 'p5-cat2':{ zh:'IP 打造', en:'IP Building' }, 'p5-cat3':{ zh:'直播营销', en:'Livestream Marketing' },
+  'p5-ttl': { zh:'口腔医生 IP 矩阵<br>& 直播营销转化', en:'Dental Doctor IP Matrix<br>& Livestream Sales Conversion' },
+  'p5-dsc': { zh:'围绕用户看牙痛点设计问题解决型内容，打造 3 个医生 IP，累计浏览量 20W+，粉丝 5000+，GMV 超 800W。<br><br>策划双十一直播，单场 GMV 达 100W，新患者预约量增长 200%；分析 2000 条咨询数据，咨询量增长 110%，转化率提升 28%。',
+              en:'Built 3 dental doctor IPs around patient pain points, generating 200K+ views, 5,000+ followers and ¥8M+ GMV.<br><br>Planned an 11.11 livestream hitting ¥1M GMV in a single session, with new patient bookings up 200%. Analysis of 2,000 consultation records led to a 110% increase in enquiries and a 28% lift in conversion rate.' },
+  'p5-l1':{ zh:'累计 GMV', en:'Total GMV' }, 'p5-l2':{ zh:'单场直播', en:'Single Livestream' }, 'p5-l3':{ zh:'转化率', en:'Conversion Rate' }, 'p5-l4':{ zh:'新患预约', en:'New Bookings' },
+
+  // ── EXPERIENCE ──
+  'exp-eyebrow': { zh:'Work Experience', en:'Work Experience' },
+  'exp-title':   { zh:'实习 & 工作经历', en:'Internship & Work Experience' },
+  'exp-r1':{ zh:'产品运营', en:'Product Operations' }, 'exp-r2':{ zh:'电商运营', en:'E-commerce Operations' },
+  'exp-r3':{ zh:'市场营销', en:'Marketing' }, 'exp-r4':{ zh:'市场营销', en:'Marketing' }, 'exp-r5':{ zh:'市场营销', en:'Marketing' },
+  // bullets
+  'e1b1':{ zh:'「校园跑量赛」全域营销，联动 <strong>200 位 KOL/KOC</strong>，全域曝光 <strong>1500W+</strong>，新增用户 <strong>1W+</strong>', en:'Omni-channel marketing for the Campus Running Campaign; coordinated <strong>200 KOL/KOC</strong> influencers, drove <strong>15M+</strong> impressions and <strong>10K+</strong> new app users.' },
+  'e1b2':{ zh:'「跑后碎片分享」功能主导，分享转化率 <strong>9.6%</strong>（峰值 12%），覆盖用户 <strong>9W+</strong>', en:'Led the Fragment Share feature end-to-end; achieved <strong>9.6%</strong> share conversion rate (peak <strong>12%</strong>), reaching <strong>90K+</strong> users.' },
+  'e1b3':{ zh:'20 个核心运动用户社群运营，精准用户 <strong>5000+</strong>，持续调研反哺产品迭代', en:'Managed 20 core sports-user communities with <strong>5,000+</strong> engaged members; ongoing user research fed directly into product iteration.' },
+  'e2b1':{ zh:'策划多系列主题活动，月促会员日单日 <strong>GMV 3000W+</strong>', en:'Planned multi-series campaigns; monthly members day hit <strong>¥30M+ GMV</strong> in a single day.' },
+  'e2b2':{ zh:'实时联动直播间动态调整资源位，周促日单日 <strong>GMV 800W+</strong>', en:'Real-time sync with Douyin livestream to dynamically manage placements; weekly promo day reached <strong>¥8M+ GMV</strong>.' },
+  'e2b3':{ zh:'调研四大平台，输出竞品深度报告 <strong>33 篇</strong>', en:'Conducted competitive analysis across four platforms and produced <strong>33</strong> in-depth reports.' },
+  'e3b1':{ zh:'抖音 ROI 从 <strong>1.1 → 2.3</strong>（日峰值 9.2），CPM 从 ¥280 → <strong>¥73</strong>', en:'Lifted Douyin ad ROI from <strong>1.1× to 2.3×</strong> (daily peak 9.2×); reduced CPM from ¥280 to <strong>¥73</strong>.' },
+  'e3b2':{ zh:'策划 4 场法律科技沙龙，覆盖 <strong>10+ 法域</strong>，建联海外律师 <strong>500+</strong>', en:'Organised 4 cross-border legal-tech salons covering <strong>10+ jurisdictions</strong>, connecting with <strong>500+</strong> overseas lawyers.' },
+  'e3b3':{ zh:'共计精准获客超 <strong>2000 人</strong>', en:'Total precision acquisition of over <strong>2,000</strong> qualified leads.' },
+  'e4b1':{ zh:'落地 <strong>20 场</strong>专家营销直播，单场最高在线 <strong>1000+</strong>，直播引流转化率 <strong>15%</strong>', en:'Delivered <strong>20</strong> expert marketing livestreams; peak concurrency <strong>1,000+</strong>; livestream conversion rate <strong>15%</strong>.' },
+  'e4b2':{ zh:'小红书内容矩阵打造 <strong>10W+ 爆款笔记</strong>，矩阵累计获客有效线索 <strong>160 条</strong>', en:'Built an XHS content matrix featuring a <strong>100K+ view</strong> viral post; matrix total: <strong>160</strong> qualified leads.' },
+  'e5b1':{ zh:'打造 3 个口腔医生 IP，GMV 超 <strong>800W</strong>，双十一单场直播 GMV <strong>100W</strong>', en:'Developed 3 dental doctor IPs; total GMV exceeded <strong>¥8M</strong>; single 11.11 livestream hit <strong>¥1M GMV</strong>.' },
+  'e5b2':{ zh:'分析 2000 条咨询数据，咨询量增长 <strong>110%</strong>，转化率提升 <strong>28%</strong>', en:'Analysed 2,000 consultation records; enquiries grew <strong>110%</strong>, conversion rate improved <strong>28%</strong>.' },
+  'e5b3':{ zh:'新患者预约量增长 <strong>200%</strong>', en:'New patient bookings increased by <strong>200%</strong>.' },
+
+  // ── BENTO ──
+  'bento-eyebrow':  { zh:'Core Competencies', en:'Core Competencies' },
+  'bento-title':    { zh:'核心能力架构', en:'Capability Architecture' },
+  'bento-sub':      { zh:'从数据洞察到用户增长，从内容策划到直播转化，全链路商业化运营能力构成完整的职业壁垒。', en:'From data insight to user growth, from content strategy to livestream conversion — a full-funnel commercial operations capability.' },
+  'bento-tag1':     { zh:'Analytics', en:'Analytics' },
+  'bento-h1':       { zh:'数据驱动的<br>运营决策体系', en:'Data-Driven<br>Operations System' },
+  'bento-txt1':     { zh:'擅长通过 SQL 查询与 Excel 数据建模，构建商品同比/环比分析框架，结合竞品调研精准定位机会点，每次运营决策均有数据支撑。', en:'Proficient in SQL queries and Excel data modelling to build YoY/MoM analysis frameworks; combines competitive research to pinpoint opportunities — every operational decision is evidence-based.' },
+  'bento-sm1-ttl':  { zh:'内容策划 & 爆款逻辑', en:'Content Strategy & Viral Logic' },
+  'bento-sm1-body': { zh:'结合平台算法与热点，构建选题→标题→内容→互动的爆款生产流程，实现 10W+ 笔记。', en:'Combining platform algorithms and trending topics, built a topic→title→content→engagement pipeline that delivered 100K+ view posts.' },
+  'bento-sm2-ttl':  { zh:'KOL 矩阵运营', en:'KOL Matrix Management' },
+  'bento-sm2-body': { zh:'从达人筛选、内容共创到效果追踪，全链路管理 200+ KOL/KOC 矩阵宣发。', en:'End-to-end management of 200+ KOL/KOC from influencer vetting and content co-creation through to performance tracking.' },
+
+  // ── EDUCATION ──
+  'edu-eyebrow': { zh:'Education', en:'Education' },
+  'edu-title':   { zh:'教育背景', en:'Education' },
+  'edu-type1':   { zh:'Master\'s Degree · 硕士', en:'Master\'s Degree' },
+  'edu-type2':   { zh:'Bachelor\'s Degree · 本科', en:'Bachelor\'s Degree' },
+  'edu-major1':  { zh:'人工智能与数码媒体', en:'AI & Digital Media' },
+  'edu-major2':  { zh:'统计学', en:'Statistics' },
+  'edu-badge1a': { zh:'GPA 3.42 / 4.0', en:'GPA 3.42 / 4.0' },
+  'edu-badge1b': { zh:'HKBU', en:'HKBU' },
+  'edu-badge1c': { zh:'雅思 6.0', en:'IELTS 6.0' },
+  'edu-badge2a': { zh:'人民三等奖学金', en:'People\'s Scholarship' },
+  'edu-badge2b': { zh:'自强之星', en:'Self-Improvement Star' },
+  'edu-badge2c': { zh:'CET-6', en:'CET-6' },
+
+  // ── SKILLS ──
+  'sk-eyebrow': { zh:'Skills & Certifications', en:'Skills & Certifications' },
+  'sk-title':   { zh:'技能 & 证书', en:'Skills & Certifications' },
+  'sk1-name': { zh:'雅思 IELTS 6.0',  en:'IELTS 6.0' },
+  'sk1-sub':  { zh:'口语流利，独立业务沟通', en:'Business fluent English' },
+  'sk2-name': { zh:'大学英语六级 CET-6', en:'CET Band 6' },
+  'sk2-sub':  { zh:'英语读写能力', en:'English reading & writing' },
+  'sk3-name': { zh:'SQL', en:'SQL' },
+  'sk3-sub':  { zh:'业务数据查询与分析', en:'Business data querying & analysis' },
+  'sk4-name': { zh:'剪映', en:'CapCut / Jianying' },
+  'sk4-sub':  { zh:'短视频制作 & 内容剪辑', en:'Short-video production & editing' },
+  'sk5-name': { zh:'Canva', en:'Canva' },
+  'sk5-sub':  { zh:'营销物料 & 品牌视觉设计', en:'Marketing materials & brand visuals' },
+  'sk6-name': { zh:'Office 全套', en:'Microsoft Office' },
+  'sk6-sub':  { zh:'Excel / PPT / Word 精通', en:'Excel / PowerPoint / Word — advanced' },
+
+  // ── CONTACT ──
+  'ct-eyebrow': { zh:'Get in Touch', en:'Get in Touch' },
+  'ct-heading': { zh:'Ready to build something <em>amazing?</em>', en:'Ready to build something <em>amazing?</em>' },
+  'ct-sub':     { zh:'正在寻找产品运营 / 市场营销全职机会，欢迎随时联系 ✦', en:'Currently seeking full-time roles in Product Operations / Marketing. Let\'s connect ✦' },
+
+  // ── FOOTER ──
+  'footer-txt': { zh:'© 2026 曾杏荷 · 产品运营 & 市场营销', en:'© 2026 Zeng Xinghe · Product Operations & Marketing' },
+};
+
+// Map key → {el, prop} where prop = 'innerHTML' or 'textContent'
+const DOM_MAP = [
+  // nav
+  ['nav-about','#nav-about','innerHTML'], ['nav-work','#nav-work','innerHTML'],
+  ['nav-exp','#nav-exp','innerHTML'],     ['nav-edu','#nav-edu','innerHTML'],
+  // hero s0
+  ['h0-eyebrow','#h0-eyebrow','innerHTML'], ['h0-title','#h0-title','innerHTML'],
+  ['h0-body','#h0-body','innerHTML'],
+  ['h0-btn1','#h0-btn1','innerHTML'],       ['h0-btn2','#h0-btn2','innerHTML'],
+  ['h0-card1-lbl','#h0-card1-lbl','innerHTML'], ['h0-card1-sub','#h0-card1-sub','innerHTML'],
+  ['h0-card2-lbl','#h0-card2-lbl','innerHTML'], ['h0-card2-sub','#h0-card2-sub','innerHTML'],
+  // hero s1
+  ['h1-eyebrow','#h1-eyebrow','innerHTML'], ['h1-title','#h1-title','innerHTML'],
+  ['h1-body','#h1-body','innerHTML'],
+  ['h1-t1','#h1-t1','innerHTML'], ['h1-t2','#h1-t2','innerHTML'], ['h1-t3','#h1-t3','innerHTML'],
+  ['h1-btn1','#h1-btn1','innerHTML'],
+  ['h1-card1-lbl','#h1-card1-lbl','innerHTML'], ['h1-card1-sub','#h1-card1-sub','innerHTML'],
+  ['h1-card2-lbl','#h1-card2-lbl','innerHTML'], ['h1-card2-sub','#h1-card2-sub','innerHTML'],
+  // hero s2
+  ['h2-eyebrow','#h2-eyebrow','innerHTML'], ['h2-title','#h2-title','innerHTML'],
+  ['h2-body','#h2-body','innerHTML'],
+  ['h2-btn1','#h2-btn1','innerHTML'],
+  ['h2-card1-lbl','#h2-card1-lbl','innerHTML'], ['h2-card1-sub','#h2-card1-sub','innerHTML'],
+  ['h2-card2-lbl','#h2-card2-lbl','innerHTML'], ['h2-card2-sub','#h2-card2-sub','innerHTML'],
+  // intro
+  ['intro-eyebrow','#intro-eyebrow','innerHTML'], ['intro-name','#intro-name','innerHTML'],
+  ['intro-enname','#intro-enname','innerHTML'],
+  ['intro-tag1','#intro-tag1','innerHTML'], ['intro-tag2','#intro-tag2','innerHTML'],
+  ['intro-tag3','#intro-tag3','innerHTML'], ['intro-tag4','#intro-tag4','innerHTML'],
+  ['intro-bio','#intro-bio','innerHTML'],
+  ['intro-f1-lbl','#intro-f1-lbl','innerHTML'], ['intro-f1-val','#intro-f1-val','innerHTML'],
+  ['intro-f2-lbl','#intro-f2-lbl','innerHTML'], ['intro-f2-val','#intro-f2-val','innerHTML'],
+  ['intro-f3-lbl','#intro-f3-lbl','innerHTML'], ['intro-f3-val','#intro-f3-val','innerHTML'],
+  ['intro-f4-lbl','#intro-f4-lbl','innerHTML'], ['intro-f4-val','#intro-f4-val','innerHTML'],
+  ['intro-cta1','#intro-cta1','innerHTML'],     ['intro-cta2','#intro-cta2','innerHTML'],
+  // about
+  ['about-eyebrow','#about-eyebrow','innerHTML'], ['about-heading','#about-heading','innerHTML'],
+  ['about-text','#about-text','innerHTML'],
+  ['tag1','#tag1','innerHTML'],['tag2','#tag2','innerHTML'],['tag3','#tag3','innerHTML'],
+  ['tag4','#tag4','innerHTML'],['tag5','#tag5','innerHTML'],['tag6','#tag6','innerHTML'],
+  ['tag7','#tag7','innerHTML'],['tag8','#tag8','innerHTML'],['tag9','#tag9','innerHTML'],
+  ['tag10','#tag10','innerHTML'],
+  ['stat1-lbl','#stat1-lbl','innerHTML'], ['stat2-lbl','#stat2-lbl','innerHTML'],
+  ['stat3-lbl','#stat3-lbl','innerHTML'], ['stat4-lbl','#stat4-lbl','innerHTML'],
+  // projects
+  ['proj-eyebrow','#proj-eyebrow','innerHTML'], ['proj-title','#proj-title','innerHTML'],
+  ['proj-sub','#proj-sub','innerHTML'],
+  ['p1-cat1','#p1-cat1','innerHTML'],['p1-cat2','#p1-cat2','innerHTML'],['p1-cat3','#p1-cat3','innerHTML'],
+  ['p1-ttl','#p1-ttl','innerHTML'], ['p1-dsc','#p1-dsc','innerHTML'],
+  ['p1-l1','#p1-l1','innerHTML'],['p1-l2','#p1-l2','innerHTML'],
+  ['p1-l3','#p1-l3','innerHTML'],['p1-l4','#p1-l4','innerHTML'],
+  ['p2-cat1','#p2-cat1','innerHTML'],['p2-cat2','#p2-cat2','innerHTML'],['p2-cat3','#p2-cat3','innerHTML'],
+  ['p2-ttl','#p2-ttl','innerHTML'], ['p2-dsc','#p2-dsc','innerHTML'],
+  ['p2-l1','#p2-l1','innerHTML'],['p2-l2','#p2-l2','innerHTML'],['p2-l3','#p2-l3','innerHTML'],
+  ['p3-cat1','#p3-cat1','innerHTML'],['p3-cat2','#p3-cat2','innerHTML'],['p3-cat3','#p3-cat3','innerHTML'],
+  ['p3-ttl','#p3-ttl','innerHTML'], ['p3-dsc','#p3-dsc','innerHTML'],
+  ['p3-l1','#p3-l1','innerHTML'],['p3-l2','#p3-l2','innerHTML'],['p3-l3','#p3-l3','innerHTML'],
+  ['p4-cat1','#p4-cat1','innerHTML'],['p4-cat2','#p4-cat2','innerHTML'],['p4-cat3','#p4-cat3','innerHTML'],
+  ['p4-ttl','#p4-ttl','innerHTML'], ['p4-dsc','#p4-dsc','innerHTML'],
+  ['p4-l1','#p4-l1','innerHTML'],['p4-l2','#p4-l2','innerHTML'],['p4-l3','#p4-l3','innerHTML'],
+  ['p5-cat1','#p5-cat1','innerHTML'],['p5-cat2','#p5-cat2','innerHTML'],['p5-cat3','#p5-cat3','innerHTML'],
+  ['p5-ttl','#p5-ttl','innerHTML'], ['p5-dsc','#p5-dsc','innerHTML'],
+  ['p5-l1','#p5-l1','innerHTML'],['p5-l2','#p5-l2','innerHTML'],
+  ['p5-l3','#p5-l3','innerHTML'],['p5-l4','#p5-l4','innerHTML'],
+  // experience
+  ['exp-eyebrow','#exp-eyebrow','innerHTML'], ['exp-title','#exp-title','innerHTML'],
+  ['exp-r1','#exp-r1','innerHTML'],['exp-r2','#exp-r2','innerHTML'],
+  ['exp-r3','#exp-r3','innerHTML'],['exp-r4','#exp-r4','innerHTML'],['exp-r5','#exp-r5','innerHTML'],
+  ['e1b1','#e1b1','innerHTML'],['e1b2','#e1b2','innerHTML'],['e1b3','#e1b3','innerHTML'],
+  ['e2b1','#e2b1','innerHTML'],['e2b2','#e2b2','innerHTML'],['e2b3','#e2b3','innerHTML'],
+  ['e3b1','#e3b1','innerHTML'],['e3b2','#e3b2','innerHTML'],['e3b3','#e3b3','innerHTML'],
+  ['e4b1','#e4b1','innerHTML'],['e4b2','#e4b2','innerHTML'],
+  ['e5b1','#e5b1','innerHTML'],['e5b2','#e5b2','innerHTML'],['e5b3','#e5b3','innerHTML'],
+  // bento
+  ['bento-eyebrow','#bento-eyebrow','innerHTML'], ['bento-title','#bento-title','innerHTML'],
+  ['bento-sub','#bento-sub','innerHTML'],
+  ['bento-tag1','#bento-tag1','innerHTML'],
+  ['bento-h1','#bento-h1','innerHTML'], ['bento-txt1','#bento-txt1','innerHTML'],
+  ['bento-sm1-ttl','#bento-sm1-ttl','innerHTML'], ['bento-sm1-body','#bento-sm1-body','innerHTML'],
+  ['bento-sm2-ttl','#bento-sm2-ttl','innerHTML'], ['bento-sm2-body','#bento-sm2-body','innerHTML'],
+  // education
+  ['edu-eyebrow','#edu-eyebrow','innerHTML'], ['edu-title','#edu-title','innerHTML'],
+  ['edu-type1','#edu-type1','innerHTML'],   ['edu-type2','#edu-type2','innerHTML'],
+  ['edu-major1','#edu-major1','innerHTML'], ['edu-major2','#edu-major2','innerHTML'],
+  ['edu-badge1a','#edu-badge1a','innerHTML'],['edu-badge1b','#edu-badge1b','innerHTML'],['edu-badge1c','#edu-badge1c','innerHTML'],
+  ['edu-badge2a','#edu-badge2a','innerHTML'],['edu-badge2b','#edu-badge2b','innerHTML'],['edu-badge2c','#edu-badge2c','innerHTML'],
+  // skills
+  ['sk-eyebrow','#sk-eyebrow','innerHTML'], ['sk-title','#sk-title','innerHTML'],
+  ['sk1-name','#sk1-name','innerHTML'],['sk1-sub','#sk1-sub','innerHTML'],
+  ['sk2-name','#sk2-name','innerHTML'],['sk2-sub','#sk2-sub','innerHTML'],
+  ['sk3-name','#sk3-name','innerHTML'],['sk3-sub','#sk3-sub','innerHTML'],
+  ['sk4-name','#sk4-name','innerHTML'],['sk4-sub','#sk4-sub','innerHTML'],
+  ['sk5-name','#sk5-name','innerHTML'],['sk5-sub','#sk5-sub','innerHTML'],
+  ['sk6-name','#sk6-name','innerHTML'],['sk6-sub','#sk6-sub','innerHTML'],
+  // contact
+  ['ct-eyebrow','#ct-eyebrow','innerHTML'],
+  ['ct-heading','#ct-heading','innerHTML'],
+  ['ct-sub','#ct-sub','innerHTML'],
+  // footer
+  ['footer-txt','#footer-txt','innerHTML'],
+];
+
+function applyLang(l) {
+  DOM_MAP.forEach(([key, sel, prop]) => {
+    const el = document.querySelector(sel);
+    if (!el || !TRANSLATIONS[key]) return;
+    el[prop] = TRANSLATIONS[key][l];
+  });
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+  document.getElementById('langBtn').textContent = l === 'zh' ? 'EN' : '中';
+}
+
+function toggleLang() {
+  lang = lang === 'zh' ? 'en' : 'zh';
+  applyLang(lang);
+}
+</script>
+</body>
+</html>
+<!-- cache-bust: 1781969723 -->

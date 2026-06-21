@@ -1,0 +1,25 @@
+{
+  "schema": "cowork-project/v1",
+  "id": "cw_proj_0bsd5clq9g",
+  "name": "portfolio",
+  "srcDir": "/home/node/.openclaw/workspace/portfolio",
+  "createdAt": 1781677119613,
+  "updatedAt": 1781977378074,
+  "createdBy": "cowork-cli",
+  "stack": null,
+  "guardCompliant": true,
+  "cowork": {
+    "workId": 49024,
+    "workDeployType": "STATIC_RESOURCE",
+    "staticResourceId": 403,
+    "staticAppId": "sr-deec60f1",
+    "alias": "zengxinghe-portfolio",
+    "accessUrl": "https://cowork.xiaohongshu.com/f/zengxinghe-portfolio/",
+    "coworkAppUrl": "https://cowork.xiaohongshu.com/app/NWEzY2QxYWQ",
+    "rawAccessUrl": "https://cowork.xiaohongshu.com/f/sr-deec60f1/",
+    "publishedAt": 1781977378074,
+    "visibility": "SELF_ONLY",
+    "version": "1.0.54",
+    "lastZipHash": "sha256:638a591de2534ab168075308b447ee0003f655f0131e3eddda673aa7e9bdc35c"
+  }
+}

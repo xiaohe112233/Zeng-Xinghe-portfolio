@@ -508,14 +508,15 @@
     #dfs_i1, #dfs_i2 { opacity: 0; z-index: 0; }
     #dfs_d0 { background: #C9A96E !important; }
     /* Checked states */
-    #dfs_r1:checked ~ .proj-card #dfs_i0 { opacity: 0; z-index: 0; }
-    #dfs_r1:checked ~ .proj-card #dfs_i1 { opacity: 1; z-index: 1; }
-    #dfs_r1:checked ~ .proj-card #dfs_d0 { background: rgba(255,255,255,0.3) !important; }
-    #dfs_r1:checked ~ .proj-card #dfs_d1 { background: #C9A96E !important; }
-    #dfs_r2:checked ~ .proj-card #dfs_i0 { opacity: 0; z-index: 0; }
-    #dfs_r2:checked ~ .proj-card #dfs_i2 { opacity: 1; z-index: 1; }
-    #dfs_r2:checked ~ .proj-card #dfs_d0 { background: rgba(255,255,255,0.3) !important; }
-    #dfs_r2:checked ~ .proj-card #dfs_d2 { background: #C9A96E !important; }
+    /* DFS: inputs are now inside .proj-visual, use direct ~ sibling selector */
+    #dfs_r1:checked ~ div #dfs_i0 { opacity: 0 !important; z-index: 0 !important; }
+    #dfs_r1:checked ~ div #dfs_i1 { opacity: 1 !important; z-index: 1 !important; }
+    #dfs_r1:checked ~ div #dfs_d0 { background: rgba(255,255,255,0.25) !important; }
+    #dfs_r1:checked ~ div #dfs_d1 { background: #C9A96E !important; }
+    #dfs_r2:checked ~ div #dfs_i0 { opacity: 0 !important; z-index: 0 !important; }
+    #dfs_r2:checked ~ div #dfs_i2 { opacity: 1 !important; z-index: 1 !important; }
+    #dfs_r2:checked ~ div #dfs_d0 { background: rgba(255,255,255,0.25) !important; }
+    #dfs_r2:checked ~ div #dfs_d2 { background: #C9A96E !important; }
 
     /* ─── RUN GALLERY (CSS-only radio) ─── */
     /* Override proj-visual constraints for the gallery card */
@@ -1387,30 +1388,29 @@
       </div>
 
       <!-- P2 东方甄选 -->
-      <!-- DFS radio controls (must be siblings of .proj-visual for CSS ~ selector) -->
-      <input type="radio" name="dfs" id="dfs_r0" checked style="display:none;">
-      <input type="radio" name="dfs" id="dfs_r1" style="display:none;">
-      <input type="radio" name="dfs" id="dfs_r2" style="display:none;">
       <div class="proj-card reveal" style="transition-delay:.08s;">
         <div class="proj-visual rg-wrap" style="padding:0;background:linear-gradient(160deg,#1a1410 0%,#0d0a07 100%);display:flex;flex-direction:column;overflow:hidden;">
+          <!-- DFS radio controls inside proj-visual for CSS ~ selector -->
+          <input type="radio" name="dfs" id="dfs_r0" checked style="display:none;">
+          <input type="radio" name="dfs" id="dfs_r1" style="display:none;">
+          <input type="radio" name="dfs" id="dfs_r2" style="display:none;">
           <!-- 图片轮播区 -->
           <div style="position:relative;width:100%;flex:1;min-height:260px;overflow:hidden;">
             <label for="dfs_r0" id="dfs_i0" style="position:absolute;inset:0;display:block;cursor:pointer;opacity:1;transition:opacity .5s;z-index:1;">
-              <img src="./dfs2.jpg" style="width:100%;height:100%;object-fit:cover;">
+              <img src="./dfs2.jpg" style="width:100%;height:100%;object-fit:contain;background:#f5f4f0;">
             </label>
             <label for="dfs_r1" id="dfs_i1" style="position:absolute;inset:0;display:block;cursor:pointer;opacity:0;transition:opacity .5s;z-index:0;">
-              <img src="./dfs3.jpg" style="width:100%;height:100%;object-fit:cover;">
+              <img src="./dfs3.jpg" style="width:100%;height:100%;object-fit:contain;background:#f5f4f0;">
             </label>
-            <label for="dfs_r2" id="dfs_i2" style="position:absolute;inset:0;display:block;cursor:pointer;opacity:0;transition:opacity .5s;z-index:0;background:#111;">
-              <img src="./dfs1.png" style="width:100%;height:100%;object-fit:contain;">
+            <label for="dfs_r2" id="dfs_i2" style="position:absolute;inset:0;display:block;cursor:pointer;opacity:0;transition:opacity .5s;z-index:0;">
+              <img src="./dfs1.jpg" style="width:100%;height:100%;object-fit:contain;background:#f5f4f0;">
             </label>
-
           </div>
           <!-- 圆点切换栏 -->
-          <div style="background:#0d0b08;padding:8px 0;display:flex;justify-content:center;gap:8px;flex-shrink:0;">
-            <label for="dfs_r0" id="dfs_d0" style="display:block;width:36px;height:5px;border-radius:3px;cursor:pointer;background:#C9A96E;transition:background .3s;"></label>
-            <label for="dfs_r1" id="dfs_d1" style="display:block;width:36px;height:5px;border-radius:3px;cursor:pointer;background:rgba(255,255,255,0.2);transition:background .3s;"></label>
-            <label for="dfs_r2" id="dfs_d2" style="display:block;width:36px;height:5px;border-radius:3px;cursor:pointer;background:rgba(255,255,255,0.2);transition:background .3s;"></label>
+          <div style="background:#0d0b08;padding:10px 0;display:flex;justify-content:center;gap:10px;flex-shrink:0;">
+            <label for="dfs_r0" id="dfs_d0" style="display:block;width:48px;height:6px;border-radius:3px;cursor:pointer;background:#C9A96E;transition:background .3s,transform .2s;"></label>
+            <label for="dfs_r1" id="dfs_d1" style="display:block;width:48px;height:6px;border-radius:3px;cursor:pointer;background:rgba(255,255,255,0.25);transition:background .3s,transform .2s;"></label>
+            <label for="dfs_r2" id="dfs_d2" style="display:block;width:48px;height:6px;border-radius:3px;cursor:pointer;background:rgba(255,255,255,0.25);transition:background .3s,transform .2s;"></label>
           </div>
           <!-- 账号矩阵 -->
           <div style="background:#0a0806;padding:10px 12px;flex-shrink:0;">
@@ -1689,7 +1689,7 @@
         <div class="exp-l">
           <div class="exp-company">小红书</div>
           <div class="exp-role" id="exp-r1">产品运营</div>
-          <div class="exp-period">2026.04 — 2026.06</div>
+          <div class="exp-period">2026.03 — 2026.06</div>
         </div>
         <div class="exp-r">
           <ul class="exp-bullets">
@@ -1704,7 +1704,7 @@
         <div class="exp-l">
           <div class="exp-company">东方甄选</div>
           <div class="exp-role" id="exp-r2">电商运营</div>
-          <div class="exp-period">2026.01 — 2026.03</div>
+          <div class="exp-period">2026.12 — 2026.02</div>
         </div>
         <div class="exp-r">
           <ul class="exp-bullets">
@@ -1733,7 +1733,7 @@
         <div class="exp-l">
           <div class="exp-company">法大大</div>
           <div class="exp-role" id="exp-r4">市场营销</div>
-          <div class="exp-period">2025.09 — 2025.12</div>
+          <div class="exp-period">2025.08 — 2025.11</div>
         </div>
         <div class="exp-r">
           <ul class="exp-bullets">
@@ -1964,7 +1964,7 @@ const TRANSLATIONS = {
   'h0-card2-sub':{ zh:'英语商务流利',   en:'Business fluent' },
 
   // ── HERO SLIDE 1 ──
-  'h1-eyebrow':  { zh:'Internship · 2026.04 — 2026.06', en:'Internship · Apr — Jun 2026' },
+  'h1-eyebrow':  { zh:'Internship · 2026.03 — 2026.06', en:'Internship · Apr — Jun 2026' },
   'h1-title':    { zh:'小红书<br>产品运营<br><em>创新运动项目部</em>', en:'Xiaohongshu<br>Product Operations<br><em>Sports Innovation Dept.</em>' },
   'h1-body':     { zh:'主导全域营销策划与 KOL 矩阵联动，碎片分享功能全流程推进', en:'Led omni-channel marketing strategy with KOL matrix, drove full lifecycle of the Fragment Share feature.' },
   'h1-t1':       { zh:'全域营销',     en:'Omni-channel' },

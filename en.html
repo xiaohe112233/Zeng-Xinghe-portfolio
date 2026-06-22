@@ -491,10 +491,10 @@
     .fc-bt { font-size: 9px; font-weight: 700; color: #fff; line-height: 1.2; }
     .fc-bd { font-size: 8px; color: rgba(255,255,255,0.4); line-height: 1.4; }
     .fc-rr { font-size: 8px; font-weight: 600; letter-spacing: 1px; padding: 2px 7px; border-radius: 100px; margin-top: 2px; }
-    .r-event     { background: rgba(255,140,80,0.18);  color: #ffaa66; }  /* 事件 - 橙 */
-    .r-date      { background: rgba(180,120,255,0.18); color: #c89aff; }  /* 特殊日期 - 紫 */
-    .r-unlock    { background: rgba(100,200,140,0.18); color: #6dcf98; }  /* 解锁 - 绿 */
-    .r-milestone { background: rgba(201,169,110,0.2);  color: #C9A96E; }  /* 里程碑 - 金 */
+    .r-event     { background: rgba(255,140,80,0.18);  color: #ffaa66; }  /* Event - Orange */
+    .r-date      { background: rgba(180,120,255,0.18); color: #c89aff; }  /* Special Date - Purple */
+    .r-unlock    { background: rgba(100,200,140,0.18); color: #6dcf98; }  /* Unlock - Green */
+    .r-milestone { background: rgba(201,169,110,0.2);  color: #C9A96E; }  /* Milestone - Gold */
 
     /* === FDD tab === */
     #fdd_t1:checked ~ .proj-card #fdd_p0 { opacity: 0; pointer-events: none; }
@@ -559,34 +559,34 @@
     #wylb5:checked ~ #wylb5-ov,
     #wylb6:checked ~ #wylb6-ov { display:flex !important; }
 
-    /* ─── WY 扇形卡片 ─── */
+    /* ─── WY Fan Cards ─── */
     .fan-card, .wfc0,.wfc1,.wfc2,.wfc3,.wfc4,.wfc5,.wfc6 {
       position:absolute; width:140px; height:200px;
       border-radius:12px; overflow:hidden;
       transition: all .5s cubic-bezier(.4,0,.2,1);
       box-shadow: 0 8px 24px rgba(0,0,0,0.35);
     }
-    /* pos -2 最左 */
+    /* pos -2 far-left */
     #fw0:checked ~ .proj-card .wfc0,#fw1:checked ~ .proj-card .wfc6,#fw2:checked ~ .proj-card .wfc5,
     #fw3:checked ~ .proj-card .wfc4,#fw4:checked ~ .proj-card .wfc3,#fw5:checked ~ .proj-card .wfc2,
     #fw6:checked ~ .proj-card .wfc1 { transform:translateX(-220px) translateY(18px) rotate(-18deg) scale(.7); z-index:1; opacity:.65; }
-    /* pos -1 左 */
+    /* pos -1 left */
     #fw0:checked ~ .proj-card .wfc1,#fw1:checked ~ .proj-card .wfc0,#fw2:checked ~ .proj-card .wfc6,
     #fw3:checked ~ .proj-card .wfc5,#fw4:checked ~ .proj-card .wfc4,#fw5:checked ~ .proj-card .wfc3,
     #fw6:checked ~ .proj-card .wfc2 { transform:translateX(-120px) translateY(6px) rotate(-10deg) scale(.84); z-index:2; opacity:.85; }
-    /* pos 0 中间激活 */
+    /* pos 0 center-active */
     #fw0:checked ~ .proj-card .wfc2,#fw1:checked ~ .proj-card .wfc1,#fw2:checked ~ .proj-card .wfc0,
     #fw3:checked ~ .proj-card .wfc6,#fw4:checked ~ .proj-card .wfc5,#fw5:checked ~ .proj-card .wfc4,
     #fw6:checked ~ .proj-card .wfc3 { transform:translateX(0) translateY(0) rotate(0) scale(1); z-index:5; opacity:1; box-shadow:0 20px 50px rgba(0,0,0,0.5); }
-    /* pos +1 右 */
+    /* pos +1 right */
     #fw0:checked ~ .proj-card .wfc3,#fw1:checked ~ .proj-card .wfc2,#fw2:checked ~ .proj-card .wfc1,
     #fw3:checked ~ .proj-card .wfc0,#fw4:checked ~ .proj-card .wfc6,#fw5:checked ~ .proj-card .wfc5,
     #fw6:checked ~ .proj-card .wfc4 { transform:translateX(120px) translateY(6px) rotate(10deg) scale(.84); z-index:2; opacity:.85; }
-    /* pos +2 最右 */
+    /* pos +2 far-right */
     #fw0:checked ~ .proj-card .wfc4,#fw1:checked ~ .proj-card .wfc3,#fw2:checked ~ .proj-card .wfc2,
     #fw3:checked ~ .proj-card .wfc1,#fw4:checked ~ .proj-card .wfc0,#fw5:checked ~ .proj-card .wfc6,
     #fw6:checked ~ .proj-card .wfc5 { transform:translateX(220px) translateY(18px) rotate(18deg) scale(.7); z-index:1; opacity:.65; }
-    /* 隐藏 +3/-3 */
+    /* hidden +3/-3 */
     #fw0:checked ~ .proj-card .wfc5,#fw1:checked ~ .proj-card .wfc4,#fw2:checked ~ .proj-card .wfc3,
     #fw3:checked ~ .proj-card .wfc2,#fw4:checked ~ .proj-card .wfc1,#fw5:checked ~ .proj-card .wfc0,
     #fw6:checked ~ .proj-card .wfc6 { transform:translateX(-300px) translateY(30px) rotate(-24deg) scale(.55); z-index:0; opacity:0; }
@@ -600,7 +600,7 @@
     #fw1:checked ~ .proj-card .wd0,#fw2:checked ~ .proj-card .wd0,#fw3:checked ~ .proj-card .wd0,
     #fw4:checked ~ .proj-card .wd0,#fw5:checked ~ .proj-card .wd0,#fw6:checked ~ .proj-card .wd0 { background:rgba(255,255,255,0.35) !important; width:10px !important; }
 
-    /* ─── WY GALLERY (7张直播海报) ─── */
+    /* ─── WY GALLERY (7 posters) ─── */
     #wy_r0:checked ~ .proj-card .wy-i1,
     #wy_r0:checked ~ .proj-card .wy-i2,
     #wy_r0:checked ~ .proj-card .wy-i3,
@@ -722,7 +722,7 @@
       background: #f0ede8;
       transition: transform .35s ease;
     }
-    /* hover 时展示的叠层 */
+    /* hover overlay layer */
     .kcard-ov {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
@@ -1055,16 +1055,16 @@
           gap:16px; margin-bottom:40px;
         ">
           <div style="padding:18px 20px;background:var(--bg);border-radius:14px;border:1px solid var(--border);">
-            <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f1-lbl">当前学历</div>
-            <div id="intro-f1-val" style="font-size:14px;font-weight:600;color:var(--dark);">香港浸会大学 · 硕士</div>
+            <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f1-lbl">Education</div>
+            <div id="intro-f1-val" style="font-size:14px;font-weight:600;color:var(--dark);">HKBU · Master's</div>
           </div>
           <div style="padding:18px 20px;background:var(--bg);border-radius:14px;border:1px solid var(--border);">
-            <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f2-lbl">专业背景</div>
-            <div id="intro-f2-val" style="font-size:14px;font-weight:600;color:var(--dark);">统计学 × AI & 数码媒体</div>
+            <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f2-lbl">Background</div>
+            <div id="intro-f2-val" style="font-size:14px;font-weight:600;color:var(--dark);">Statistics × AI & Digital Media</div>
           </div>
           <div style="padding:18px 20px;background:var(--bg);border-radius:14px;border:1px solid var(--border);">
             <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f3-lbl">Internships</div>
-            <div id="intro-f3-val" style="font-size:12px;font-weight:600;color:var(--dark);">小红书 / 东方甄选 / 网易 / 法大大</div>
+            <div id="intro-f3-val" style="font-size:12px;font-weight:600;color:var(--dark);">XHS / DFJX / NetEase / Fadada</div>
           </div>
           <div style="padding:18px 20px;background:var(--bg);border-radius:14px;border:1px solid var(--border);">
             <div style="font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" id="intro-f4-lbl">Target Role</div>
@@ -1082,7 +1082,7 @@
           "
           onmouseover="this.style.background='#B8935A';this.style.transform='translateY(-2px)'"
           onmouseout="this.style.background='#C9A96E';this.style.transform='none'"
-           id="intro-cta1">View Projects经历</a>
+           id="intro-cta1">View Projects</a>
           <a href="#contact" style="
             padding:13px 28px;border-radius:100px;
             border:1px solid var(--border2);
@@ -1104,7 +1104,7 @@
     <div class="about-grid">
       <div class="reveal">
         <div class="sec-eyebrow" id="about-eyebrow">About Me</div>
-        <h2 class="about-heading" id="about-heading">以数据为骨，<br><em>Breaking Through with Creativity</em></h2>
+        <h2 class="about-heading" id="about-heading">Data as Foundation,<br><em>Breaking Through with Creativity</em></h2>
         <p class="about-text" id="about-text">
           Great operations go beyond intuition — find patterns with data, break barriers with creativity, and turn one-time wins into repeatable growth flywheels.
         </p>
@@ -1112,11 +1112,11 @@
           <span class="tag" id="tag1">📊 Data Analytics</span>
           <span class="tag" id="tag2">✍️ Content Planning</span>
           <span class="tag" id="tag3">🎪 Event Ops</span>
-          <span class="tag" id="tag4">📣 KOL 运营</span>
+          <span class="tag" id="tag4">📣 KOL Management</span>
           <span class="tag" id="tag5">🤝 Community Ops</span>
           <span class="tag" id="tag6">🎬 Live Streaming</span>
-          <span class="tag" id="tag8">🌐 资源拓展</span>
-          <span class="tag" id="tag7">🤖 AI 应用</span>
+          <span class="tag" id="tag8">🌐 Resource Dev</span>
+          <span class="tag" id="tag7">🤖 AI Application</span>
           
           
           
@@ -1128,28 +1128,28 @@
             <div class="stat-icon-wrap">📣</div>
             <div>
               <div class="stat-big">1500W+</div>
-              <div class="stat-label" id="stat1-lbl">全域曝光 · XHS Campus Run Campaign</div>
+              <div class="stat-label" id="stat1-lbl">Total Exposure · XHS Campus Run Campaign</div>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon-wrap">💰</div>
             <div>
               <div class="stat-big">10W+</div>
-              <div class="stat-label" id="stat2-lbl">新增用户 · XHS Campus Run Campaign</div>
+              <div class="stat-label" id="stat2-lbl">New Users · XHS Campus Run Campaign</div>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon-wrap">📈</div>
             <div>
               <div class="stat-big">3000W+</div>
-              <div class="stat-label" id="stat3-lbl">单日 GMV · DFJX Monthly Member Day</div>
+              <div class="stat-label" id="stat3-lbl">Single-Day GMV · DFJX Monthly Member Day</div>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon-wrap">🦷</div>
             <div>
               <div class="stat-big">800W+</div>
-              <div class="stat-label" id="stat4-lbl">正畸医生 IP 累积 GMV</div>
+              <div class="stat-label" id="stat4-lbl">Orthodontist IP Cumulative GMV</div>
             </div>
           </div>
         </div>
@@ -1173,8 +1173,8 @@
 
     <div class="proj-list">
 
-      <!-- P1 小红书 -->
-      <!-- P1a 小红书 · 校园跑量赛 -->
+      <!-- P1 Xiaohongshu -->
+      <!-- P1a XHS · Campus Run Campaign -->
       <div class="proj-card reveal" id="proj-run">
         <!-- Left: CSS-only radio gallery -->
         <!-- Structure: radios MUST be direct siblings of .rg-stage and .rg-thumbs for ~ selector to work -->
@@ -1213,7 +1213,7 @@
         <!-- Right: info -->
         <div class="proj-info">
           <div class="proj-cats">
-            <span class="proj-cat" id="p1-cat1" style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;margin-right:4px;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="14" rx="3" fill="#FF2442"/><text x="7" y="10.5" text-anchor="middle" fill="white" font-size="7" font-weight="900" font-family="sans-serif">书</text></svg>小红书</span>
+            <span class="proj-cat" id="p1-cat1" style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;margin-right:4px;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="14" rx="3" fill="#FF2442"/><text x="7" y="10.5" text-anchor="middle" fill="white" font-size="7" font-weight="900" font-family="sans-serif">XHS</text></svg>Xiaohongshu</span>
             <span class="proj-cat" id="p1-cat2">Product Ops</span>
             <span class="proj-cat" id="p1-cat3">Integrated Marketing</span>
           </div>
@@ -1230,76 +1230,76 @@
         </div>
       </div>
 
-      <!-- KOL/KOC 合作案例 -->
+      <!-- KOL/KOC Collaboration Cases -->
       <div class="kol-section reveal" style="grid-column:1/-1;">
         <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
           <div>
-            <div class="kol-label" id="kol-label">KOL / KOC 合作案例</div>
-            <div class="kol-title" id="kol-title">达人矩阵 · 内容策略</div>
+            <div class="kol-label" id="kol-label">KOL / KOC Collaboration Cases</div>
+            <div class="kol-title" id="kol-title">KOL/KOC Matrix · Content Strategy</div>
           </div>
-          <div class="kol-badge" id="kol-badge">200+ 达人矩阵</div>
+          <div class="kol-badge" id="kol-badge">200+ Creator Matrix</div>
         </div>
         <!-- Tabs -->
         <div class="kol-tabs" style="margin-bottom:20px;">
-          <button class="ktab active" onclick="kolFilter('all',this)" id="ktab-all">全部</button>
-          <button class="ktab" onclick="kolFilter('run',this)" id="ktab-run">跑量赛召集型</button>
-          <button class="ktab" onclick="kolFilter('emotion',this)" id="ktab-emotion">情感共鸣型</button>
-          <button class="ktab" onclick="kolFilter('product',this)" id="ktab-product">产品种草型</button>
-          <button class="ktab" onclick="kolFilter('lifestyle',this)" id="ktab-lifestyle">生活方式型</button>
-          <button class="ktab" onclick="kolFilter('value',this)" id="ktab-value">价值观叙事型</button>
-          <button class="ktab" onclick="kolFilter('real',this)" id="ktab-real">真实经历型</button>
+          <button class="ktab active" onclick="kolFilter('all',this)" id="ktab-all">All</button>
+          <button class="ktab" onclick="kolFilter('run',this)" id="ktab-run">Campaign</button>
+          <button class="ktab" onclick="kolFilter('emotion',this)" id="ktab-emotion">Emotional</button>
+          <button class="ktab" onclick="kolFilter('product',this)" id="ktab-product">Product</button>
+          <button class="ktab" onclick="kolFilter('lifestyle',this)" id="ktab-lifestyle">Lifestyle</button>
+          <button class="ktab" onclick="kolFilter('value',this)" id="ktab-value">Values</button>
+          <button class="ktab" onclick="kolFilter('real',this)" id="ktab-real">Real Stories</button>
         </div>
-                <!-- Grid: 6列×2行 -->
-        <!-- 第一排: 情感共鸣2 + 价值观叙事2 + 跑量赛召集2 -->
-        <!-- 第二排: 产品种草2 + 真实经历2 + 生活方式2 -->
+                <!-- Grid: 6col×2row -->
+        <!-- Row 1: Emotional×2 + Values×2 + Campaign×2 -->
+        <!-- Row 2: Product×2 + Real Stories×2 + Lifestyle×2 -->
         <div class="kol-grid" id="kolGrid">
           <a class="kcard" data-ktype="emotion" href="./kol_n3.png" target="_blank" rel="noopener">
             <img src="./kol_n3.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">情感共鸣</span><span class="kcard-stats">❤️ 1152 &ensp;⭐ 213</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Emotional</span><span class="kcard-stats">❤️ 1152 &ensp;⭐ 213</span></div>
           </a>
           <a class="kcard" data-ktype="emotion" href="./kol_n4.png" target="_blank" rel="noopener">
             <img src="./kol_n4.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">情感共鸣</span><span class="kcard-stats">❤️ 7303 &ensp;⭐ 1209</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Emotional</span><span class="kcard-stats">❤️ 7303 &ensp;⭐ 1209</span></div>
           </a>
           <a class="kcard" data-ktype="value" href="./kol_n1.png" target="_blank" rel="noopener">
             <img src="./kol_n1.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">价值观叙事</span><span class="kcard-stats">❤️ 688 &ensp;⭐ 257</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Values</span><span class="kcard-stats">❤️ 688 &ensp;⭐ 257</span></div>
           </a>
           <a class="kcard" data-ktype="value" href="./kol_n2.png" target="_blank" rel="noopener">
             <img src="./kol_n2.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">价值观叙事</span><span class="kcard-stats">❤️ 1.2K &ensp;⭐ 320</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Values</span><span class="kcard-stats">❤️ 1.2K &ensp;⭐ 320</span></div>
           </a>
           <a class="kcard" data-ktype="run" href="./kol_n7.png" target="_blank" rel="noopener">
             <img src="./kol_n7.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">跑量赛召集</span><span class="kcard-stats">❤️ 510 &ensp;⭐ 87</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Campaign</span><span class="kcard-stats">❤️ 510 &ensp;⭐ 87</span></div>
           </a>
           <a class="kcard" data-ktype="run" href="./kol_n8.png" target="_blank" rel="noopener">
             <img src="./kol_n8.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">跑量赛召集</span><span class="kcard-stats">❤️ 763 &ensp;⭐ 116</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Campaign</span><span class="kcard-stats">❤️ 763 &ensp;⭐ 116</span></div>
           </a>
           <a class="kcard" data-ktype="product" href="./kol_n11.png" target="_blank" rel="noopener">
             <img src="./kol_n11.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">产品种草</span><span class="kcard-stats">❤️ 1300 &ensp;⭐ 329</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Product</span><span class="kcard-stats">❤️ 1300 &ensp;⭐ 329</span></div>
           </a>
           <a class="kcard" data-ktype="product" href="./kol_n12.png" target="_blank" rel="noopener">
             <img src="./kol_n12.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">产品种草</span><span class="kcard-stats">❤️ 3286 &ensp;⭐ 740</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Product</span><span class="kcard-stats">❤️ 3286 &ensp;⭐ 740</span></div>
           </a>
           <a class="kcard" data-ktype="real" href="./kol_n5.png" target="_blank" rel="noopener">
             <img src="./kol_n5.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">真实经历</span><span class="kcard-stats">❤️ 3206 &ensp;⭐ 147</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Real Story</span><span class="kcard-stats">❤️ 3206 &ensp;⭐ 147</span></div>
           </a>
           <a class="kcard" data-ktype="real" href="./kol_n6.png" target="_blank" rel="noopener">
             <img src="./kol_n6.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">真实经历</span><span class="kcard-stats">❤️ 665 &ensp;⭐ 60</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Real Story</span><span class="kcard-stats">❤️ 665 &ensp;⭐ 60</span></div>
           </a>
           <a class="kcard" data-ktype="lifestyle" href="./kol_n9.png" target="_blank" rel="noopener">
             <img src="./kol_n9.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">生活方式</span><span class="kcard-stats">❤️ 148 &ensp;⭐ 20</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Lifestyle</span><span class="kcard-stats">❤️ 148 &ensp;⭐ 20</span></div>
           </a>
           <a class="kcard" data-ktype="lifestyle" href="./kol_n10.png" target="_blank" rel="noopener">
             <img src="./kol_n10.png" class="kcard-img" loading="lazy">
-            <div class="kcard-ov"><span class="kcard-tag">生活方式</span><span class="kcard-stats">❤️ 337 &ensp;⭐ 53</span></div>
+            <div class="kcard-ov"><span class="kcard-tag">Lifestyle</span><span class="kcard-stats">❤️ 337 &ensp;⭐ 53</span></div>
           </a>
         </div>
       </div>
@@ -1314,54 +1314,54 @@
         <!-- 碎片收藏柜：3D翻转卡牌 -->
         <div class="proj-visual frag-cabinet" style="background:#0c0c0e;padding:24px 16px 16px;display:flex;flex-direction:column;justify-content:center;">
           <div style="text-align:center;margin-bottom:14px;">
-            <div style="font-size:9px;letter-spacing:3px;color:#C9A96E;text-transform:uppercase;margin-bottom:4px;">Sigma · 碎片活动</div>
+            <div style="font-size:9px;letter-spacing:3px;color:#C9A96E;text-transform:uppercase;margin-bottom:4px;">Sigma · Fragment Activity</div>
             <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.8);">碎片收藏柜</div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;perspective:600px;">
 
             <div class="fc-wrap"><div class="fc-inner">
-              <div class="fc-front"><img src="./frag1.png" class="fc-img"><div class="fc-name">记忆迁徙</div></div>
-              <div class="fc-back"><div class="fc-bi"><img src="./frag1.png"></div><div class="fc-bt">记忆迁徙</div><div class="fc-bd">带着旧日故事，继续向前奔跑</div><div class="fc-rr r-event">事件</div></div>
+              <div class="fc-front"><img src="./frag1.png" class="fc-img"><div class="fc-name">Memory Migration</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag1.png"></div><div class="fc-bt">Memory Migration</div><div class="fc-bd">Carry old stories, keep running forward</div><div class="fc-rr r-event">Event</div></div>
             </div></div>
 
             <div class="fc-wrap"><div class="fc-inner">
               <div class="fc-front"><img src="./frag2.png" class="fc-img"><div class="fc-name">Forever Young</div></div>
-              <div class="fc-back"><div class="fc-bi"><img src="./frag2.png"></div><div class="fc-bt">Forever Young</div><div class="fc-bd">把生日当起跑线，岁月也追不上你</div><div class="fc-rr r-date">特殊日期</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag2.png"></div><div class="fc-bt">Forever Young</div><div class="fc-bd">Make your birthday a starting line — time can't catch you</div><div class="fc-rr r-date">Special Date</div></div>
             </div></div>
 
             <div class="fc-wrap"><div class="fc-inner">
-              <div class="fc-front"><img src="./frag3.png" class="fc-img"><div class="fc-name">扎托佩克体验卡</div></div>
-              <div class="fc-back"><div class="fc-bi"><img src="./frag3.png"></div><div class="fc-bt">扎托佩克体验卡</div><div class="fc-bd">他写下传奇的这天，你也没缺席</div><div class="fc-rr r-date">特殊日期</div></div>
+              <div class="fc-front"><img src="./frag3.png" class="fc-img"><div class="fc-name">Zatopek Experience</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag3.png"></div><div class="fc-bt">Zatopek Experience</div><div class="fc-bd">The day he wrote legend — you were there too</div><div class="fc-rr r-date">Special Date</div></div>
             </div></div>
 
             <div class="fc-wrap"><div class="fc-inner">
-              <div class="fc-front"><img src="./frag4.png" class="fc-img"><div class="fc-name">客场作战代表</div></div>
-              <div class="fc-back"><div class="fc-bi"><img src="./frag4.png"></div><div class="fc-bt">客场作战代表</div><div class="fc-bd">每一座新城市都值得用脚步认识</div><div class="fc-rr r-unlock">解锁</div></div>
+              <div class="fc-front"><img src="./frag4.png" class="fc-img"><div class="fc-name">Away Game Rep</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag4.png"></div><div class="fc-bt">Away Game Rep</div><div class="fc-bd">Every new city deserves to be known by foot</div><div class="fc-rr r-unlock">Unlock</div></div>
             </div></div>
 
             <div class="fc-wrap"><div class="fc-inner">
-              <div class="fc-front"><img src="./frag5.png" class="fc-img"><div class="fc-name">破茧</div></div>
-              <div class="fc-back"><div class="fc-bi"><img src="./frag5.png"></div><div class="fc-bt">破茧</div><div class="fc-bd">坚持跨过一周，习惯就有了形状</div><div class="fc-rr r-milestone">里程碑</div></div>
+              <div class="fc-front"><img src="./frag5.png" class="fc-img"><div class="fc-name">Breaking Free</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag5.png"></div><div class="fc-bt">Breaking Free</div><div class="fc-bd">Push through one week — habits take shape</div><div class="fc-rr r-milestone">Milestone</div></div>
             </div></div>
 
             <div class="fc-wrap"><div class="fc-inner">
-              <div class="fc-front"><img src="./frag6.png" class="fc-img"><div class="fc-name">碳水对冲大师</div></div>
-              <div class="fc-back"><div class="fc-bi"><img src="./frag6.png"></div><div class="fc-bt">碳水对冲大师</div><div class="fc-bd">干饭可以尽兴，你有足够预留额度</div><div class="fc-rr r-unlock">解锁</div></div>
+              <div class="fc-front"><img src="./frag6.png" class="fc-img"><div class="fc-name">Carb Offset Master</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag6.png"></div><div class="fc-bt">Carb Offset Master</div><div class="fc-bd">Eat freely — you've earned the quota</div><div class="fc-rr r-unlock">Unlock</div></div>
             </div></div>
 
             <div class="fc-wrap"><div class="fc-inner">
-              <div class="fc-front"><img src="./frag7.png" class="fc-img"><div class="fc-name">日落收藏家</div></div>
-              <div class="fc-back"><div class="fc-bi"><img src="./frag7.png"></div><div class="fc-bt">日落收藏家</div><div class="fc-bd">你跑进了黄昏最温柔的时候</div><div class="fc-rr r-unlock">解锁</div></div>
+              <div class="fc-front"><img src="./frag7.png" class="fc-img"><div class="fc-name">Sunset Collector</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag7.png"></div><div class="fc-bt">Sunset Collector</div><div class="fc-bd">You ran into the gentlest hour of dusk</div><div class="fc-rr r-unlock">Unlock</div></div>
             </div></div>
 
             <div class="fc-wrap"><div class="fc-inner">
-              <div class="fc-front"><img src="./frag8.png" class="fc-img"><div class="fc-name">赛博夜游神</div></div>
-              <div class="fc-back"><div class="fc-bi"><img src="./frag8.png"></div><div class="fc-bt">赛博夜游神</div><div class="fc-bd">月亮在值班，你在深夜巡航</div><div class="fc-rr r-unlock">解锁</div></div>
+              <div class="fc-front"><img src="./frag8.png" class="fc-img"><div class="fc-name">Cyber Night Wanderer</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag8.png"></div><div class="fc-bt">Cyber Night Wanderer</div><div class="fc-bd">Moon's on duty, you're cruising at midnight</div><div class="fc-rr r-unlock">Unlock</div></div>
             </div></div>
 
             <div class="fc-wrap"><div class="fc-inner">
-              <div class="fc-front"><img src="./frag9.png" class="fc-img"><div class="fc-name">偷时间的人</div></div>
-              <div class="fc-back"><div class="fc-bi"><img src="./frag9.png"></div><div class="fc-bt">偷时间的人</div><div class="fc-bd">晨光未到，你先到了</div><div class="fc-rr r-unlock">解锁</div></div>
+              <div class="fc-front"><img src="./frag9.png" class="fc-img"><div class="fc-name">Time Thief</div></div>
+              <div class="fc-back"><div class="fc-bi"><img src="./frag9.png"></div><div class="fc-bt">Time Thief</div><div class="fc-bd">Dawn hasn't arrived — but you have</div><div class="fc-rr r-unlock">Unlock</div></div>
             </div></div>
 
           </div>
@@ -1369,11 +1369,11 @@
         </div>
         <div class="proj-info">
           <div class="proj-cats">
-            <span class="proj-cat" style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;margin-right:4px;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="14" rx="3" fill="#FF2442"/><text x="7" y="10.5" text-anchor="middle" fill="white" font-size="7" font-weight="900" font-family="sans-serif">书</text></svg>小红书</span>
+            <span class="proj-cat" style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;margin-right:4px;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="14" rx="3" fill="#FF2442"/><text x="7" y="10.5" text-anchor="middle" fill="white" font-size="7" font-weight="900" font-family="sans-serif">XHS</text></svg>Xiaohongshu</span>
             <span class="proj-cat">Product Ops</span>
             <span class="proj-cat">Feature Launch</span>
           </div>
-          <div class="proj-title">跑后碎片分享<br>——功能上线与Event Ops</div>
+          <div class="proj-title">Post-Run Fragment Share<br>— Feature Launch & Campaign Ops</div>
           <div class="proj-desc">
             Deeply involved in the end-to-end launch of "Post-Run Fragment Share" — collaborated on product design, led copywriting and go-live strategy, with <strong>scarcity design + social virality mechanics</strong> to drive sharing. Post-launch share conversion rate <strong>9.6%</strong> (May Day peak <strong>12%</strong>), reaching <strong>90K+ users</strong>, <strong>140K+ fragments</strong> distributed monthly.
             Simultaneously managed 20 core sports user communities (<strong>5,000+ targeted users</strong>), collecting feedback to drive product iteration.
@@ -1414,25 +1414,25 @@
           </div>
           <!-- 账号矩阵 -->
           <div style="background:#0a0806;padding:10px 12px;flex-shrink:0;">
-            <div style="font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:7px;">抖音账号矩阵</div>
+            <div style="font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:7px;">Douyin Account Matrix</div>
             <div style="background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.3);border-radius:7px;padding:7px 10px;display:flex;align-items:center;gap:8px;margin-bottom:7px;">
               <div style="width:24px;height:24px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1.5px solid #C9A96E;">
                 <img src="./dfs-logo.jpg" style="width:100%;height:100%;object-fit:cover;">
               </div>
               <div style="flex:1;">
-                <div style="font-size:10px;color:rgba(255,255,255,0.9);font-weight:600;">东方甄选主账号</div>
+                <div style="font-size:10px;color:rgba(255,255,255,0.9);font-weight:600;">DFJX Main Account</div>
               </div>
-              <div style="font-size:12px;font-weight:700;color:#C9A96E;">2832万</div>
+              <div style="font-size:12px;font-weight:700;color:#C9A96E;">2832W</div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;">
-              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">美丽生活</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">563万</div></div>
-              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">自营产品</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">462万</div></div>
-              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">亲子成长</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">370万</div></div>
-              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">官方旗舰</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">366万</div></div>
-              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">生鲜</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">227万</div></div>
-              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">诗酒人生</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">75万</div></div>
-              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">果蔬旗舰</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">74万</div></div>
-              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">零食速食</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">32万</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">Lifestyle</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">563W</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">Self-owned</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">462W</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">Parenting</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">370W</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">Official</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">366W</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">Fresh Food</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">227W</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">Poetry & Wine</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">75W</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">Produce</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">74W</div></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:5px;padding:5px 7px;"><div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:1px;">Snacks</div><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.85);">32W</div></div>
             </div>
           </div>
         </div>
@@ -1442,16 +1442,16 @@
             <span class="proj-cat">E-commerce Ops</span>
             <span class="proj-cat">Campaign Planning</span>
           </div>
-          <div class="proj-title" id="p2-ttl">每周甄鲜节<br>电商活动策划落地</div>
+          <div class="proj-title" id="p2-ttl">Weekly Fresh Festival<br>E-commerce Campaign Planning</div>
           <div class="proj-desc" id="p2-dsc">
-            参与「每周甄鲜节」「品牌日」「万里行溯源」等系列电商活动的策划与落地执行，负责活动页文案撰写与资源位调整。调整核心资源位后单日 GMV 达 <strong>3000W+</strong>，月 GMV 峰值 <strong>800W+</strong>。<br><br>
+            参与「每周甄鲜节」「品牌日」「W里行溯源」等系列电商活动的策划与落地执行，负责活动页文案撰写与资源位调整。调整核心资源位后单日 GMV 达 <strong>3000W+</strong>，月 GMV 峰值 <strong>800W+</strong>。<br><br>
             同期持续跟进 <strong>33 篇</strong>竞品调研报告，覆盖抖音、快手、淘宝等 10+ 平台，输出竞品分析结论，为活动策略优化提供数据支撑。
           </div>
           <div class="proj-metrics-row">
             <div class="pm"><span class="v">3000W+</span><span class="l" id="p2-l1">Single-Day GMV</span></div>
             <div class="pm"><span class="v">800W+</span><span class="l" id="p2-l2">月GMV峰值</span></div>
-            <div class="pm"><span class="v">33篇</span><span class="l" id="p2-l3">竞品报告</span></div>
-            <div class="pm"><span class="v">10+</span><span class="l" id="p2-l4">覆盖平台</span></div>
+            <div class="pm"><span class="v">33篇</span><span class="l" id="p2-l3">Competitor Reports</span></div>
+            <div class="pm"><span class="v">10+</span><span class="l" id="p2-l4">Platforms Covered</span></div>
           </div>
         </div>
       </div>
@@ -1514,9 +1514,9 @@
             Designed high-value content around tariff policy and Canton Fair trends, creating <strong>100K+</strong> view viral notes, converting <strong>45 leads</strong> per post, with matrix accounts accumulating <strong>160 qualified leads</strong>.
           </div>
           <div class="proj-metrics-row">
-            <div class="pm"><span class="v">10W+</span><span class="l" id="p4-l1">笔记浏览</span></div>
-            <div class="pm"><span class="v">20场</span><span class="l" id="p4-l2">专家直播</span></div>
-            <div class="pm"><span class="v">15%</span><span class="l" id="p4-l3">转化率</span></div>
+            <div class="pm"><span class="v">10W+</span><span class="l" id="p4-l1">Note Views</span></div>
+            <div class="pm"><span class="v">20场</span><span class="l" id="p4-l2">Live Streams</span></div>
+            <div class="pm"><span class="v">15%</span><span class="l" id="p4-l3">Conv. Rate</span></div>
           </div>
         </div>
       </div>
@@ -1525,14 +1525,14 @@
       <div class="proj-card reveal" style="transition-delay:.12s;">
         <div class="proj-visual rg-wrap" style="padding:0;background:linear-gradient(160deg,#0c0e18 0%,#0a0c14 100%);display:flex;flex-direction:column;overflow:hidden;">
 
-          <!-- 8个律师全部显示，4×2 -->
+          <!-- 8个律师All显示，4×2 -->
           <div style="flex:1;padding:10px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;overflow:hidden;">
             <!-- 东南亚&香港 4人 -->
             <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
               <div style="height:160px;overflow:hidden;"><img src="./lawyer_lau.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
               <div style="padding:20px 8px 10px 8px;">
                 <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">刘德凯 Victor Lau</div>
-                <div style="font-size:7px;color:rgba(255,255,255,0.4);">副主任 · Drew &amp; Napier</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">Deputy Director · Drew &amp; Napier</div>
               </div>
             </div>
             <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
@@ -1553,7 +1553,7 @@
               <div style="height:160px;overflow:hidden;"><img src="./lawyer_nina.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
               <div style="padding:20px 8px 10px 8px;">
                 <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">Nina</div>
-                <div style="font-size:7px;color:rgba(255,255,255,0.4);">律师 Partner · EVERWIN LAW</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">Partner · EVERWIN LAW</div>
               </div>
             </div>
             <!-- Belt &amp; Road 4人 -->
@@ -1568,7 +1568,7 @@
               <div style="height:160px;overflow:hidden;"><img src="./lawyer_yanwei.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
               <div style="padding:20px 8px 10px 8px;">
                 <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">闫威</div>
-                <div style="font-size:7px;color:rgba(255,255,255,0.4);">高级合伙人 · 兰迪律师事务所</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">Senior Partner · Randy Law Firm</div>
               </div>
             </div>
             <div style="background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
@@ -1582,7 +1582,7 @@
               <div style="height:160px;overflow:hidden;"><img src="./lawyer_jayel.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
               <div style="padding:20px 8px 10px 8px;">
                 <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:1px;">金廷兰 Jayel Kim</div>
-                <div style="font-size:7px;color:rgba(255,255,255,0.4);">律所合伙人 · 泰一律师事务所</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">Partner · Taiyi Law Firm</div>
               </div>
             </div>
           </div>
@@ -1599,7 +1599,7 @@
             Coordinated <strong>4</strong> "Legal Tech × Cross-border Services" themed salons, covering <strong>10+ jurisdictions</strong> including US/UK/SG/HK, connected with <strong>500+</strong> overseas and Chinese lawyers, facilitating <strong>50+</strong> lawyer partnerships for "AI Tools + Case Library" collaboration.
           </div>
           <div class="proj-metrics-row">
-            <div class="pm"><span class="v">4</span><span class="l" id="p3-l1">主题沙龙</span></div>
+            <div class="pm"><span class="v">4</span><span class="l" id="p3-l1">Salons</span></div>
             <div class="pm"><span class="v">10+</span><span class="l" id="p3-l2">Jurisdictions</span></div>
             <div class="pm"><span class="v">500+</span><span class="l" id="p3-l3">Lawyers Connected</span></div>
             <div class="pm"><span class="v">50+</span><span class="l" id="p3-l4">AI Partner Lawyers</span></div>
@@ -1622,8 +1622,8 @@
                 <img src="./doc1.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;transform:scale(1.35);transform-origin:center 30%;">
               </div>
               <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:2px;">王月</div>
-              <div style="font-size:11px;color:#C9A96E;font-weight:600;margin-bottom:8px;">舌侧美学正畸</div>
-              <div style="font-size:10px;color:#666;line-height:1.7;">同济口腔学硕士<br>世界舌侧正畸协会成员<br>专注颅颌面全脸美学</div>
+              <div style="font-size:11px;color:#C9A96E;font-weight:600;margin-bottom:8px;">Lingual Aesthetic Orthodontics</div>
+              <div style="font-size:10px;color:#666;line-height:1.7;">Tongji Dental Master's<br>World Lingual Orthodontic Society Member<br>Specializes in craniofacial aesthetics</div>
             </div>
             <!-- 罗娟 -->
             <div style="flex:1;background:#fff;border-radius:16px;padding:16px 12px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(201,169,110,0.2);">
@@ -1631,8 +1631,8 @@
                 <img src="./doc2.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;transform:scale(1.35);transform-origin:center 30%;">
               </div>
               <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:2px;">罗娟</div>
-              <div style="font-size:11px;color:#C9A96E;font-weight:600;margin-bottom:8px;">主任医师</div>
-              <div style="font-size:10px;color:#666;line-height:1.7;">从业20年+<br>北大深圳正畸特诊专家<br>擅长嘴凸后缩等错颌畸形</div>
+              <div style="font-size:11px;color:#C9A96E;font-weight:600;margin-bottom:8px;">Chief Physician</div>
+              <div style="font-size:10px;color:#666;line-height:1.7;">20+ Years Experience<br>PKU Shenzhen Orthodontic Expert<br>Specializes in jaw protrusion & malocclusion</div>
             </div>
             <!-- 郭涛 -->
             <div style="flex:1;background:#fff;border-radius:16px;padding:16px 12px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(201,169,110,0.2);">
@@ -1640,8 +1640,8 @@
                 <img src="./doc3.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;transform:scale(1.35);transform-origin:center 30%;">
               </div>
               <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:2px;">郭涛</div>
-              <div style="font-size:11px;color:#C9A96E;font-weight:600;margin-bottom:8px;">四医大正畸学博士</div>
-              <div style="font-size:10px;color:#666;line-height:1.7;">从业24年<br>世界顶尖正畸团队成员<br>擅长骨性嘴凸地包天等复杂疑难案例</div>
+              <div style="font-size:11px;color:#C9A96E;font-weight:600;margin-bottom:8px;">Fourth Military Medical Univ. PhD</div>
+              <div style="font-size:10px;color:#666;line-height:1.7;">24 Years Experience<br>World Top Orthodontic Team Member<br>Expert in skeletal protrusion & complex cases</div>
             </div>
           </div>
 
@@ -1649,19 +1649,19 @@
         <div class="proj-info">
           <div class="proj-cats">
             <span class="proj-cat" id="p5-cat1">医信天下</span>
-            <span class="proj-cat" id="p5-cat2">IP 打造</span>
-            <span class="proj-cat" id="p5-cat3">直播营销</span>
+            <span class="proj-cat" id="p5-cat2">IP Building</span>
+            <span class="proj-cat" id="p5-cat3">Live Marketing</span>
           </div>
-          <div class="proj-title" id="p5-ttl">口腔医生 IP 矩阵<br>& 直播营销转化</div>
+          <div class="proj-title" id="p5-ttl">Dental Doctor IP Matrix<br>& Live Commerce Conversion</div>
           <div class="proj-desc" id="p5-dsc">
             围绕用户看牙痛点设计问题解决型内容，打造 3 个医生 IP，累计浏览量 20W+，粉丝 5000+，GMV 超 800W。<br><br>
-            策划双十一直播，单场 GMV 达 100W，新患者预约量增长 200%；分析 2000 条咨询数据，咨询量增长 110%，转化率提升 28%。
+            策划双十一直播，单场 GMV 达 100W，新患者预约量增长 200%；分析 2000 条咨询数据，咨询量增长 110%，Conv. Rate提升 28%。
           </div>
           <div class="proj-metrics-row">
-            <div class="pm"><span class="v">800W+</span><span class="l" id="p5-l1">累计 GMV</span></div>
-            <div class="pm"><span class="v">100W</span><span class="l" id="p5-l2">单场直播</span></div>
-            <div class="pm"><span class="v">+28%</span><span class="l" id="p5-l3">转化率</span></div>
-            <div class="pm"><span class="v">+200%</span><span class="l" id="p5-l4">新患预约</span></div>
+            <div class="pm"><span class="v">800W+</span><span class="l" id="p5-l1">Total GMV</span></div>
+            <div class="pm"><span class="v">100W</span><span class="l" id="p5-l2">Single Livestream</span></div>
+            <div class="pm"><span class="v">+28%</span><span class="l" id="p5-l3">Conv. Rate</span></div>
+            <div class="pm"><span class="v">+200%</span><span class="l" id="p5-l4">New Patient Bookings</span></div>
           </div>
         </div>
       </div>
@@ -1681,21 +1681,21 @@
   <div class="container">
     <div class="reveal" style="margin-bottom:48px;">
       <div class="sec-eyebrow" id="exp-eyebrow">Work Experience</div>
-      <h2 class="sec-title" id="exp-title">实习 & 工作经历</h2>
+      <h2 class="sec-title" id="exp-title">Internship & Work Experience</h2>
     </div>
     <div class="exp-list reveal" style="transition-delay:.1s;">
 
       <div class="exp-item">
         <div class="exp-l">
-          <div class="exp-company">小红书</div>
+          <div class="exp-company">Xiaohongshu</div>
           <div class="exp-role" id="exp-r1">Product Ops</div>
           <div class="exp-period">2026.03 — 2026.06</div>
         </div>
         <div class="exp-r">
           <ul class="exp-bullets">
             <li id="e1b1">「校园跑量赛」全域营销，联动 <strong>200 位 KOL/KOC</strong>，全域曝光 <strong>1500W+</strong>，新增用户 <strong>1W+</strong></li>
-            <li id="e1b2">「跑后碎片分享」功能主导，分享转化率 <strong>9.6%</strong>（峰值 12%），覆盖用户 <strong>9W+</strong></li>
-            <li id="e1b3">20 个核心运动用户Community Ops，精准用户 <strong>5000+</strong>，持续调研反哺产品迭代</li>
+            <li id="e1b2">「跑后碎片分享」功能主导，分享Conv. Rate <strong>9.6%</strong>（峰值 12%），覆盖用户 <strong>9W+</strong></li>
+            <li id="e1b3">Managed 20 core sports user communities, <strong>5,000+</strong> targeted users, continuously iterated product based on feedback</li>
           </ul>
         </div>
       </div>
@@ -1708,9 +1708,9 @@
         </div>
         <div class="exp-r">
           <ul class="exp-bullets">
-            <li id="e2b1">策划多系列主题活动，月促会员日单日 <strong>GMV 3000W+</strong></li>
-            <li id="e2b2">实时联动直播间动态调整资源位，周促日单日 <strong>GMV 800W+</strong></li>
-            <li id="e2b3">调研四大平台，输出竞品深度报告 <strong>33 篇</strong></li>
+            <li id="e2b1">Planned multi-series themed campaigns, monthly promo member day single-day <strong>GMV ¥30M+</strong></li>
+            <li id="e2b2">Real-time adjustment of resource slots synced with livestream, weekly promo single-day <strong>GMV ¥8M+</strong></li>
+            <li id="e2b3">Researched 4 major platforms, produced <strong>33</strong> in-depth competitive analysis reports</li>
           </ul>
         </div>
       </div>
@@ -1723,8 +1723,8 @@
         </div>
         <div class="exp-r">
           <ul class="exp-bullets">
-            <li>落地 <strong>20 场</strong>专家营销直播，单场最高在线 <strong>1000+</strong>，直播引流转化率 <strong>15%</strong></li>
-            <li>小红书内容矩阵打造 <strong>10W+ 爆款笔记</strong>，矩阵累计获客有效线索 <strong>160 条</strong></li>
+            <li>落地 <strong>20 场</strong>专家营销直播，单场最高在线 <strong>1000+</strong>，直播引流Conv. Rate <strong>15%</strong></li>
+            <li>Built XHS content matrix with <strong>100K+</strong> view viral notes, accumulating <strong>160</strong> qualified leads</li>
           </ul>
         </div>
       </div>
@@ -1737,9 +1737,9 @@
         </div>
         <div class="exp-r">
           <ul class="exp-bullets">
-            <li>抖音 ROI 从 <strong>1.1 → 2.3</strong>（日峰值 9.2），CPM 从 ¥280 → <strong>¥73</strong></li>
-            <li>策划 4 场法律科技沙龙，覆盖 <strong>10+ 法域</strong>，建联海外律师 <strong>500+</strong></li>
-            <li id="e3b3">共计精准获客超 <strong>2000 人</strong></li>
+            <li>Douyin ROI improved from <strong>1.1 → 2.3</strong> (daily peak 9.2), CPM reduced from ¥280 → <strong>¥73</strong></li>
+            <li>Organized 4 legal tech salons covering <strong>10+ jurisdictions</strong>, connected with <strong>500+</strong> overseas lawyers</li>
+            <li id="e3b3">Total precision customer acquisition exceeding <strong>2,000</strong></li>
           </ul>
         </div>
       </div>
@@ -1752,8 +1752,8 @@
         </div>
         <div class="exp-r">
           <ul class="exp-bullets">
-            <li>围绕用户口腔诊疗痛点策划干货内容，打造 <strong>3 个医生 IP</strong>，累计浏览量 <strong>20W+</strong>，粉丝 <strong>5000+</strong>，以内容积累的精准用户推动 GMV 超 <strong>800W</strong></li>
-            <li>策划双十一专场直播，设计限时优惠 + 医生连麦互动，单场 GMV 达 <strong>100W</strong></li>
+            <li>Designed dental education content around user pain points, built <strong>3 doctor IPs</strong>, <strong>200K+</strong> total views, <strong>5,000+</strong> followers, driving GMV exceeding <strong>¥8M</strong></li>
+            <li>Planned 11.11 special livestream with limited-time offers + doctor co-streaming, single-session GMV <strong>¥1M</strong></li>
           </ul>
         </div>
       </div>
@@ -1771,24 +1771,24 @@
   <div class="container">
     <div class="reveal" style="margin-bottom:48px;">
       <div class="sec-eyebrow" id="sk-eyebrow">Skills & Certifications</div>
-      <h2 class="sec-title" id="sk-title">技能 & 证书</h2>
+      <h2 class="sec-title" id="sk-title">Skills & Certifications</h2>
     </div>
     <div class="skills-grid">
       <div class="skill-card reveal" style="transition-delay:.04s;">
         <div class="skill-icon-wrap">🗣️</div>
-        <div><div class="skill-name" id="sk1-name">IELTS IELTS 6.0</div><div class="skill-sub" id="sk1-sub">口语流利，独立业务沟通</div></div>
+        <div><div class="skill-name" id="sk1-name">IELTS IELTS 6.0</div><div class="skill-sub" id="sk1-sub">Fluent speaking, independent business communication</div></div>
       </div>
       <div class="skill-card reveal" style="transition-delay:.08s;">
         <div class="skill-icon-wrap">🗄️</div>
-        <div><div class="skill-name" id="sk3-name">SQL</div><div class="skill-sub" id="sk3-sub">业务数据查询与分析</div></div>
+        <div><div class="skill-name" id="sk3-name">SQL</div><div class="skill-sub" id="sk3-sub">Business data querying & analysis</div></div>
       </div>
       <div class="skill-card reveal" style="transition-delay:.12s;">
         <div class="skill-icon-wrap">🎞️</div>
-        <div><div class="skill-name" id="sk4-name">剪映</div><div class="skill-sub" id="sk4-sub">短视频制作 & 内容剪辑</div></div>
+        <div><div class="skill-name" id="sk4-name">CapCut (Jianying)</div><div class="skill-sub" id="sk4-sub">Short video production & editing</div></div>
       </div>
       <div class="skill-card reveal" style="transition-delay:.16s;">
         <div class="skill-icon-wrap">🎨</div>
-        <div><div class="skill-name" id="sk5-name">Canva / Figma</div><div class="skill-sub" id="sk5-sub">营销物料 & 品牌视觉设计</div></div>
+        <div><div class="skill-name" id="sk5-name">Canva / Figma</div><div class="skill-sub" id="sk5-sub">Marketing materials & brand visual design</div></div>
       </div>
       <div class="skill-card reveal" style="transition-delay:.20s;">
         <div class="skill-icon-wrap">🤖</div>
@@ -1955,7 +1955,7 @@ const TRANSLATIONS = {
   'h0-eyebrow':  { zh:'Education · 2025 — 2026', en:'Education · 2025 — 2026' },
   'h0-title':    { zh:'香港浸会大学<br><em>硕士研究生</em><br>AI & 数码媒体', en:'Hong Kong Baptist<br><em>Master's Degree</em><br>AI & Digital Media' },
   'h0-body':     { zh:'GPA 3.42 / 4.0 · 以数据思维驱动传播策略，融合 AI 技术与商业营销实战', en:'GPA 3.42 / 4.0 · Data-driven communication strategy, blending AI with real-world marketing.' },
-  'h0-btn1':     { zh:'View Projects经历', en:'View Projects' },
+  'h0-btn1':     { zh:'View Projects', en:'View Projects' },
   'h0-btn2':     { zh:'工作经历',     en:'Experience' },
   'h0-card1-lbl':{ zh:'当前 GPA',      en:'Current GPA' },
   'h0-card1-sub':{ zh:'↑ 全系前 20%',  en:'↑ Top 20% of cohort' },
@@ -1972,14 +1972,14 @@ const TRANSLATIONS = {
   'h1-btn1':     { zh:'查看详情',      en:'View Details' },
   'h1-card1-lbl':{ zh:'全域曝光量',    en:'Total Impressions' },
   'h1-card1-sub':{ zh:'↑ 校园跑量赛营销', en:'↑ Campus Running Campaign' },
-  'h1-card2-lbl':{ zh:'碎片分享转化率', en:'Share Conversion Rate' },
+  'h1-card2-lbl':{ zh:'碎片分享Conv. Rate', en:'Share Conversion Rate' },
   'h1-card2-sub':{ zh:'↑ 五一峰值 12%', en:'↑ Peak 12% on May Day' },
 
   // ── HERO SLIDE 2 ──
   'h2-eyebrow':  { zh:'Enterprise Experience', en:'Enterprise Experience' },
   'h2-title':    { zh:'5 段<br>头部平台<br><em>Internships</em>', en:'5 Internships<br>at Top-Tier<br><em>Platforms</em>' },
   'h2-body':     { zh:'横跨互联网、电商、医疗、法律科技，积累全行业全链路运营实战经验', en:'Spanning internet, e-commerce, healthcare and legal tech — full-funnel operations expertise.' },
-  'h2-btn1':     { zh:'查看全部经历', en:'View All Experience' },
+  'h2-btn1':     { zh:'查看All经历', en:'View All Experience' },
   'h2-card1-lbl':{ zh:'月促单日 GMV',  en:'Daily GMV (Monthly Promo)' },
   'h2-card1-sub':{ zh:'↑ 东方甄选会员日', en:'↑ DFJX Members Day' },
   'h2-card2-lbl':{ zh:'抖音投放 ROI',  en:'Douyin Ad ROI' },
@@ -1994,36 +1994,36 @@ const TRANSLATIONS = {
   'intro-tag3':    { zh:'E-commerce Ops', en:'E-commerce Operations' },
   'intro-bio':     { zh:'Currently pursuing a Master's in AI &amp; Digital Media at HKBU. With four internships at leading internet platforms and one full-time role (Yixin Tianxia), spanning e-commerce, healthcare, and legal tech. Specializes in full-funnel marketing, user growth, and data-driven operations. An AI-native practitioner who leverages AI tools to boost content production and decision-making efficiency.',
                     en:'Statistics graduate from Civil Aviation University of China. Currently pursuing a Master\'s in <strong style="color:var(--dark);">AI & Digital Media</strong> at HKBU (GPA 3.42). Accumulated <strong style="color:var(--dark);">five top-tier internships</strong> across internet, e-commerce, healthcare and legal tech, specialising in translating data insights into effective growth strategies.' },
-  'intro-f1-lbl':  { zh:'当前学历', en:'Education' },
-  'intro-f1-val':  { zh:'香港浸会大学 · 硕士', en:'HKBU · Master\'s Degree' },
-  'intro-f2-lbl':  { zh:'专业背景', en:'Background' },
-  'intro-f2-val':  { zh:'统计学 × AI & 数码媒体', en:'Statistics × AI & Digital Media' },
+  'intro-f1-lbl':  { zh:'Education', en:'Education' },
+  'intro-f1-val':  { zh:'HKBU · Master's', en:'HKBU · Master\'s Degree' },
+  'intro-f2-lbl':  { zh:'Background', en:'Background' },
+  'intro-f2-val':  { zh:'Statistics × AI & Digital Media', en:'Statistics × AI & Digital Media' },
   'intro-f3-lbl':  { zh:'实习经历', en:'Internships' },
-  'intro-f3-val':  { zh:'小红书 / 东方甄选 / 网易 / 法大大', en:'XHS / DFZ / NetEase / Fadada' },
+  'intro-f3-val':  { zh:'XHS / DFJX / NetEase / Fadada', en:'XHS / DFZ / NetEase / Fadada' },
   'intro-f4-lbl':  { zh:'求职方向', en:'Target Role' },
   'intro-f4-val':  { zh:'产品运营 / 市场营销 / E-commerce Ops', en:'Product Ops / Marketing / E-commerce' },
-  'intro-cta1':    { zh:'View Projects经历', en:'View Projects' },
+  'intro-cta1':    { zh:'View Projects', en:'View Projects' },
   'intro-cta2':    { zh:'Contact Me', en:'Contact Me' },
 
   // ── ABOUT ──
   'about-eyebrow': { zh:'About Me', en:'About Me' },
-  'about-heading': { zh:'以数据为骨，<br><em>Breaking Through with Creativity</em>', en:'Data-rooted,<br><em>creativity-driven</em>' },
+  'about-heading': { zh:'Data as Foundation,<br><em>Breaking Through with Creativity</em>', en:'Data-rooted,<br><em>creativity-driven</em>' },
   'about-text':    { zh:'Great operations go beyond intuition — find patterns with data, break barriers with creativity, and turn one-time wins into repeatable growth flywheels.',
                     en:'Hands-on experience across internet, e-commerce, healthcare and legal tech. Skilled in omni-channel marketing, user growth, private-domain funnel optimisation and data-driven product strategy. Pursuing an AI & Digital Media Master\'s at HKBU — bridging technology with business.' },
   'tag1': { zh:'📊 Data Analytics', en:'📊 Data Analytics' },
   'tag2': { zh:'✍️ Content Planning', en:'✍️ Content Planning' },
   'tag3': { zh:'✍️ Content Planning', en:'✍️ Content Strategy' },
-  'tag4': { zh:'📣 KOL 运营', en:'📣 KOL Management' },
+  'tag4': { zh:'📣 KOL Management', en:'📣 KOL Management' },
   'tag5': { zh:'🤝 Community Ops', en:'🤝 Community Ops' },
   'tag6': { zh:'🎬 Live Streaming', en:'🎬 Live Streaming' },
   'tag7': { zh:'🎬 Live Streaming', en:'🎬 Livestream Planning' },
   'tag8': { zh:'🌐 竞品调研', en:'🌐 Competitive Research' },
-  'tag9': { zh:'🤖 AI 应用', en:'🤖 AI Applications' },
+  'tag9': { zh:'🤖 AI Application', en:'🤖 AI Applications' },
   'tag10':{ zh:'🗣️ IELTS 6.0', en:'🗣️ IELTS 6.0' },
-  'stat1-lbl': { zh:'全域曝光 · XHS Campus Run Campaign', en:'Total Reach · XHS Campus Running Campaign' },
-  'stat2-lbl': { zh:'单日 GMV · DFJX Monthly Member Day', en:'Daily GMV · DFJX Members Day' },
+  'stat1-lbl': { zh:'Total Exposure · XHS Campus Run Campaign', en:'Total Reach · XHS Campus Running Campaign' },
+  'stat2-lbl': { zh:'Single-Day GMV · DFJX Monthly Member Day', en:'Daily GMV · DFJX Members Day' },
   'stat3-lbl': { zh:'抖音投放 ROI · 日峰值 9.2',    en:'Douyin Ad ROI · Daily peak 9.2×' },
-  'stat4-lbl': { zh:'医疗 IP 累计 GMV · 3 个医生 IP', en:'Medical IP Total GMV · 3 Doctor IPs' },
+  'stat4-lbl': { zh:'医疗 IP Total GMV · 3 个医生 IP', en:'Medical IP Total GMV · 3 Doctor IPs' },
 
   // ── PROJECTS ──
   'proj-eyebrow': { zh:'Selected Work', en:'Selected Work' },
@@ -2032,13 +2032,13 @@ const TRANSLATIONS = {
   // P1
   'p1-cat1':{ zh:'小红书',  en:'Xiaohongshu' }, 'p1-cat2':{ zh:'产品运营', en:'Product Ops' }, 'p1-cat3':{ zh:'全域营销', en:'Omni Marketing' },
   'p1-ttl': { zh:'校园跑量赛全域营销<br>&「碎片分享」功能上线', en:'Campus Running Campaign<br>& Fragment Share Feature Launch' },
-  'p1-dsc': { zh:'负责「校园跑量赛」全域营销策划落地，联动 200 位 KOL/KOC 达人矩阵全域宣发，引导素人原创笔记 1000+ 条，全域曝光量达 1500W+，助力 APP 新增转化用户 1W+。<br><br>主导「跑后碎片分享」功能全流程，上线后分享转化率 9.6%（五一峰值 12%），覆盖用户 9W+，单月碎片发放 14W+。',
+  'p1-dsc': { zh:'负责「校园跑量赛」全域营销策划落地，联动 200 位 KOL/KOC 达人矩阵全域宣发，引导素人原创笔记 1000+ 条，全域曝光量达 1500W+，助力 APP 新增转化用户 1W+。<br><br>主导「跑后碎片分享」功能全流程，上线后分享Conv. Rate 9.6%（五一峰值 12%），覆盖用户 9W+，单月碎片发放 14W+。',
               en:'Deeply involved in the Campus Running Campaign with a three-layer strategy (public domain × KOL matrix × private community)—coordinating <strong>200+ KOL/KOC</strong> influencers, driving <strong>1,000+ UGC posts</strong> for large-scale organic reach, achieving <strong>15M+ total impressions</strong>; public domain buzz then fueled private community viral growth, converting <strong>100K+ new app users</strong>. The campaign spanned <strong>584 campuses</strong> nationwide with <strong>393,396 km</strong> total distance run.' },
   'p1-l1':{ zh:'全域曝光', en:'Total Reach' }, 'p1-l2':{ zh:'新增用户', en:'New Users' }, 'p1-l3':{ zh:'分享转化', en:'Share CVR' }, 'p1-l4':{ zh:'覆盖用户', en:'Users Reached' },
   // P2
   'p2-cat1':{ zh:'东方甄选', en:'DFJX' }, 'p2-cat2':{ zh:'E-commerce Ops', en:'E-commerce Ops' }, 'p2-cat3':{ zh:'数据驱动', en:'Data-Driven' },
   'p2-ttl': { zh:'每周甄鲜节活动策划<br>& 流量运营', en:'Weekly Fresh Festival Planning<br>& Traffic Operations' },
-  'p2-dsc': { zh:'基于商品同比/环比数据及消费趋势，策划并落地「每周甄鲜节」「品牌日」「万里行溯源」等系列活动，月促会员日单日 GMV 3000W+。<br><br>实时联动抖音直播爆款节奏，动态调整 APP 核心资源位，周促日单日 GMV 达 800W+。完成四大平台竞品深度调研报告 33 篇。',
+  'p2-dsc': { zh:'基于商品同比/环比数据及消费趋势，策划并落地「每周甄鲜节」「品牌日」「W里行溯源」等系列活动，月促会员日单日 GMV 3000W+。<br><br>实时联动抖音直播爆款节奏，动态调整 APP 核心资源位，周促日单日 GMV 达 800W+。完成四大平台竞品深度调研报告 33 篇。',
               en:'Designed and executed themed campaigns including the Weekly Fresh Festival and Brand Day, leveraging YoY/MoM product data, achieving ¥30M+ GMV on the monthly members day.<br><br>Synced real-time with Douyin livestream trends to dynamically manage core app placements, reaching ¥8M+ on weekly promo days. Produced 33 in-depth competitive research reports across four platforms.' },
   'p2-l1':{ zh:'月促单日 GMV', en:'Monthly Promo GMV' }, 'p2-l2':{ zh:'周促单日 GMV', en:'Weekly Promo GMV' }, 'p2-l3':{ zh:'竞品调研', en:'Competitive Reports' },
   // P3
@@ -2050,35 +2050,35 @@ const TRANSLATIONS = {
   // P4
   'p4-cat1':{ zh:'网易', en:'NetEase' }, 'p4-cat2':{ zh:'内容营销', en:'Content Marketing' }, 'p4-cat3':{ zh:'直播运营', en:'Livestream Ops' },
   'p4-ttl': { zh:'小红书爆款内容<br>& Expert Live Streaming Ops矩阵', en:'XHS Viral Content<br>& Expert Livestream Matrix' },
-  'p4-dsc': { zh:'结合关税政策、广交会热点设计干货内容，打造 10W+ 浏览爆款笔记，转化有效线索 45 条，矩阵累计 160 条。<br><br>落地 20 场专家营销直播，单场最高在线 1000+，单场私域引流 200+；分层奖励策略使 4 个月内直播引流转化率高达 15%。',
+  'p4-dsc': { zh:'结合关税政策、广交会热点设计干货内容，打造 10W+ 浏览爆款笔记，转化有效线索 45 条，矩阵累计 160 条。<br><br>落地 20 场专家营销直播，单场最高在线 1000+，单场私域引流 200+；分层奖励策略使 4 个月内直播引流Conv. Rate高达 15%。',
               en:'Created high-value content around tariff policies and Canton Fair trends, producing a 100K+ view viral post and converting 45 qualified leads; matrix total reached 160 leads.<br><br>Delivered 20 expert marketing livestreams with peak concurrency of 1,000+, driving 200+ private-domain users per session; a tiered reward strategy pushed livestream conversion to 15% over four months.' },
-  'p4-l1':{ zh:'笔记浏览', en:'Post Views' }, 'p4-l2':{ zh:'专家直播', en:'Expert Livestreams' }, 'p4-l3':{ zh:'转化率', en:'Conversion Rate' },
+  'p4-l1':{ zh:'Note Views', en:'Post Views' }, 'p4-l2':{ zh:'Live Streams', en:'Expert Livestreams' }, 'p4-l3':{ zh:'Conv. Rate', en:'Conversion Rate' },
   // P5
-  'p5-cat1':{ zh:'医信天下', en:'Yixintianxia' }, 'p5-cat2':{ zh:'IP 打造', en:'IP Building' }, 'p5-cat3':{ zh:'直播营销', en:'Livestream Marketing' },
-  'p5-ttl': { zh:'口腔医生 IP 矩阵<br>& 直播营销转化', en:'Dental Doctor IP Matrix<br>& Livestream Sales Conversion' },
-  'p5-dsc': { zh:'围绕用户看牙痛点设计问题解决型内容，打造 3 个医生 IP，累计浏览量 20W+，粉丝 5000+，GMV 超 800W。<br><br>策划双十一直播，单场 GMV 达 100W，新患者预约量增长 200%；分析 2000 条咨询数据，咨询量增长 110%，转化率提升 28%。',
+  'p5-cat1':{ zh:'医信天下', en:'Yixintianxia' }, 'p5-cat2':{ zh:'IP Building', en:'IP Building' }, 'p5-cat3':{ zh:'Live Marketing', en:'Livestream Marketing' },
+  'p5-ttl': { zh:'Dental Doctor IP Matrix<br>& Live Commerce Conversion', en:'Dental Doctor IP Matrix<br>& Livestream Sales Conversion' },
+  'p5-dsc': { zh:'围绕用户看牙痛点设计问题解决型内容，打造 3 个医生 IP，累计浏览量 20W+，粉丝 5000+，GMV 超 800W。<br><br>策划双十一直播，单场 GMV 达 100W，新患者预约量增长 200%；分析 2000 条咨询数据，咨询量增长 110%，Conv. Rate提升 28%。',
               en:'Built 3 dental doctor IPs around patient pain points, generating 200K+ views, 5,000+ followers and ¥8M+ GMV.<br><br>Planned an 11.11 livestream hitting ¥1M GMV in a single session, with new patient bookings up 200%. Analysis of 2,000 consultation records led to a 110% increase in enquiries and a 28% lift in conversion rate.' },
-  'p5-l1':{ zh:'累计 GMV', en:'Total GMV' }, 'p5-l2':{ zh:'单场直播', en:'Single Livestream' }, 'p5-l3':{ zh:'转化率', en:'Conversion Rate' }, 'p5-l4':{ zh:'新患预约', en:'New Bookings' },
+  'p5-l1':{ zh:'Total GMV', en:'Total GMV' }, 'p5-l2':{ zh:'Single Livestream', en:'Single Livestream' }, 'p5-l3':{ zh:'Conv. Rate', en:'Conversion Rate' }, 'p5-l4':{ zh:'New Patient Bookings', en:'New Bookings' },
 
   // ── EXPERIENCE ──
   'exp-eyebrow': { zh:'Work Experience', en:'Work Experience' },
-  'exp-title':   { zh:'实习 & 工作经历', en:'Internship & Work Experience' },
+  'exp-title':   { zh:'Internship & Work Experience', en:'Internship & Work Experience' },
   'exp-r1':{ zh:'产品运营', en:'Product Operations' }, 'exp-r2':{ zh:'E-commerce Ops', en:'E-commerce Operations' },
   'exp-r3':{ zh:'市场营销', en:'Marketing' }, 'exp-r4':{ zh:'市场营销', en:'Marketing' }, 'exp-r5':{ zh:'市场营销', en:'Marketing' },
   // bullets
   'e1b1':{ zh:'「校园跑量赛」全域营销，联动 <strong>200 位 KOL/KOC</strong>，全域曝光 <strong>1500W+</strong>，新增用户 <strong>1W+</strong>', en:'Omni-channel marketing for the Campus Running Campaign; coordinated <strong>200 KOL/KOC</strong> influencers, drove <strong>15M+</strong> impressions and <strong>10K+</strong> new app users.' },
-  'e1b2':{ zh:'「跑后碎片分享」功能主导，分享转化率 <strong>9.6%</strong>（峰值 12%），覆盖用户 <strong>9W+</strong>', en:'Led the Fragment Share feature end-to-end; achieved <strong>9.6%</strong> share conversion rate (peak <strong>12%</strong>), reaching <strong>90K+</strong> users.' },
-  'e1b3':{ zh:'20 个核心运动用户Community Ops，精准用户 <strong>5000+</strong>，持续调研反哺产品迭代', en:'Managed 20 core sports-user communities with <strong>5,000+</strong> engaged members; ongoing user research fed directly into product iteration.' },
-  'e2b1':{ zh:'策划多系列主题活动，月促会员日单日 <strong>GMV 3000W+</strong>', en:'Planned multi-series campaigns; monthly members day hit <strong>¥30M+ GMV</strong> in a single day.' },
-  'e2b2':{ zh:'实时联动直播间动态调整资源位，周促日单日 <strong>GMV 800W+</strong>', en:'Real-time sync with Douyin livestream to dynamically manage placements; weekly promo day reached <strong>¥8M+ GMV</strong>.' },
-  'e2b3':{ zh:'调研四大平台，输出竞品深度报告 <strong>33 篇</strong>', en:'Conducted competitive analysis across four platforms and produced <strong>33</strong> in-depth reports.' },
-  'e3b1':{ zh:'抖音 ROI 从 <strong>1.1 → 2.3</strong>（日峰值 9.2），CPM 从 ¥280 → <strong>¥73</strong>', en:'Lifted Douyin ad ROI from <strong>1.1× to 2.3×</strong> (daily peak 9.2×); reduced CPM from ¥280 to <strong>¥73</strong>.' },
-  'e3b2':{ zh:'策划 4 场法律科技沙龙，覆盖 <strong>10+ 法域</strong>，建联海外律师 <strong>500+</strong>', en:'Organised 4 cross-border legal-tech salons covering <strong>10+ jurisdictions</strong>, connecting with <strong>500+</strong> overseas lawyers.' },
-  'e3b3':{ zh:'共计精准获客超 <strong>2000 人</strong>', en:'Total precision acquisition of over <strong>2,000</strong> qualified leads.' },
-  'e4b1':{ zh:'落地 <strong>20 场</strong>专家营销直播，单场最高在线 <strong>1000+</strong>，直播引流转化率 <strong>15%</strong>', en:'Delivered <strong>20</strong> expert marketing livestreams; peak concurrency <strong>1,000+</strong>; livestream conversion rate <strong>15%</strong>.' },
-  'e4b2':{ zh:'小红书内容矩阵打造 <strong>10W+ 爆款笔记</strong>，矩阵累计获客有效线索 <strong>160 条</strong>', en:'Built an XHS content matrix featuring a <strong>100K+ view</strong> viral post; matrix total: <strong>160</strong> qualified leads.' },
-  'e5b1':{ zh:'打造 3 个口腔医生 IP，GMV 超 <strong>800W</strong>，双十一单场直播 GMV <strong>100W</strong>', en:'Developed 3 dental doctor IPs; total GMV exceeded <strong>¥8M</strong>; single 11.11 livestream hit <strong>¥1M GMV</strong>.' },
-  'e5b2':{ zh:'分析 2000 条咨询数据，咨询量增长 <strong>110%</strong>，转化率提升 <strong>28%</strong>', en:'Analysed 2,000 consultation records; enquiries grew <strong>110%</strong>, conversion rate improved <strong>28%</strong>.' },
+  'e1b2':{ zh:'「跑后碎片分享」功能主导，分享Conv. Rate <strong>9.6%</strong>（峰值 12%），覆盖用户 <strong>9W+</strong>', en:'Led the Fragment Share feature end-to-end; achieved <strong>9.6%</strong> share conversion rate (peak <strong>12%</strong>), reaching <strong>90K+</strong> users.' },
+  'e1b3':{ zh:'Managed 20 core sports user communities, <strong>5,000+</strong> targeted users, continuously iterated product based on feedback', en:'Managed 20 core sports-user communities with <strong>5,000+</strong> engaged members; ongoing user research fed directly into product iteration.' },
+  'e2b1':{ zh:'Planned multi-series themed campaigns, monthly promo member day single-day <strong>GMV ¥30M+</strong>', en:'Planned multi-series campaigns; monthly members day hit <strong>¥30M+ GMV</strong> in a single day.' },
+  'e2b2':{ zh:'Real-time adjustment of resource slots synced with livestream, weekly promo single-day <strong>GMV ¥8M+</strong>', en:'Real-time sync with Douyin livestream to dynamically manage placements; weekly promo day reached <strong>¥8M+ GMV</strong>.' },
+  'e2b3':{ zh:'Researched 4 major platforms, produced <strong>33</strong> in-depth competitive analysis reports', en:'Conducted competitive analysis across four platforms and produced <strong>33</strong> in-depth reports.' },
+  'e3b1':{ zh:'Douyin ROI improved from <strong>1.1 → 2.3</strong> (daily peak 9.2), CPM reduced from ¥280 → <strong>¥73</strong>', en:'Lifted Douyin ad ROI from <strong>1.1× to 2.3×</strong> (daily peak 9.2×); reduced CPM from ¥280 to <strong>¥73</strong>.' },
+  'e3b2':{ zh:'Organized 4 legal tech salons covering <strong>10+ jurisdictions</strong>, connected with <strong>500+</strong> overseas lawyers', en:'Organised 4 cross-border legal-tech salons covering <strong>10+ jurisdictions</strong>, connecting with <strong>500+</strong> overseas lawyers.' },
+  'e3b3':{ zh:'Total precision customer acquisition exceeding <strong>2,000</strong>', en:'Total precision acquisition of over <strong>2,000</strong> qualified leads.' },
+  'e4b1':{ zh:'落地 <strong>20 场</strong>专家营销直播，单场最高在线 <strong>1000+</strong>，直播引流Conv. Rate <strong>15%</strong>', en:'Delivered <strong>20</strong> expert marketing livestreams; peak concurrency <strong>1,000+</strong>; livestream conversion rate <strong>15%</strong>.' },
+  'e4b2':{ zh:'Built XHS content matrix with <strong>100K+</strong> view viral notes, accumulating <strong>160</strong> qualified leads', en:'Built an XHS content matrix featuring a <strong>100K+ view</strong> viral post; matrix total: <strong>160</strong> qualified leads.' },
+  'e5b1':{ zh:'打造 3 个口腔医生 IP，GMV 超 <strong>800W</strong>，双十一Single Livestream GMV <strong>100W</strong>', en:'Developed 3 dental doctor IPs; total GMV exceeded <strong>¥8M</strong>; single 11.11 livestream hit <strong>¥1M GMV</strong>.' },
+  'e5b2':{ zh:'分析 2000 条咨询数据，咨询量增长 <strong>110%</strong>，Conv. Rate提升 <strong>28%</strong>', en:'Analysed 2,000 consultation records; enquiries grew <strong>110%</strong>, conversion rate improved <strong>28%</strong>.' },
   'e5b3':{ zh:'新患者预约量增长 <strong>200%</strong>', en:'New patient bookings increased by <strong>200%</strong>.' },
 
   // ── BENTO ──
@@ -2109,24 +2109,24 @@ const TRANSLATIONS = {
 
   // ── SKILLS ──
   'sk-eyebrow': { zh:'Skills & Certifications', en:'Skills & Certifications' },
-  'sk-title':   { zh:'技能 & 证书', en:'Skills & Certifications' },
+  'sk-title':   { zh:'Skills & Certifications', en:'Skills & Certifications' },
   'sk1-name': { zh:'IELTS IELTS 6.0',  en:'IELTS 6.0' },
-  'sk1-sub':  { zh:'口语流利，独立业务沟通', en:'Business fluent English' },
+  'sk1-sub':  { zh:'Fluent speaking, independent business communication', en:'Business fluent English' },
   'sk2-name': { zh:'大学英语六级 CET-6', en:'CET Band 6' },
   'sk2-sub':  { zh:'英语读写能力', en:'English reading & writing' },
   'sk3-name': { zh:'SQL', en:'SQL' },
-  'sk3-sub':  { zh:'业务数据查询与分析', en:'Business data querying & analysis' },
-  'sk4-name': { zh:'剪映', en:'CapCut / Jianying' },
-  'sk4-sub':  { zh:'短视频制作 & 内容剪辑', en:'Short-video production & editing' },
+  'sk3-sub':  { zh:'Business data querying & analysis', en:'Business data querying & analysis' },
+  'sk4-name': { zh:'CapCut (Jianying)', en:'CapCut / Jianying' },
+  'sk4-sub':  { zh:'Short video production & editing', en:'Short-video production & editing' },
   'sk5-name': { zh:'Canva', en:'Canva' },
-  'sk5-sub':  { zh:'营销物料 & 品牌视觉设计', en:'Marketing materials & brand visuals' },
+  'sk5-sub':  { zh:'Marketing materials & brand visual design', en:'Marketing materials & brand visuals' },
   'sk6-name': { zh:'Office 全套', en:'Microsoft Office' },
   'sk6-sub':  { zh:'Excel / PPT / Word 精通', en:'Excel / PowerPoint / Word — advanced' },
 
   // ── CONTACT ──
   'ct-eyebrow': { zh:'Get in Touch', en:'Get in Touch' },
   'ct-heading': { zh:'Ready to build something <em>amazing?</em>', en:'Ready to build something <em>amazing?</em>' },
-  'ct-sub':     { zh:'正在寻找产品运营 / 市场营销全职机会，Feel free to reach out ✦', en:'Currently seeking full-time roles in Product Operations / Marketing. Let\'s connect ✦' },
+  'ct-sub':     { zh:'Currently seeking full-time opportunities in Product Ops / Marketing. Feel free to reach out ✦', en:'Currently seeking full-time roles in Product Operations / Marketing. Let\'s connect ✦' },
 
   // ── FOOTER ──
   'footer-txt': { zh:'© 2026 Zeng Xinghe · 产品运营 & 市场营销', en:'© 2026 Zeng Xinghe · Product Operations & Marketing' },
